@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S'aimer ファネル分析（Clarity+広告+hacomono統合版） — 2026年3月22日</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f8f9fa;color:#333;line-height:1.8}
+.container{max-width:920px;margin:0 auto;padding:24px 20px}
+h1{font-size:1.5rem;text-align:center;margin-bottom:4px;color:#1a1a1a}
+.subtitle{text-align:center;color:#999;font-size:.82rem;margin-bottom:40px}
+h2{font-size:1.15rem;color:#b8964e;border-left:4px solid #b8964e;padding-left:12px;margin:48px 0 20px}
+h3{font-size:1rem;margin:20px 0 10px;color:#333}
+
+.alert{border-radius:12px;padding:24px;margin:24px 0;text-align:center}
+.alert-red{background:#c0392b;color:#fff}
+.alert-orange{background:#e67e22;color:#fff}
+.alert-blue{background:#2980b9;color:#fff}
+.alert h3{color:#fff;margin:0 0 8px;font-size:1.15rem}
+.alert p{font-size:.85rem;opacity:.92}
+
+.data-source{background:#e8f4fd;border:1px solid #bee5eb;border-radius:10px;padding:14px 18px;margin:20px 0;font-size:.78rem;color:#0c5460}
+
+.insight{background:#fff;border-radius:12px;padding:24px;margin:20px 0;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.insight.critical{border-left:4px solid #c0392b}
+.insight.warning{border-left:4px solid #f39c12}
+.insight.new{border-left:4px solid #3498db}
+.insight.good{border-left:4px solid #27ae60}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.62rem;font-weight:700;color:#fff;margin-bottom:8px}
+.tag-red{background:#c0392b}.tag-orange{background:#f39c12}.tag-blue{background:#3498db}.tag-green{background:#27ae60}.tag-purple{background:#8e44ad}
+
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.82rem}
+th{background:#f0ebe3;padding:9px 10px;text-align:left;font-weight:600;border-bottom:2px solid #ddd}
+td{padding:9px 10px;border-bottom:1px solid #eee}
+tr:hover{background:#faf7f2}
+.num-red{color:#c0392b;font-weight:700}.num-green{color:#27ae60;font-weight:700}.num-blue{color:#2980b9;font-weight:700}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0}
+.kpi{background:#fff;border-radius:12px;padding:14px 10px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.kpi .num{font-size:1.5rem;font-weight:800;line-height:1.2}
+.kpi .label{font-size:.66rem;color:#999;margin-top:4px}
+.kpi .sub{font-size:.62rem;color:#bbb;margin-top:2px}
+
+.funnel{display:flex;flex-direction:column;align-items:center;gap:0;margin:32px 0}
+.funnel-step{text-align:center;padding:16px 20px;color:#fff;font-weight:700;font-size:.85rem;width:100%;clip-path:polygon(0 0,100% 0,96% 100%,4% 100%)}
+.f1{background:#3498db;max-width:650px}.f2{background:#5dade2;max-width:550px}.f3{background:#2ecc71;max-width:440px}.f4{background:#f39c12;max-width:320px}.f5{background:#e67e22;max-width:220px}.f6{background:#e74c3c;max-width:150px}
+.funnel-num{font-size:1.6rem}
+.funnel-label{font-size:.68rem;opacity:.85;font-weight:400}
+.funnel-drop{color:#c0392b;font-size:.72rem;font-weight:700;margin:3px 0;text-align:center}
+
+.scroll-bar{display:flex;align-items:center;gap:8px;margin:4px 0}
+.scroll-bar .bar-bg{flex:1;height:20px;background:#eee;border-radius:4px;overflow:hidden}
+.scroll-bar .bar-fill{height:100%;border-radius:4px}
+.scroll-bar .bar-label{font-size:.72rem;width:36px;text-align:right;flex-shrink:0}
+.scroll-bar .bar-num{font-size:.72rem;width:50px;flex-shrink:0;color:#666}
+
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.compare-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.compare-card h4{font-size:.88rem;margin-bottom:10px}
+
+.daily-table{max-height:300px;overflow-y:auto;border:1px solid #eee;border-radius:8px}
+.daily-table table{margin:0}
+.daily-table th{position:sticky;top:0;z-index:1}
+
+/* Slot visual */
+.slot-row{display:flex;align-items:center;gap:10px;margin:6px 0}
+.slot-label{width:80px;font-size:.72rem;font-weight:600;text-align:right;flex-shrink:0}
+.slot-bar-bg{flex:1;height:28px;background:#eee;border-radius:5px;overflow:hidden}
+.slot-bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;font-size:.68rem;font-weight:700;color:#fff}
+.slot-num{font-size:.72rem;color:#666;width:50px;text-align:right;flex-shrink:0}
+
+.matrix{width:100%;border-collapse:collapse;margin:16px 0;font-size:.72rem}
+.matrix th{background:#f0ebe3;padding:7px 5px;text-align:center;font-weight:600;border:1px solid #e0d8cc}
+.matrix td{padding:7px 5px;text-align:center;border:1px solid #eee}
+.mx-zero{background:#ffeaea;color:#c0392b;font-weight:700}
+.mx-low{background:#fff3cd;color:#856404}
+.mx-ok{background:#d4edda;color:#155724}
+
+.action-list{counter-reset:act}
+.action-list li{list-style:none;padding:14px 18px 14px 48px;margin:8px 0;background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.04);position:relative}
+.action-list li::before{counter-increment:act;content:counter(act);position:absolute;left:14px;top:14px;width:26px;height:26px;border-radius:50%;background:#b8964e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700}
+
+@media(max-width:640px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .compare-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>S'aimer ファネル分析（統合版）</h1>
+<p class="subtitle">2026年3月22日 — Clarity + Google広告 + Meta広告 + hacomono予約枠の全データ統合</p>
+
+<div class="data-source">
+  <strong>データソース:</strong>
+  Microsoft Clarity（2/1〜3/21 / 388セッション）、Google広告スプレッドシート（3/1〜3/20）、Meta広告スプレッドシート（3/5〜3/20）、hacomonoカレンダー（3/20〜4/30）
+</div>
+
+<!-- ===== KPI ===== -->
+<h2>確定KPI（実データ）</h2>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="num" style="color:#3498db">388</div>
+    <div class="label">総セッション</div>
+    <div class="sub">Clarity計測（2/1〜3/21）</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#c0392b">29.9%</div>
+    <div class="label">平均スクロール深度</div>
+    <div class="sub">ページの3割しか見られてない</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#e67e22">19</div>
+    <div class="label">CTAクリック数</div>
+    <div class="sub">Clarity計測 / 全期間</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#c0392b">2人</div>
+    <div class="label">体験予約完了</div>
+    <div class="sub">3月 hacomono実績</div>
+  </div>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="num" style="color:#e74c3c">51.5%</div>
+    <div class="label">FV即離脱率</div>
+    <div class="sub">スクロール5%未満で離脱</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#e67e22">4.9%</div>
+    <div class="label">CTAクリック率</div>
+    <div class="sub">19回 / 388セッション</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#c0392b">17</div>
+    <div class="label">アウトバウンドクリック</div>
+    <div class="sub">LP外への遷移 ≒ hacomono</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#8e44ad">53</div>
+    <div class="label">ボットセッション</div>
+    <div class="sub">全体の13.7%</div>
+  </div>
+</div>
+
+<!-- ===== 確定ファネル ===== -->
+<h2>確定コンバージョンファネル（全データソース統合）</h2>
+
+<div class="funnel">
+  <div class="funnel-step f1">
+    <div class="funnel-num">388セッション</div>
+    <div class="funnel-label">LP到達（Clarity計測 / うちボット53 = 実質335人）</div>
+  </div>
+  <div class="funnel-drop">▼ 51.5%がFV（最初の画面）で即離脱 — 200人が一瞬で去る</div>
+  <div class="funnel-step f2">
+    <div class="funnel-num">188人</div>
+    <div class="funnel-label">スクロール5%以上（FVを超えて読み始めた人）</div>
+  </div>
+  <div class="funnel-drop">▼ スクロールしても大半がCTAを押さない</div>
+  <div class="funnel-step f3">
+    <div class="funnel-num">19人</div>
+    <div class="funnel-label">CTAクリック（Clarityタップ計測 / 全CTA合計）</div>
+  </div>
+  <div class="funnel-drop">▼ CTAを押してもhacomonoに遷移しない人がいる</div>
+  <div class="funnel-step f4">
+    <div class="funnel-num">17人</div>
+    <div class="funnel-label">アウトバウンドクリック → hacomono遷移（Clarity計測）</div>
+  </div>
+  <div class="funnel-drop">▼ 17人中14人がhacomonoで離脱（会員登録の壁・枠なし）</div>
+  <div class="funnel-step f5">
+    <div class="funnel-num">3人</div>
+    <div class="funnel-label">hacomono会員登録（3月実績）</div>
+  </div>
+  <div class="funnel-drop">▼ 1人は希望の枠が合わず脱落</div>
+  <div class="funnel-step f6">
+    <div class="funnel-num">2人</div>
+    <div class="funnel-label">体験予約完了（3月実績 / CVR = 0.5%）</div>
+  </div>
+</div>
+
+<div class="insight critical">
+  <span class="tag tag-red">ファネル通過率まとめ</span>
+  <table>
+    <tr><th>ステップ</th><th>人数</th><th>通過率</th><th>離脱率</th><th>データソース</th></tr>
+    <tr><td>LP到達</td><td><strong>388</strong></td><td>—</td><td>—</td><td>Clarity</td></tr>
+    <tr><td>FV通過（5%スクロール）</td><td>188</td><td>48.5%</td><td class="num-red">51.5%</td><td>Clarity</td></tr>
+    <tr><td>CTAクリック</td><td>19</td><td>4.9%</td><td class="num-red">95.1%</td><td>Clarity</td></tr>
+    <tr><td>hacomono遷移</td><td>17</td><td>4.4%</td><td>—</td><td>Clarity（アウトバウンド）</td></tr>
+    <tr><td>hacomono会員登録</td><td>3</td><td>17.6%<br><span style="font-size:.65rem;color:#999">（17人中3人）</span></td><td class="num-red">82.4%</td><td>hacomono実績</td></tr>
+    <tr><td>体験予約完了</td><td>2</td><td>66.7%<br><span style="font-size:.65rem;color:#999">（3人中2人）</span></td><td>33.3%</td><td>hacomono実績</td></tr>
+  </table>
+</div>
+
+<!-- ===== 壁①: FV即離脱 ===== -->
+<h2>壁①: FV即離脱 — 200人が一瞬で去る（最大のボトルネック）</h2>
+
+<div class="insight critical">
+  <span class="tag tag-red">Clarityスクロール深度データ</span>
+  <h3>388人中200人がスクロール5%に到達しない</h3>
+
+  <div style="margin:20px 0">
+    <div class="scroll-bar"><div class="bar-label">5%</div><div class="bar-bg"><div class="bar-fill" style="width:48.5%;background:#3498db"></div></div><div class="bar-num">188人 (48.5%)</div></div>
+    <div class="scroll-bar"><div class="bar-label">10%</div><div class="bar-bg"><div class="bar-fill" style="width:36.6%;background:#3498db"></div></div><div class="bar-num">142人 (36.6%)</div></div>
+    <div class="scroll-bar"><div class="bar-label">25%</div><div class="bar-bg"><div class="bar-fill" style="width:31.4%;background:#2ecc71"></div></div><div class="bar-num">122人 (31.4%)</div></div>
+    <div class="scroll-bar"><div class="bar-label">50%</div><div class="bar-bg"><div class="bar-fill" style="width:26.5%;background:#f39c12"></div></div><div class="bar-num">103人 (26.5%)</div></div>
+    <div class="scroll-bar"><div class="bar-label">75%</div><div class="bar-bg"><div class="bar-fill" style="width:22.7%;background:#e67e22"></div></div><div class="bar-num">88人 (22.7%)</div></div>
+    <div class="scroll-bar"><div class="bar-label">100%</div><div class="bar-bg"><div class="bar-fill" style="width:11.6%;background:#e74c3c"></div></div><div class="bar-num">45人 (11.6%)</div></div>
+  </div>
+
+  <p style="font-size:.85rem;margin-top:16px">
+    <strong>最大の離脱ポイントは0%→5%の間。</strong>ここだけで200人（51.5%）が消えている。<br>
+    FV（ファーストビュー）が「自分に関係ある」と思わせる力が足りていない。<br>
+    平均スクロール深度29.9%は、ページの最初の1/3しか見られていないということ。
+  </p>
+  <p style="font-size:.82rem;margin-top:8px;background:#ffeaea;padding:10px;border-radius:8px">
+    <strong>ユーザー行動の実態:</strong> アクティブ時間49秒、滞在86秒。ほぼ1ページ（1.18ページ/セッション）で離脱。<br>
+    読んでないのではなく、<strong>FVで「違う」と判断して即座にブラウザバック</strong>している。
+  </p>
+</div>
+
+<!-- ===== 壁②: CTAクリック ===== -->
+<h2>壁②: CTAクリック率4.9% — どのCTAが押されているか</h2>
+
+<div class="insight warning">
+  <span class="tag tag-orange">Clarityタップデータ（全137クリック中）</span>
+  <h3>CTAクリックの内訳</h3>
+  <table>
+    <tr><th>要素</th><th>クリック数</th><th>割合</th><th>位置</th></tr>
+    <tr style="background:#f0f8e8"><td><strong>hero CTA（btn-gold）</strong></td><td><strong>11</strong></td><td><strong>8.0%</strong></td><td>FV内の予約ボタン</td></tr>
+    <tr style="background:#f0f8e8"><td><strong>フローティングCTA（fl-p）</strong></td><td><strong>5</strong></td><td><strong>3.7%</strong></td><td>画面下部の追従ボタン</td></tr>
+    <tr style="background:#f0f8e8"><td><strong>#reserve セクション</strong></td><td><strong>3</strong></td><td><strong>2.2%</strong></td><td>ページ下部の予約エリア</td></tr>
+    <tr><td>サービスカード（テキスト）</td><td>11</td><td>8.0%</td><td>サービス紹介セクション</td></tr>
+    <tr><td>ヒーローセクション（非CTA）</td><td>11</td><td>8.0%</td><td>FV内の見出し・バッジ等</td></tr>
+    <tr><td>キャンペーンカード</td><td>3</td><td>2.2%</td><td>キャンペーン表示エリア</td></tr>
+    <tr><td>その他（画像・フッター等）</td><td>残り</td><td>—</td><td>—</td></tr>
+  </table>
+
+  <p style="margin-top:16px;font-size:.85rem;background:#e8f4fd;padding:12px;border-radius:8px;color:#0c5460">
+    <strong>発見:</strong><br>
+    ・<strong>hero CTA（FV内ボタン）が最も押されている（11回）</strong>。FVで判断→即クリックのパターン。<br>
+    ・フローティングCTAは5回のみ。スクロールしてから押す人は少ない。<br>
+    ・#reserve（ページ最下部）は3回のみ。最下部まで行く人が11.6%しかいないため当然。<br>
+    ・<strong>サービスカードのテキストに11クリック</strong> → 読み物として興味があるが、CTAではない。
+  </p>
+</div>
+
+<!-- ===== 壁③: hacomono遷移・予約 ===== -->
+<h2>壁③: hacomono遷移 → 予約完了</h2>
+
+<div class="insight critical">
+  <span class="tag tag-red">アウトバウンドクリック</span>
+  <h3>17人がhacomonoに遷移 → 3人だけ登録（通過率17.6%）</h3>
+  <p style="font-size:.85rem">
+    Clarityの「アウトバウンドクリック」= LP外のサイトへの遷移 = hacomonoへの移動。<br>
+    <strong>17人がhacomonoまで行ったが、14人（82%）が会員登録前に離脱。</strong>
+  </p>
+</div>
+
+<div class="insight critical">
+  <span class="tag tag-red">hacomono離脱の3大原因</span>
+
+  <h3>原因①: 予約枠が見つからない（最大の原因）</h3>
+  <p style="font-size:.85rem">
+    hacomonoのカレンダーを開いた時に空き枠がない。<br>
+    <strong>土曜日: 6週間で0枠</strong>（ターゲットが最も来たい曜日）。<br>
+    平日夕方〜夜もほぼ埋まっている。空いてるのは平日昼間だけ → 働いてたら無理。<br>
+    <strong>「空き枠がない」が見えた瞬間に閉じている。</strong>
+  </p>
+
+  <h3 style="margin-top:20px">原因②: 会員登録が先に来る（予約フロー設定の問題）</h3>
+  <p style="font-size:.85rem">
+    現在のhacomonoの予約フロー:
+  </p>
+  <p style="font-size:.85rem;background:#ffeaea;padding:10px;border-radius:6px;margin:8px 0">
+    CTA → <strong>会員登録ページ（名前・メール・パスワード）</strong> → ログイン → スケジュール選択 → 予約確定
+  </p>
+  <p style="font-size:.85rem">
+    登録してからでないと空き枠が見えない。「登録したのに枠がなかった」は最悪の体験。
+  </p>
+
+  <div style="margin:16px 0;padding:16px;background:#e8f4fd;border-radius:8px">
+    <strong style="color:#0c5460">競合調査: the SILK（hacomono利用）の予約フロー</strong><br>
+    <p style="font-size:.85rem;color:#0c5460;background:#d4edda;padding:10px;border-radius:6px;margin:8px 0">
+      CTA → <strong>スケジュール選択（カレンダーで空き枠を確認）</strong> → 希望枠を選ぶ → 会員登録 → 予約確定
+    </p>
+    <span style="font-size:.85rem;color:#0c5460">
+      <strong>スケジュールが先、登録が後。</strong>空きがあることを確認してから登録するので離脱が少ない。<br>
+      → <strong>hacomonoの管理画面で予約フローの順番を変更すれば同じことができる。</strong>
+    </span>
+  </div>
+
+  <h3 style="margin-top:20px">原因③: 外部ドメインへの遷移</h3>
+  <p style="font-size:.85rem">
+    saimer.jp → saimer.hacomono.jp に飛ぶので、見た目が全然違うサイトに飛ばされた感がある。<br>
+    Clarityでクイックバッククリック7件（1.8%）= 遷移先を見て即戻った人。
+  </p>
+</div>
+
+<div class="insight new">
+  <span class="tag tag-purple">対策: hacomonoフロー変更 + 電話導線</span>
+
+  <h3>対策A: hacomonoの予約フロー設定変更 ✅ 完了（3/22）</h3>
+  <table>
+    <tr><th></th><th>変更前</th><th>変更後（the SILK方式）</th><th>ステータス</th></tr>
+    <tr>
+      <td>ステップ1</td>
+      <td style="text-decoration:line-through;color:#999">会員登録（名前・メール・PW）</td>
+      <td class="num-green"><strong>スケジュール選択（カレンダー表示）</strong></td>
+      <td class="num-green">✅ 変更済み</td>
+    </tr>
+    <tr>
+      <td>ステップ2</td>
+      <td style="text-decoration:line-through;color:#999">ログイン</td>
+      <td>希望枠を選択</td>
+      <td class="num-green">✅ 変更済み</td>
+    </tr>
+    <tr>
+      <td>ステップ3</td>
+      <td style="text-decoration:line-through;color:#999">スケジュール選択</td>
+      <td>会員登録して予約確定</td>
+      <td class="num-green">✅ 変更済み</td>
+    </tr>
+  </table>
+  <p style="margin-top:12px;font-size:.85rem;background:#d4edda;padding:12px;border-radius:8px;color:#155724">
+    <strong>✅ コアワークさんにて設定変更完了。</strong>hacomonoの予約フローが改善され、ユーザーはまずカレンダーで空き枠を確認してから会員登録に進む流れに変更済み。
+  </p>
+  <p style="margin-top:12px;font-size:.85rem">
+    <strong>新LP公開中:</strong> <a href="https://saimer.jp/lp2/" style="color:#5F90CC;font-weight:700;text-decoration:underline" target="_blank">https://saimer.jp/lp2/</a><br>
+    Google広告・Meta広告のリンク先もlp2に更新済み。
+  </p>
+
+  <h3 style="margin-top:20px">対策B: 電話導線（3/21に追従バーへ追加済み ✅）</h3>
+  <p style="font-size:.85rem">
+    hacomonoの会員登録が壁になっているユーザー向けに、追従バーに「電話で相談」ボタンを追加済み。<br>
+    hacomonoを経由せずに直接電話で予約できる導線。
+  </p>
+</div>
+
+<!-- ===== hacomono予約枠の実態 ===== -->
+<h2>hacomono予約枠の実態（3/20〜4/30）</h2>
+
+<div class="alert alert-red">
+  <h3>月間約25セッションしか空きがない</h3>
+  <p>600人がLPに来ても、予約できる物理的な枠が月25回分しかない。<br>特に<strong>土曜は6週間で空き枠ゼロ</strong>。</p>
+</div>
+
+<div class="insight critical">
+  <span class="tag tag-red">hacomonoカレンダー集計</span>
+  <h3>週別の空きセッション数</h3>
+
+  <div style="margin:20px 0">
+    <div class="slot-row">
+      <div class="slot-label">3/20-26</div>
+      <div class="slot-bar-bg"><div class="slot-bar-fill" style="width:50%;background:#e67e22">5セッション</div></div>
+      <div class="slot-num">5回</div>
+    </div>
+    <div class="slot-row">
+      <div class="slot-label">3/27-4/2</div>
+      <div class="slot-bar-bg"><div class="slot-bar-fill" style="width:40%;background:#e67e22">4セッション</div></div>
+      <div class="slot-num">4回</div>
+    </div>
+    <div class="slot-row">
+      <div class="slot-label">4/3-9</div>
+      <div class="slot-bar-bg"><div class="slot-bar-fill" style="width:100%;background:#27ae60">10セッション</div></div>
+      <div class="slot-num">10回</div>
+    </div>
+    <div class="slot-row">
+      <div class="slot-label">4/10-16</div>
+      <div class="slot-bar-bg"><div class="slot-bar-fill" style="width:40%;background:#e67e22">4セッション</div></div>
+      <div class="slot-num">4回</div>
+    </div>
+    <div class="slot-row">
+      <div class="slot-label">4/17-23</div>
+      <div class="slot-bar-bg"><div class="slot-bar-fill" style="width:90%;background:#27ae60">9セッション</div></div>
+      <div class="slot-num">9回</div>
+    </div>
+    <div class="slot-row">
+      <div class="slot-label">4/24-30</div>
+      <div class="slot-bar-bg"><div class="slot-bar-fill" style="width:60%;background:#e67e22">6セッション</div></div>
+      <div class="slot-num">6回</div>
+    </div>
+    <div class="slot-row" style="margin-top:8px;padding-top:8px;border-top:2px solid #ddd">
+      <div class="slot-label" style="font-weight:800">合計（6週）</div>
+      <div class="slot-bar-bg"><div class="slot-bar-fill" style="width:100%;background:#b8964e">38セッション（月換算 約25回）</div></div>
+      <div class="slot-num" style="font-weight:800">38回</div>
+    </div>
+  </div>
+</div>
+
+<div class="insight critical">
+  <span class="tag tag-red">時間帯×曜日マトリクス</span>
+  <h3>ターゲットの希望時間帯 vs 空き状況</h3>
+  <table class="matrix">
+    <tr>
+      <th></th><th>金</th><th>土</th><th>日</th><th>月</th><th>火</th><th>水</th><th>木</th>
+    </tr>
+    <tr>
+      <th>午前<br>10-12時</th>
+      <td class="mx-low">稀に1枠</td><td class="mx-zero">0</td><td class="mx-zero">定休</td>
+      <td class="mx-zero">0</td><td class="mx-zero">0</td><td class="mx-zero">0</td><td class="mx-low">稀に1枠</td>
+    </tr>
+    <tr>
+      <th>昼<br>12-15時</th>
+      <td class="mx-ok">2-4枠</td><td class="mx-zero">0</td><td class="mx-zero">定休</td>
+      <td class="mx-zero">0</td><td class="mx-low">1-2枠</td><td class="mx-low">1-2枠</td><td class="mx-low">1-2枠</td>
+    </tr>
+    <tr>
+      <th>夕方<br>15-18時</th>
+      <td class="mx-low">1-2枠</td><td class="mx-zero">0</td><td class="mx-zero">定休</td>
+      <td class="mx-ok">2-4枠</td><td class="mx-ok">2-3枠</td><td class="mx-zero">0</td><td class="mx-zero">0</td>
+    </tr>
+    <tr>
+      <th>夜<br>18-20時</th>
+      <td class="mx-zero">0</td><td class="mx-zero">0</td><td class="mx-zero">定休</td>
+      <td class="mx-low">1枠</td><td class="mx-low">1-2枠</td><td class="mx-zero">0</td><td class="mx-zero">0</td>
+    </tr>
+    <tr style="background:#f8f0e0">
+      <th>ターゲット<br>の希望度</th>
+      <td style="font-size:.65rem">中</td>
+      <td style="font-size:.65rem;color:#c0392b;font-weight:700">★最高</td>
+      <td style="font-size:.65rem;color:#c0392b;font-weight:700">★高</td>
+      <td style="font-size:.65rem">中</td><td style="font-size:.65rem">中</td><td style="font-size:.65rem">中</td><td style="font-size:.65rem">中</td>
+    </tr>
+  </table>
+
+  <div style="background:#ffeaea;border-radius:8px;padding:14px;margin-top:12px;text-align:center">
+    <strong style="color:#c0392b">土曜日: 6週間で空き枠ゼロ</strong><br>
+    <span style="font-size:.82rem;color:#555">ターゲット（30-50代 働く女性・子育てママ）が最も来たい曜日に1枠も予約できない</span>
+  </div>
+</div>
+
+<!-- ===== Clarity追加インサイト ===== -->
+<h2>Clarityから見えたその他のインサイト</h2>
+
+<div class="compare-row">
+  <div class="compare-card">
+    <h4>流入元の内訳</h4>
+    <table>
+      <tr><td>Google検索広告</td><td><strong>191</strong>（49.2%）</td></tr>
+      <tr><td>Google自然検索</td><td>47（12.1%）</td></tr>
+      <tr><td>Facebook</td><td>48（12.4%）</td></tr>
+      <tr><td>Instagram</td><td>38（9.8%）</td></tr>
+      <tr><td>自社サイト</td><td>11（2.8%）</td></tr>
+      <tr><td>ボット</td><td class="num-red">53（13.7%）</td></tr>
+    </table>
+  </div>
+  <div class="compare-card">
+    <h4>ブラウザ（≒デバイス）</h4>
+    <table>
+      <tr><td>Mobile Safari</td><td><strong>117</strong>（30.2%）</td></tr>
+      <tr><td>Chrome Mobile</td><td>111（28.6%）</td></tr>
+      <tr><td>Instagram App</td><td>75（19.3%）</td></tr>
+      <tr><td>Facebook App</td><td>48（12.4%）</td></tr>
+      <tr><td>Chrome（PC）</td><td>23（5.9%）</td></tr>
+      <tr><td>Google App</td><td>14（3.6%）</td></tr>
+    </table>
+    <p style="font-size:.75rem;color:#999;margin-top:8px">94%がモバイル。PC閲覧はほぼゼロ。</p>
+  </div>
+</div>
+
+<div class="compare-row">
+  <div class="compare-card">
+    <h4>ボットトラフィック</h4>
+    <table>
+      <tr><td>不審なインタラクション</td><td class="num-red">51</td></tr>
+      <tr><td>不審なネットワーク</td><td class="num-red">47</td></tr>
+      <tr><td>Webスクレイパー</td><td>11</td></tr>
+      <tr><td>不審なデバイス</td><td>6</td></tr>
+      <tr><td>PPC広告不正クリック</td><td class="num-red">1</td></tr>
+    </table>
+    <p style="font-size:.75rem;color:#999;margin-top:8px">
+      53ボットセッション = 全体の13.7%。<br>
+      広告クリックの一部が無駄消費の可能性。
+    </p>
+  </div>
+  <div class="compare-card">
+    <h4>パフォーマンス</h4>
+    <table>
+      <tr><td>スコア</td><td class="num-green"><strong>80</strong></td></tr>
+      <tr><td>LCP（最大コンテンツ描画）</td><td class="num-green">1.796s</td></tr>
+      <tr><td>INP（インタラクション遅延）</td><td class="num-red"><strong>1,544ms</strong></td></tr>
+      <tr><td>CLS（レイアウトシフト）</td><td class="num-green">0s</td></tr>
+    </table>
+    <p style="font-size:.75rem;color:#c0392b;margin-top:8px">
+      <strong>INP 1,544msは非常に悪い</strong>（目標200ms以下）。<br>
+      ボタンを押してから反応するまで1.5秒かかる。<br>
+      CTA押したのに反応しない→離脱の原因かもしれない。
+    </p>
+  </div>
+</div>
+
+<div class="insight warning">
+  <span class="tag tag-orange">デッドクリック・クイックバック</span>
+  <table>
+    <tr><th>指標</th><th>数値</th><th>意味</th></tr>
+    <tr><td>デッドクリック</td><td>14（3.6%）</td><td>押しても何も起きない要素をクリック → ユーザーの混乱</td></tr>
+    <tr><td>クイックバッククリック</td><td>7（1.8%）</td><td>ページ遷移後すぐ戻る → 期待と違うページに飛ばされた</td></tr>
+    <tr><td>イライラクリック</td><td>0</td><td>連打はなし</td></tr>
+  </table>
+</div>
+
+<!-- ===== 広告媒体別 ===== -->
+<h2>広告媒体別パフォーマンス（3月）</h2>
+
+<div class="compare-row">
+  <div class="compare-card">
+    <h4>Google広告（体験予約）</h4>
+    <table>
+      <tr><td>期間</td><td>3/1〜3/20</td></tr>
+      <tr><td>LP流入</td><td><strong>254回</strong>（12.7人/日）</td></tr>
+      <tr><td>費用</td><td>¥9,803</td></tr>
+      <tr><td>CPC</td><td class="num-green">¥39</td></tr>
+      <tr><td>CTR</td><td class="num-green">22.9%</td></tr>
+      <tr><td>CV（CTA click）</td><td>15回（5.9%）</td></tr>
+    </table>
+    <p style="font-size:.72rem;color:#155724;background:#d4edda;padding:8px;border-radius:6px;margin-top:8px">
+      広告自体は優秀。問題はLP到着後。
+    </p>
+  </div>
+  <div class="compare-card">
+    <h4>Meta広告（ピラティス3月広告）</h4>
+    <table>
+      <tr><td>期間</td><td>3/5〜3/20</td></tr>
+      <tr><td>LP流入</td><td><strong>278回</strong>（17.4人/日）</td></tr>
+      <tr><td>費用</td><td>¥8,108</td></tr>
+      <tr><td>CPC</td><td class="num-green">¥29</td></tr>
+      <tr><td>CTR</td><td class="num-green">2.91%</td></tr>
+      <tr><td>Lead（CTA click）</td><td class="num-red">0回 ← 壊れてる</td></tr>
+    </table>
+    <p style="font-size:.72rem;color:#856404;background:#fff3cd;padding:8px;border-radius:6px;margin-top:8px">
+      広告は優秀だがLead計測が全期間ゼロ。修復必須。
+    </p>
+  </div>
+</div>
+
+<!-- ===== Google Ads日次 ===== -->
+<h2>Google広告 CV（CTAクリック）日次推移</h2>
+
+<div class="insight new">
+  <span class="tag tag-blue">3/12にCVが断絶、3/19に復旧</span>
+  <table>
+    <tr><th></th><th>正常期間（3/1-3/11）</th><th>断絶期間（3/12-3/18）</th><th>復旧後（3/19-3/20）</th></tr>
+    <tr><td>日数</td><td>11日</td><td>7日</td><td>2日</td></tr>
+    <tr><td>クリック</td><td>158</td><td>62</td><td>34</td></tr>
+    <tr><td>CV</td><td class="num-blue">12</td><td class="num-red">0</td><td class="num-green">3</td></tr>
+    <tr><td>CTA率</td><td class="num-blue"><strong>7.6%</strong></td><td class="num-red"><strong>0%</strong></td><td class="num-green"><strong>8.8%</strong></td></tr>
+  </table>
+</div>
+
+<details style="margin:16px 0">
+<summary style="cursor:pointer;font-size:.85rem;font-weight:600;color:#b8964e;padding:8px 0">日次データ全件を表示 ▼</summary>
+<div class="daily-table">
+<table>
+  <tr><th>日付</th><th>クリック</th><th>CV</th><th>CTA率</th><th>費用</th><th>備考</th></tr>
+  <tr><td>3/1</td><td>10</td><td>0</td><td>0%</td><td>¥548</td><td></td></tr>
+  <tr><td>3/2</td><td>12</td><td>1</td><td>8.3%</td><td>¥526</td><td></td></tr>
+  <tr><td>3/3</td><td>19</td><td>1</td><td>5.3%</td><td>¥575</td><td></td></tr>
+  <tr><td>3/4</td><td>18</td><td>3</td><td class="num-green">16.7%</td><td>¥581</td><td>最高値</td></tr>
+  <tr><td>3/5</td><td>17</td><td>1</td><td>5.9%</td><td>¥550</td><td></td></tr>
+  <tr><td>3/6</td><td>11</td><td>1</td><td>9.1%</td><td>¥601</td><td></td></tr>
+  <tr><td>3/7</td><td>18</td><td>0</td><td>0%</td><td>¥548</td><td></td></tr>
+  <tr><td>3/8</td><td>14</td><td>1</td><td>7.1%</td><td>¥514</td><td></td></tr>
+  <tr><td>3/9</td><td>13</td><td>1</td><td>7.7%</td><td>¥401</td><td></td></tr>
+  <tr><td>3/10</td><td>7</td><td>2</td><td class="num-green">28.6%</td><td>¥248</td><td></td></tr>
+  <tr><td>3/11</td><td>19</td><td>1</td><td>5.3%</td><td>¥498</td><td></td></tr>
+  <tr style="background:#ffeaea"><td>3/12</td><td>13</td><td class="num-red">0</td><td class="num-red">0%</td><td>¥413</td><td class="num-red">GTM停止</td></tr>
+  <tr style="background:#ffeaea"><td>3/13</td><td>13</td><td class="num-red">0</td><td class="num-red">0%</td><td>¥333</td><td></td></tr>
+  <tr style="background:#ffeaea"><td>3/14</td><td>10</td><td class="num-red">0</td><td class="num-red">0%</td><td>¥217</td><td></td></tr>
+  <tr style="background:#ffeaea"><td>3/15</td><td>2</td><td class="num-red">0</td><td class="num-red">0%</td><td>¥61</td><td></td></tr>
+  <tr style="background:#ffeaea"><td>3/16</td><td>3</td><td class="num-red">0</td><td class="num-red">0%</td><td>¥134</td><td></td></tr>
+  <tr style="background:#ffeaea"><td>3/17</td><td>8</td><td class="num-red">0</td><td class="num-red">0%</td><td>¥651</td><td></td></tr>
+  <tr style="background:#ffeaea"><td>3/18</td><td>13</td><td class="num-red">0</td><td class="num-red">0%</td><td>¥526</td><td></td></tr>
+  <tr style="background:#e8f8e8"><td>3/19</td><td>20</td><td class="num-green">1</td><td>5.0%</td><td>¥999</td><td class="num-green">復旧</td></tr>
+  <tr style="background:#e8f8e8"><td>3/20</td><td>14</td><td class="num-green">2</td><td>14.3%</td><td>¥879</td><td></td></tr>
+</table>
+</div>
+</details>
+
+<!-- ===== 改善施策 ===== -->
+<h2>改善施策（全データ統合後の優先順位）</h2>
+
+<ol class="action-list">
+  <li>
+    <strong>FV（ファーストビュー）の改善</strong> <span class="tag tag-red" style="vertical-align:middle">最重要 — 3/21変更済み・効果測定中</span><br>
+    <span style="font-size:.82rem;color:#555">
+      Clarity実証: <strong>51.5%がFVで即離脱</strong>。3/21にFV等を変更済み。<br>
+      <strong>3/28にClarityデータで変更前後を比較</strong>。FV離脱率が改善しなければFVを再度刷新する。<br>
+      hero CTAが最も押されている（11回/19回）ので、FVにCTAがあることは正しい。
+    </span>
+  </li>
+  <li>
+    <strong>hacomono予約フローの変更（スケジュール選択を先に）</strong> <span class="tag tag-red" style="vertical-align:middle">コアワークさんへ依頼</span><br>
+    <span style="font-size:.82rem;color:#555">
+      現在: 会員登録 → スケジュール → 予約。<strong>the SILK方式: スケジュール → 登録 → 予約</strong>に変更。<br>
+      hacomono管理画面の設定変更のみで対応可能。LP修正は不要。<br>
+      17人がhacomonoに行って14人が離脱（82%）している最大の原因は「登録が先」のフロー。
+    </span>
+  </li>
+  <li>
+    <strong>Meta Pixel Lead計測の修復</strong> <span class="tag tag-red" style="vertical-align:middle">即日</span><br>
+    <span style="font-size:.82rem;color:#555">
+      全期間Lead=0。Clarityで見るとInstagram App 75 + Facebook App 48 = 123セッション（32%）がMeta経由。<br>
+      この32%のCV最適化が効いていない。
+    </span>
+  </li>
+  <li>
+    <strong>電話導線の強化</strong> <span class="tag tag-green" style="vertical-align:middle">3/21追加済み ✅</span><br>
+    <span style="font-size:.82rem;color:#555">
+      追従バーに「電話で相談」ボタンを追加済み。hacomonoの会員登録をスキップして直接予約できる導線。<br>
+      今後Clarityで電話ボタンのタップ数を確認し、効果を測定。
+    </span>
+  </li>
+  <li>
+    <strong>INP（インタラクション遅延）の改善</strong> <span class="tag tag-orange" style="vertical-align:middle">LP更新で対応</span><br>
+    <span style="font-size:.82rem;color:#555">
+      現在のINP 1,544ms（目標200ms以下）。CTAを押しても1.5秒反応しない。<br>
+      画像圧縮（360MB→3-5MB）とJS最適化で大幅改善見込み。
+    </span>
+  </li>
+  <li>
+    <strong>予約枠拡大</strong> <span class="tag tag-red" style="vertical-align:middle">オーナー判断</span><br>
+    <span style="font-size:.82rem;color:#555">
+      月25セッション（特に土曜0枠）はLP改善後に最大のボトルネックになる。<br>
+      仮にCTA率を10%に改善しても、月600人→60人CTA→17+人hacomono→枠25回まで。<br>
+      <strong>LP改善と同時に枠を増やさないと、改善効果が枠で頭打ちになる。</strong>
+    </span>
+  </li>
+  <li>
+    <strong>ボットトラフィック対策</strong> <span class="tag tag-blue" style="vertical-align:middle">中期</span><br>
+    <span style="font-size:.82rem;color:#555">
+      13.7%がボット。特に不審なネットワーク47セッション。<br>
+      Google広告の「不正クリック防止」設定の確認と、必要に応じてIP除外。
+    </span>
+  </li>
+</ol>
+
+<!-- ===== まとめ ===== -->
+<div style="background:linear-gradient(135deg,#3a3632,#4a433d);color:#fff;border-radius:16px;padding:32px;margin:48px 0">
+  <h3 style="color:#d4b876;font-size:1.15rem;margin-bottom:16px;text-align:center">全データ統合ファネル（確定版）</h3>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0;text-align:center">
+    <div>
+      <div style="font-size:1.8rem;font-weight:800;color:#3498db">388</div>
+      <div style="font-size:.7rem;opacity:.7">セッション（実質335人）</div>
+    </div>
+    <div>
+      <div style="font-size:1.8rem;font-weight:800;color:#e67e22">188</div>
+      <div style="font-size:.7rem;opacity:.7">FV通過（48.5%）</div>
+    </div>
+    <div>
+      <div style="font-size:1.8rem;font-weight:800;color:#e74c3c">19</div>
+      <div style="font-size:.7rem;opacity:.7">CTAクリック（4.9%）</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0 20px;text-align:center">
+    <div>
+      <div style="font-size:1.8rem;font-weight:800;color:#e74c3c">17</div>
+      <div style="font-size:.7rem;opacity:.7">hacomono遷移（4.4%）</div>
+    </div>
+    <div>
+      <div style="font-size:1.8rem;font-weight:800;color:#e74c3c">3</div>
+      <div style="font-size:.7rem;opacity:.7">会員登録</div>
+    </div>
+    <div>
+      <div style="font-size:1.8rem;font-weight:800;color:#e74c3c">2</div>
+      <div style="font-size:.7rem;opacity:.7">予約完了</div>
+    </div>
+  </div>
+
+  <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:20px;margin-top:12px">
+    <p style="font-size:.88rem;line-height:2;text-align:center">
+      <strong style="color:#d4b876">3つの壁が同時に存在している</strong>
+    </p>
+    <table style="margin:12px auto;max-width:650px;font-size:.82rem;color:rgba(255,255,255,.9)">
+      <tr style="background:transparent"><th style="background:transparent;color:#d4b876;border-bottom:1px solid rgba(255,255,255,.15)">壁</th><th style="background:transparent;color:#d4b876;border-bottom:1px solid rgba(255,255,255,.15)">離脱率</th><th style="background:transparent;color:#d4b876;border-bottom:1px solid rgba(255,255,255,.15)">対策</th><th style="background:transparent;color:#d4b876;border-bottom:1px solid rgba(255,255,255,.15)">状況</th></tr>
+      <tr style="background:transparent"><td style="border-bottom:1px solid rgba(255,255,255,.08)">FV即離脱</td><td style="border-bottom:1px solid rgba(255,255,255,.08)">51.5%</td><td style="border-bottom:1px solid rgba(255,255,255,.08)">FV変更</td><td style="border-bottom:1px solid rgba(255,255,255,.08);color:#2ecc71">3/21変更済み・効果測定中</td></tr>
+      <tr style="background:transparent"><td style="border-bottom:1px solid rgba(255,255,255,.08)">CTA未クリック</td><td style="border-bottom:1px solid rgba(255,255,255,.08)">95.1%</td><td style="border-bottom:1px solid rgba(255,255,255,.08)">CTA増設+追従+INP改善</td><td style="border-bottom:1px solid rgba(255,255,255,.08);color:#2ecc71">電話CTA追加済み</td></tr>
+      <tr style="background:transparent"><td style="border-bottom:1px solid rgba(255,255,255,.08)">hacomono離脱</td><td style="border-bottom:1px solid rgba(255,255,255,.08)">82.4%</td><td style="border-bottom:1px solid rgba(255,255,255,.08)">フロー変更（スケジュール先）+枠拡大</td><td style="border-bottom:1px solid rgba(255,255,255,.08);color:#f39c12">コアワーク依頼予定</td></tr>
+    </table>
+  </div>
+
+  <p style="text-align:center;margin-top:20px;font-size:.85rem;color:#d4b876;font-weight:700">
+    3/28 Clarityデータ比較（FV効果判定）→ hacomonoフロー変更 → Meta修復
+  </p>
+</div>
+
+<p style="text-align:center;margin-top:32px;font-size:.68rem;color:#ccc">
+  Generated by Claude Code — 2026-03-22<br>
+  データソース: Microsoft Clarity (2/1-3/21) + Google広告 (3/1-3/20) + Meta広告 (3/5-3/20) + hacomonoカレンダー (3/20-4/30)
+</p>
+
+</div>
+</body>
+</html>
