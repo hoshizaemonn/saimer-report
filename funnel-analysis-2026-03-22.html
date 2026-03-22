@@ -529,10 +529,10 @@ tr:hover{background:#faf7f2}
       <tr><td>費用</td><td>¥8,108</td></tr>
       <tr><td>CPC</td><td class="num-green">¥29</td></tr>
       <tr><td>CTR</td><td class="num-green">2.91%</td></tr>
-      <tr><td>Lead（CTA click）</td><td class="num-red">0回 ← 壊れてる</td></tr>
+      <tr><td>Lead（CTA click）</td><td class="num-green">✅ 修復済み（3/22）</td></tr>
     </table>
     <p style="font-size:.72rem;color:#856404;background:#fff3cd;padding:8px;border-radius:6px;margin-top:8px">
-      広告は優秀だがLead計測が全期間ゼロ。修復必須。
+      Lead計測は3/22に修復完了。今後データが蓄積される。
     </p>
   </div>
 </div>
@@ -601,10 +601,11 @@ tr:hover{background:#faf7f2}
     </span>
   </li>
   <li>
-    <strong>Meta Pixel Lead計測の修復</strong> <span class="tag tag-red" style="vertical-align:middle">即日</span><br>
+    <strong>Meta Pixel Lead計測の修復</strong> <span class="tag tag-green" style="vertical-align:middle">✅ 完了（3/22）</span><br>
     <span style="font-size:.82rem;color:#555">
-      全期間Lead=0。Clarityで見るとInstagram App 75 + Facebook App 48 = 123セッション（32%）がMeta経由。<br>
-      この32%のCV最適化が効いていない。
+      LP側: Meta Pixel PageView + Lead（CTAクリック→InitiateCheckoutに変更済み）動作確認済み。<br>
+      hacomono側: 新GTMコンテナを作成し、予約完了ページでのみLeadイベントが発火するよう設定完了。<br>
+      Metaは「実際に予約完了した人」に向けて広告を最適化するようになった。
     </span>
   </li>
   <li>
