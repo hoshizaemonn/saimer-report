@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S'aimer 取り逃し改善提案 — 2026/4/11</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f5f0;color:#333;line-height:1.7}
+.container{max-width:900px;margin:0 auto;padding:32px 20px}
+h1{font-size:1.5rem;text-align:center;color:#1a1a1a;margin-bottom:4px}
+.subtitle{text-align:center;color:#999;font-size:.82rem;margin-bottom:48px}
+h2{font-size:1.15rem;color:#b8964e;margin:48px 0 16px;padding-bottom:8px;border-bottom:2px solid #b8964e}
+h3{font-size:1rem;color:#333;margin:24px 0 12px}
+
+/* ===== サマリーカード ===== */
+.summary{background:linear-gradient(135deg,#3a3632,#4a433d);color:#fff;border-radius:16px;padding:32px;margin:24px 0;text-align:center}
+.summary-label{font-size:.7rem;letter-spacing:.2em;color:#d4b876;margin-bottom:8px}
+.summary-headline{font-size:1.4rem;font-weight:800;line-height:1.6}
+.summary-headline strong{color:#d4b876;font-size:1.8rem}
+
+/* ===== ファネル図 ===== */
+.funnel{margin:32px auto;max-width:600px}
+.funnel-row{display:flex;align-items:center;margin-bottom:6px}
+.funnel-bar{height:60px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.95rem;border-radius:8px;text-align:center;line-height:1.3;padding:0 16px;flex-shrink:0}
+.funnel-bar .num{font-size:1.4rem;font-weight:900;display:block}
+.funnel-info{flex:1;padding:8px 16px;font-size:.78rem;color:#666}
+.funnel-arrow{text-align:center;color:#ccc;font-size:1.4rem;margin:6px 0;width:100%}
+.drop{background:#fff3cd;border:2px dashed #f0c040;border-radius:10px;padding:12px 16px;margin:6px 0;font-size:.82rem;color:#856404;text-align:center}
+.drop strong{color:#c0392b;font-size:1rem}
+
+/* ===== 比較カード ===== */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.compare-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.compare-card.bad{border-left:4px solid #e74c3c}
+.compare-card.good{border-left:4px solid #27ae60}
+.compare-card .label{font-size:.7rem;color:#999;margin-bottom:4px}
+.compare-card .num{font-size:2rem;font-weight:900;color:#333}
+.compare-card .sub{font-size:.72rem;color:#666;margin-top:4px}
+
+/* ===== 提案ボックス ===== */
+.proposal{background:#fff;border-radius:12px;padding:24px;margin:16px 0;box-shadow:0 2px 12px rgba(0,0,0,.05);border-left:4px solid #b8964e}
+.proposal-num{display:inline-block;width:32px;height:32px;background:#b8964e;color:#fff;border-radius:50%;text-align:center;line-height:32px;font-weight:800;margin-right:12px;vertical-align:middle}
+.proposal h3{display:inline;vertical-align:middle;font-size:1.1rem}
+.proposal-body{margin-top:14px;font-size:.85rem;line-height:1.8}
+.proposal-effect{background:#f0f7ed;border-radius:8px;padding:10px 14px;margin-top:12px;font-size:.78rem;color:#155724;border-left:3px solid #27ae60}
+.proposal-effect strong{color:#155724}
+.proposal-cost{display:inline-block;background:#fff3cd;color:#856404;padding:3px 10px;border-radius:12px;font-size:.65rem;font-weight:700;margin-left:8px;border:1px solid #f0c040}
+
+/* ===== テーブル ===== */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.82rem}
+th{background:#f0ebe3;padding:10px;text-align:center;font-weight:600;border:1px solid #e0d8cc}
+td{padding:10px;text-align:center;border:1px solid #eee}
+.up{color:#27ae60;font-weight:700}
+.down{color:#c0392b;font-weight:700}
+
+/* ===== カレンダー図 ===== */
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:500px;margin:16px auto;font-size:.7rem}
+.cal-day{background:#fff;padding:8px 4px;text-align:center;border-radius:4px}
+.cal-head{background:#f0ebe3;font-weight:700;padding:6px 4px}
+.cal-empty{background:#ffeaea;color:#c0392b}
+.cal-some{background:#fff3cd;color:#856404}
+.cal-ok{background:#d4edda;color:#155724}
+
+/* ===== フロー図 ===== */
+.flow-current{background:#fff;border-radius:12px;padding:24px;margin:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.flow-step{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#f9f7f3;border-radius:8px;margin-bottom:8px;font-size:.85rem}
+.flow-step.broken{background:#ffeaea;border:1px dashed #c0392b}
+.flow-step.solution{background:#d4edda;border:1px solid #27ae60}
+.flow-step .icon{flex-shrink:0;width:28px;height:28px;background:#b8964e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem}
+.flow-step.broken .icon{background:#c0392b}
+.flow-step.solution .icon{background:#27ae60}
+
+@media(max-width:640px){
+  .compare-grid{grid-template-columns:1fr}
+  .funnel-row{flex-direction:column;align-items:stretch}
+  .funnel-info{padding:8px 0}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>S'aimer 取り逃し改善提案</h1>
+<p class="subtitle">2026年4月11日 / 上司向け報告</p>
+
+<!-- ===== 結論サマリー ===== -->
+<div class="summary">
+  <div class="summary-label">CONCLUSION</div>
+  <div class="summary-headline">
+    広告は十分に集客できているが、<br>
+    予約枠の不足で<br>
+    <strong>月10名以上を取り逃している</strong>可能性
+  </div>
+</div>
+
+<!-- ===== 1. 現状の数字 ===== -->
+<h2>1. 現状: 1日の流入と離脱の実態</h2>
+
+<div class="compare-grid">
+  <div class="compare-card good">
+    <div class="label">広告経由のLP流入</div>
+    <div class="num">26人/日</div>
+    <div class="sub">月間 約780人</div>
+  </div>
+  <div class="compare-card bad">
+    <div class="label">月間 体験予約完了</div>
+    <div class="num">2〜3人</div>
+    <div class="sub">流入の0.3%</div>
+  </div>
+</div>
+
+<table>
+  <tr><th></th><th>3月</th><th>4月（4/11時点）</th></tr>
+  <tr><td style="text-align:left">hacomono 新規登録</td><td>4人</td><td><strong>5人</strong></td></tr>
+  <tr><td style="text-align:left">うち 体験予約完了</td><td>2人</td><td><strong>3人</strong></td></tr>
+  <tr><td style="text-align:left"><strong style="color:#c0392b">登録したのに予約しなかった</strong></td><td><strong class="down">2人</strong></td><td><strong class="down">2人</strong></td></tr>
+</table>
+
+<div class="drop">
+  <strong>4月: 5人登録のうち2人が予約に至らず</strong><br>
+  → 登録までしてくれたのに、予約画面で離脱している
+</div>
+
+<!-- ===== 2. 取り逃しのファネル図 ===== -->
+<h2>2. 取り逃しのファネル可視化</h2>
+
+<div class="funnel">
+
+  <div class="funnel-row">
+    <div class="funnel-bar" style="background:#3498db;width:100%">
+      <span>広告クリック → LP到達<br><span class="num">26人/日</span></span>
+    </div>
+  </div>
+  <div class="funnel-arrow">▼</div>
+
+  <div class="funnel-row">
+    <div class="funnel-bar" style="background:#5dade2;width:80%">
+      <span>LPを2分以上閲覧（読まれている）<br><span class="num">推定20人/日</span></span>
+    </div>
+  </div>
+  <div class="funnel-arrow">▼</div>
+
+  <div class="funnel-row">
+    <div class="funnel-bar" style="background:#48c9b0;width:50%">
+      <span>予約ボタンをクリック<br><span class="num">推定10〜15人/日</span></span>
+    </div>
+  </div>
+  <div class="funnel-arrow">▼</div>
+
+  <div class="funnel-row">
+    <div class="funnel-bar" style="background:#f39c12;width:20%">
+      <span>hacomono新規登録<br><span class="num">月5人</span></span>
+    </div>
+  </div>
+
+  <div class="drop"><strong>★ 大きな離脱ポイント①</strong><br>カレンダーで空き枠が見つからず離脱</div>
+
+  <div class="funnel-row">
+    <div class="funnel-bar" style="background:#e67e22;width:12%">
+      <span>体験予約完了<br><span class="num">月3人</span></span>
+    </div>
+  </div>
+
+  <div class="drop"><strong>★ 大きな離脱ポイント②</strong><br>登録したけど希望日が空いていない → 諦める</div>
+
+</div>
+
+<!-- ===== 3. なぜ取り逃しているのか ===== -->
+<h2>3. なぜ取り逃しているのか</h2>
+
+<div class="flow-current">
+  <h3 style="margin-top:0">現在の予約フロー</h3>
+  <div class="flow-step"><span class="icon">1</span>広告で興味を持つ</div>
+  <div class="flow-step"><span class="icon">2</span>LPを読む（滞在2分・スクロール40%）</div>
+  <div class="flow-step"><span class="icon">3</span>「予約する」ボタンをタップ</div>
+  <div class="flow-step"><span class="icon">4</span>hacomono会員登録（名前/メール/電話/住所/PW）</div>
+  <div class="flow-step broken"><span class="icon">!</span>カレンダー表示 → <strong>空き枠がほぼない</strong></div>
+  <div class="flow-step broken"><span class="icon">!</span>希望日が埋まっている → <strong>諦めて離脱</strong></div>
+</div>
+
+<h3>予約枠の現状（4月の例）</h3>
+
+<div style="background:#fff;border-radius:12px;padding:20px;margin:16px 0">
+  <div class="calendar">
+    <div class="cal-head">月</div><div class="cal-head">火</div><div class="cal-head">水</div><div class="cal-head">木</div><div class="cal-head">金</div><div class="cal-head">土</div><div class="cal-head">日</div>
+    <div class="cal-some">△</div><div class="cal-some">△</div><div class="cal-empty">×</div><div class="cal-some">△</div><div class="cal-empty">×</div><div class="cal-empty">×0</div><div class="cal-empty">休</div>
+    <div class="cal-some">△</div><div class="cal-empty">×</div><div class="cal-some">△</div><div class="cal-empty">×</div><div class="cal-some">△</div><div class="cal-empty">×0</div><div class="cal-empty">休</div>
+    <div class="cal-empty">×</div><div class="cal-some">△</div><div class="cal-empty">×</div><div class="cal-some">△</div><div class="cal-empty">×</div><div class="cal-empty">×0</div><div class="cal-empty">休</div>
+    <div class="cal-some">△</div><div class="cal-empty">×</div><div class="cal-some">△</div><div class="cal-empty">×</div><div class="cal-some">△</div><div class="cal-empty">×0</div><div class="cal-empty">休</div>
+  </div>
+  <p style="text-align:center;font-size:.75rem;color:#666;margin-top:12px">
+    <span style="background:#ffeaea;padding:2px 8px;border-radius:4px">×</span> ほぼ満員 /
+    <span style="background:#fff3cd;padding:2px 8px;border-radius:4px">△</span> 数枠のみ /
+    <span style="background:#d4edda;padding:2px 8px;border-radius:4px">○</span> 余裕あり
+  </p>
+  <p style="text-align:center;font-size:.85rem;font-weight:700;color:#c0392b;margin-top:8px">
+    特に土曜日は4週連続で予約枠ゼロ
+  </p>
+</div>
+
+<div class="drop">
+  <strong>ターゲットは働く女性が中心</strong><br>
+  → 平日昼間に通えない人が多い<br>
+  → 土曜・平日夕方〜夜が必要なのに、ここがほぼ満員
+</div>
+
+<!-- ===== 4. 改善提案 ===== -->
+<h2>4. 改善提案（4つの施策を組み合わせ）</h2>
+
+<div class="proposal">
+  <span class="proposal-num">1</span><h3>インストラクター追加採用</h3>
+  <span class="proposal-cost">最重要</span>
+  <div class="proposal-body">
+    現在オーナー1名 + 玉置様（4/10入社・週1回）の体制。週1だけでは枠が足りない。<br>
+    <strong>もう1名、即戦力の業務委託を採用</strong>することで、予約枠を2倍にできる可能性。<br><br>
+    <strong>進捗:</strong> リジョブで4/11時点 通常スカウト118通 + プレミアム13通送信中。<br>
+    本日4/11も即戦力候補5名にスカウト送信予定（鍼灸師・美容鍼灸師等）。
+  </div>
+  <div class="proposal-effect">
+    <strong>期待効果:</strong> 予約枠 2倍 → 取り逃し2人/月 → ほぼゼロに
+  </div>
+</div>
+
+<div class="proposal">
+  <span class="proposal-num">2</span><h3>LINE公式アカウントの導入</h3>
+  <span class="proposal-cost">無料・即日可</span>
+  <div class="proposal-body">
+    現在の予約ルートは「hacomonoのみ」。会員登録（個人情報7項目）が必須で、登録後にカレンダーを見て空きがないと離脱。<br><br>
+    <strong>LINE公式アカウントを開設</strong>し、LP上に「LINEで相談・予約」ボタンを設置。<br>
+    友達追加1タップで、オーナーと直接やり取り可能になる。<br><br>
+    <strong>競合の状況:</strong> Rintosull・noa pilates等、ピラティススタジオの多くがLINE併用が標準。<br>
+    気軽に問い合わせたい層（特に30〜40代女性）には親しみやすい。
+  </div>
+  <div class="proposal-effect">
+    <strong>期待効果:</strong> 離脱していた登録者の半数以上をLINEで救済 → 月+3〜5名
+  </div>
+</div>
+
+<div class="proposal">
+  <span class="proposal-num">3</span><h3>LP内に「希望日リクエストフォーム」を追加</h3>
+  <span class="proposal-cost">実装1日</span>
+  <div class="proposal-body">
+    hacomonoで空き枠が見つからない人向けに、<strong>第3希望日まで送れる簡易フォーム</strong>をLPに設置。<br><br>
+    <strong>フォーム項目（5項目だけ）:</strong>
+    <ul style="margin:10px 0 10px 20px;font-size:.82rem">
+      <li>お名前</li>
+      <li>連絡先（電話 or メール）</li>
+      <li>第1希望日時</li>
+      <li>第2希望日時</li>
+      <li>第3希望日時</li>
+    </ul>
+    送信内容はオーナー宛にメール通知 → オーナーが個別にカレンダー調整して返信。<br>
+    hacomonoの会員登録（個人情報7項目）より圧倒的に離脱しにくい。
+  </div>
+  <div class="proposal-effect">
+    <strong>期待効果:</strong> hacomonoで離脱していた人の25〜50%を救済 → 月+2〜4名
+  </div>
+</div>
+
+<div class="proposal">
+  <span class="proposal-num">4</span><h3>LP追従バーに3つのCTAを並列表示</h3>
+  <span class="proposal-cost">実装30分</span>
+  <div class="proposal-body">
+    現在の追従バー: <code>[0円体験を予約] [電話で相談]</code><br>
+    改善後: <code>[LINEで予約] [カレンダーで予約] [電話で相談]</code><br><br>
+    ユーザーの好みに応じて選べる導線にすることで、取りこぼしを最小化。<br>
+    LINE派・カレンダー派・電話派、それぞれを救える。
+  </div>
+  <div class="proposal-effect">
+    <strong>期待効果:</strong> 全体のCV率が10〜20%向上
+  </div>
+</div>
+
+<!-- ===== 5. 全体イメージ ===== -->
+<h2>5. 改善後のフロー（全体図）</h2>
+
+<div class="flow-current">
+  <h3 style="margin-top:0">提案後の予約フロー（複数の救済導線）</h3>
+  <div class="flow-step"><span class="icon">1</span>広告で興味を持つ</div>
+  <div class="flow-step"><span class="icon">2</span>LPを読む</div>
+  <div class="flow-step solution">
+    <span class="icon">A</span>
+    <div>
+      <strong>3つの選択肢から選ぶ</strong><br>
+      <span style="font-size:.75rem;color:#155724">[LINEで予約] [カレンダーで予約] [希望日を送る]</span>
+    </div>
+  </div>
+  <div class="flow-step solution"><span class="icon">B</span>LINE：友達追加→チャットで気軽に相談</div>
+  <div class="flow-step solution"><span class="icon">C</span>カレンダー：従来通りhacomonoで予約（枠拡大後）</div>
+  <div class="flow-step solution"><span class="icon">D</span>希望日フォーム：第3希望まで入力→オーナー個別対応</div>
+</div>
+
+<!-- ===== 6. 期待効果まとめ ===== -->
+<h2>6. 期待効果（数字での試算）</h2>
+
+<table>
+  <tr><th>項目</th><th>現状</th><th>改善後（目標）</th></tr>
+  <tr>
+    <td style="text-align:left">月間 LP流入</td>
+    <td>約780人</td>
+    <td>同じ（780人）</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">月間 hacomono登録</td>
+    <td>4〜5人</td>
+    <td class="up">10〜15人</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">月間 LINE/フォーム経由 問合せ</td>
+    <td>0人</td>
+    <td class="up">5〜10人</td>
+  </tr>
+  <tr>
+    <td style="text-align:left"><strong>月間 体験予約完了</strong></td>
+    <td>2〜3人</td>
+    <td class="up"><strong>10人以上</strong></td>
+  </tr>
+  <tr>
+    <td style="text-align:left">月間 入会（体験→入会率67%）</td>
+    <td>1〜2人</td>
+    <td class="up"><strong>6〜7人</strong></td>
+  </tr>
+  <tr>
+    <td style="text-align:left">月売上への寄与</td>
+    <td>—</td>
+    <td class="up"><strong>+¥160,000〜200,000/月</strong></td>
+  </tr>
+</table>
+
+<!-- ===== 結論 ===== -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;border-radius:16px;padding:32px;margin:48px 0">
+  <h3 style="color:#d4b876;font-size:.8rem;letter-spacing:.2em;margin-bottom:12px;text-align:center">SUMMARY</h3>
+  <p style="font-size:1rem;line-height:2;text-align:center">
+    広告は業界トップクラスで機能している。<br>
+    ボトルネックは<strong style="color:#d4b876">「予約枠の不足」と「予約導線の単一化」</strong>。<br><br>
+    <strong style="color:#d4b876">採用＋LINE＋希望日フォーム</strong>の3点で<br>
+    取り逃しを救済し、月売上100万円達成への道筋を作る。
+  </p>
+</div>
+
+<p style="text-align:center;font-size:.68rem;color:#ccc;margin-top:32px">作成: 2026-04-11 / S'aimer改善チーム</p>
+
+</div>
+</body>
+</html>
