@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雇用契約書 リーガルチェック結果 — 山内生人さん</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f5f6f8;
+    color: #1a1a1a;
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  header {
+    background: linear-gradient(135deg, #1e3a5f, #2c5282);
+    color: white;
+    padding: 40px;
+    border-radius: 12px 12px 0 0;
+  }
+  header h1 { font-size: 28px; margin-bottom: 8px; }
+  header .meta { font-size: 14px; opacity: 0.9; }
+
+  .summary-bar {
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+  }
+  .summary-bar .item {
+    background: white;
+    padding: 24px;
+    text-align: center;
+  }
+  .summary-bar .num {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .summary-bar .label { font-size: 13px; color: #555; }
+  .num.critical { color: #c53030; }
+  .num.high { color: #dd6b20; }
+  .num.medium { color: #d69e2e; }
+  .num.ok { color: #38a169; }
+
+  section {
+    background: white;
+    padding: 36px 40px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  section:last-child { border-radius: 0 0 12px 12px; }
+
+  h2 {
+    font-size: 22px;
+    color: #1e3a5f;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #2c5282;
+  }
+  h3 {
+    font-size: 17px;
+    margin: 20px 0 12px;
+    color: #2d3748;
+  }
+
+  /* 問題カード */
+  .issue {
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border-left: 6px solid;
+  }
+  .issue.critical { background: #fff5f5; border-color: #c53030; }
+  .issue.high { background: #fffaf0; border-color: #dd6b20; }
+  .issue.medium { background: #fefcbf; border-color: #d69e2e; }
+
+  .issue-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .badge.critical { background: #c53030; }
+  .badge.high { background: #dd6b20; }
+  .badge.medium { background: #d69e2e; }
+  .issue-title { font-size: 17px; font-weight: bold; }
+
+  /* Before/After */
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 12px;
+    align-items: center;
+    margin: 16px 0;
+  }
+  .ba-box {
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .ba-before { background: #fed7d7; border: 1px solid #fc8181; }
+  .ba-after { background: #c6f6d5; border: 1px solid #68d391; }
+  .ba-arrow { text-align: center; font-size: 24px; color: #4a5568; }
+  .ba-label {
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .ba-label.before { color: #c53030; }
+  .ba-label.after { color: #2f855a; }
+
+  /* 計算ボックス */
+  .calc-box {
+    background: #edf2f7;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    padding: 18px;
+    margin: 14px 0;
+    font-family: "SF Mono", Monaco, monospace;
+    font-size: 13px;
+  }
+  .calc-box .formula { color: #2d3748; }
+  .calc-box .result {
+    color: #c53030;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #a0aec0;
+  }
+  .calc-box .result.ok { color: #2f855a; }
+
+  /* 図解：実態と契約の乖離 */
+  .timeline {
+    margin: 24px 0;
+    background: #f7fafc;
+    padding: 24px;
+    border-radius: 8px;
+  }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .timeline-label {
+    font-size: 13px;
+    font-weight: bold;
+    text-align: right;
+  }
+  .timeline-bar {
+    height: 36px;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 12px;
+  }
+  .bar-contract { background: #4299e1; width: 75%; }
+  .bar-actual { background: #ed8936; width: 92%; }
+  .bar-gap {
+    background: repeating-linear-gradient(45deg, #fc8181, #fc8181 8px, #feb2b2 8px, #feb2b2 16px);
+    width: 17%;
+    color: #742a2a;
+  }
+  .timeline-hours {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+    font-size: 11px;
+    color: #718096;
+    margin-top: 4px;
+  }
+  .hours-scale {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* リスクマトリクス */
+  .risk-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .risk-card {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid;
+  }
+  .risk-card.low { background: #c6f6d5; border-color: #68d391; }
+  .risk-card.mid { background: #fefcbf; border-color: #f6e05e; }
+  .risk-card.hi { background: #fed7d7; border-color: #fc8181; }
+  .risk-card .icon { font-size: 32px; margin-bottom: 8px; }
+  .risk-card .title { font-weight: bold; margin-bottom: 6px; font-size: 14px; }
+  .risk-card .desc { font-size: 12px; color: #4a5568; }
+
+  /* 結論 */
+  .conclusion {
+    background: linear-gradient(135deg, #2d3748, #1a202c);
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  .conclusion h3 { color: #fbd38d; margin-top: 0; }
+  .conclusion ul { padding-left: 20px; margin-top: 12px; }
+  .conclusion li { margin-bottom: 8px; }
+
+  /* 選択肢 */
+  .options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .option {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    background: white;
+  }
+  .option.recommended {
+    border-color: #38a169;
+    background: #f0fff4;
+    position: relative;
+  }
+  .option.recommended::before {
+    content: "推奨";
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    background: #38a169;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+  }
+  .option h4 { font-size: 15px; margin-bottom: 10px; color: #2d3748; }
+  .option p { font-size: 13px; color: #4a5568; }
+
+  /* 未払い請求リスク */
+  .risk-amount {
+    background: #fff5f5;
+    border: 2px solid #fc8181;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .risk-amount .label { font-size: 13px; color: #742a2a; margin-bottom: 8px; }
+  .risk-amount .value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #c53030;
+  }
+  .risk-amount .formula { font-size: 11px; color: #718096; margin-top: 6px; }
+
+  footer {
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
+    color: #718096;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>雇用契約書 リーガルチェック結果</h1>
+    <div class="meta">対象：山内 生人さん（合同会社レナトス／食酒家 拠り所 てっちゃん）<br>
+    契約日：2026年4月1日　／　チェック日：2026年4月11日</div>
+  </header>
+
+  <div class="summary-bar">
+    <div class="item">
+      <div class="num critical">1</div>
+      <div class="label">致命的な問題</div>
+    </div>
+    <div class="item">
+      <div class="num high">4</div>
+      <div class="label">法的リスク高</div>
+    </div>
+    <div class="item">
+      <div class="num medium">5</div>
+      <div class="label">改善推奨</div>
+    </div>
+    <div class="item">
+      <div class="num ok">—</div>
+      <div class="label">総合判定：要修正</div>
+    </div>
+  </div>
+
+  <!-- ============ Section 1 ============ -->
+  <section>
+    <h2>① 致命的な問題：給与支払日の論理矛盾</h2>
+
+    <div class="issue critical">
+      <div class="issue-header">
+        <span class="badge critical">CRITICAL</span>
+        <span class="issue-title">第7条 給与支払 — 物理的に不可能な記載</span>
+      </div>
+
+      <div class="ba-grid">
+        <div>
+          <div class="ba-label before">契約書の記載</div>
+          <div class="ba-box ba-before">
+            毎月<strong>末日</strong>締め、<strong>当月25日</strong>払い<br>
+            <small style="color:#742a2a;">→ 締める前に払うことになる</small>
+          </div>
+        </div>
+        <div class="ba-arrow">→</div>
+        <div>
+          <div class="ba-label after">修正案</div>
+          <div class="ba-box ba-after">
+            A案：末日締め、<strong>翌月</strong>25日払い<br>
+            B案：<strong>15日</strong>締め、当月25日払い
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:#4a5568;">※ 山内さんへの実際の支払いタイミングに合わせてどちらかを選択してください。</p>
+    </div>
+  </section>
+
+  <!-- ============ Section 2 ============ -->
+  <section>
+    <h2>② 最重要：契約書と実態の乖離</h2>
+
+    <p style="margin-bottom:16px;">オーナー回答により、<strong>実際の勤務開始は16時</strong>であることが判明。契約書には18時と記載されており、これ自体が労基法第15条（労働条件明示義務）違反です。</p>
+
+    <div class="timeline">
+      <h3 style="margin-top:0;">勤務時間の比較</h3>
+
+      <div class="timeline-row">
+        <div class="timeline-label">契約書</div>
+        <div class="timeline-bar bar-contract">18:00 〜 翌3:00（拘束9時間）</div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-label">実態</div>
+        <div class="timeline-bar bar-actual">16:00 〜 翌3:00（拘束11時間）</div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-label">乖離</div>
+        <div class="timeline-bar bar-gap">未契約の2時間／日</div>
+      </div>
+
+      <div class="timeline-hours">
+        <div></div>
+        <div class="hours-scale">
+          <span>16時</span><span>18時</span><span>20時</span><span>22時</span><span>0時</span><span>2時</span><span>3時</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>未払い残業代請求リスク（最悪シナリオ）</h3>
+    <div class="risk-amount">
+      <div class="label">山内さんが退職時に過去3年分を請求した場合</div>
+      <div class="value">約 228 万円</div>
+      <div class="formula">2時間/日 × 22日 × 12ヶ月 × 3年 × 1,439円/時 = 約2,279,232円</div>
+    </div>
+  </section>
+
+  <!-- ============ Section 3 ============ -->
+  <section>
+    <h2>③ みなし45時間で「カバーできる」は本当か？</h2>
+
+    <p>オーナーは「実態16時〜だが、みなし45時間でカバーできる」と回答。計算上は<strong>ギリギリ成立</strong>しますが、実務上は破綻します。</p>
+
+    <h3>計算：月22日勤務の場合</h3>
+    <div class="calc-box">
+      <div class="formula">
+        実労働時間：11時間 − 休憩1時間 = <strong>10時間/日</strong><br>
+        1日あたり残業：10時間 − 8時間（法定）= <strong>2時間</strong><br>
+        月22日勤務の残業合計：2時間 × 22日 = <strong>44時間</strong>
+      </div>
+      <div class="result ok">→ みなし45時間 − 実残業44時間 = 余裕わずか1時間</div>
+    </div>
+
+    <h3>4つの落とし穴</h3>
+    <div class="risk-matrix">
+      <div class="risk-card hi">
+        <div class="icon">📅</div>
+        <div class="title">月23日勤務でアウト</div>
+        <div class="desc">2時間 × 23日 = 46時間<br>みなし枠を1時間超過</div>
+      </div>
+      <div class="risk-card hi">
+        <div class="icon">🆘</div>
+        <div class="title">代打で長時間化</div>
+        <div class="desc">スタッフ欠勤の代打で12時間勤務になれば即超過</div>
+      </div>
+      <div class="risk-card hi">
+        <div class="icon">⚖️</div>
+        <div class="title">36協定の上限</div>
+        <div class="desc">月45時間が原則上限。年間360時間も超過する</div>
+      </div>
+      <div class="risk-card hi">
+        <div class="icon">🌙</div>
+        <div class="title">深夜手当が不足</div>
+        <div class="desc">実態110時間の深夜労働<br>3万円では月1,650円不足</div>
+      </div>
+    </div>
+
+    <h3>年間で見ると最初から破綻</h3>
+    <div class="calc-box">
+      <div class="formula">
+        月44時間の残業 × 12ヶ月 = <strong>年528時間</strong><br>
+        労基法の年間上限：<strong>360時間</strong>
+      </div>
+      <div class="result">→ 年間で168時間オーバー（46.7%超過）</div>
+    </div>
+  </section>
+
+  <!-- ============ Section 4 ============ -->
+  <section>
+    <h2>④ その他の法的リスク</h2>
+
+    <div class="issue high">
+      <div class="issue-header">
+        <span class="badge high">HIGH</span>
+        <span class="issue-title">第4条 休憩時間が明示されていない</span>
+      </div>
+      <p>労基法34条で8時間超は60分以上の休憩義務。「休憩あり」だけでは明示義務違反。</p>
+      <div class="ba-grid">
+        <div>
+          <div class="ba-label before">現状</div>
+          <div class="ba-box ba-before">18:00〜翌3:00（休憩あり・シフト制）</div>
+        </div>
+        <div class="ba-arrow">→</div>
+        <div>
+          <div class="ba-label after">修正</div>
+          <div class="ba-box ba-after">16:00〜翌3:00（うち休憩60分）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue high">
+      <div class="issue-header">
+        <span class="badge high">HIGH</span>
+        <span class="issue-title">第5条 休日の表記が不十分</span>
+      </div>
+      <p>「週休制」だけでは週何日休みか不明。労基法35条の明示義務違反。</p>
+      <div class="ba-grid">
+        <div>
+          <div class="ba-label before">現状</div>
+          <div class="ba-box ba-before">週休制（シフト制）</div>
+        </div>
+        <div class="ba-arrow">→</div>
+        <div>
+          <div class="ba-label after">修正</div>
+          <div class="ba-box ba-after">週休2日（シフト制により決定）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue high">
+      <div class="issue-header">
+        <span class="badge high">HIGH</span>
+        <span class="issue-title">2024年4月改正の明示事項が未対応</span>
+      </div>
+      <p>「就業場所・業務の変更の範囲」の明示が2024年4月から必須化。記載がないと労基法違反。</p>
+      <div class="ba-box ba-after" style="margin-top:10px;">
+        <strong>追記例：</strong> 雇入れ直後および将来の変更の範囲：いずれも食酒家 拠り所 てっちゃんに限る
+      </div>
+    </div>
+
+    <div class="issue medium">
+      <div class="issue-header">
+        <span class="badge medium">MEDIUM</span>
+        <span class="issue-title">第10条 退職申し出「1ヶ月前」</span>
+      </div>
+      <p>民法627条では2週間前で退職可能。「1ヶ月前」は法的拘束力なし（お願いベース）。</p>
+    </div>
+  </section>
+
+  <!-- ============ Section 5 ============ -->
+  <section>
+    <h2>⑤ 解決の選択肢</h2>
+
+    <div class="options">
+      <div class="option recommended">
+        <h4>A. 契約書を実態に合わせる</h4>
+        <p>勤務時間を16時〜に修正。<br>固定残業代を60時間分に増額。<br>深夜手当も再計算。<br><strong>※36協定の特別条項が必須</strong></p>
+      </div>
+      <div class="option">
+        <h4>B. 実態を契約書に合わせる</h4>
+        <p>シフトを18時開始に戻す。16-18時の人手は別スタッフで対応。みなし45時間に余裕ができる。</p>
+      </div>
+      <div class="option">
+        <h4>C. 変形労働時間制を導入</h4>
+        <p>1ヶ月単位または1年単位の変形労働制を導入。1日10時間でも適法化できるが、就業規則変更と労使協定届出が必須。</p>
+      </div>
+    </div>
+
+    <div class="conclusion">
+      <h3>結論：社労士への相談を強く推奨</h3>
+      <p>この案件は、以下3つの理由から専門家のサポートが不可欠です。</p>
+      <ul>
+        <li>36協定の特別条項の有無確認（届出済みと思っていても未届のケースが多い）</li>
+        <li>変形労働時間制の導入は就業規則変更を伴うため、素人判断は危険</li>
+        <li>飲食業 × 深夜帯 × 固定残業代 × シフト制は労務トラブルの典型パターン</li>
+      </ul>
+      <p style="margin-top:14px;"><strong>最優先アクション：</strong>このまま署名・運用すると、退職時に約228万円の未払い請求リスクと労基署の是正勧告リスクを抱えます。署名前に必ず修正してください。</p>
+    </div>
+  </section>
+
+  <footer>
+    本リーガルチェックは法務観点の一次レビューであり、最終的な法的判断は社労士・弁護士にご確認ください。<br>
+    作成：株式会社斗（hishaku）／ 2026年4月11日
+  </footer>
+
+</div>
+</body>
+</html>
