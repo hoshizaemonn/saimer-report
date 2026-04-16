@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S'aimer 採用改善提案 — 求人条件の見直し</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f5f0;color:#333;line-height:1.7}
+.container{max-width:900px;margin:0 auto;padding:32px 20px}
+h1{font-size:1.5rem;text-align:center;color:#1a1a1a;margin-bottom:4px}
+.subtitle{text-align:center;color:#999;font-size:.82rem;margin-bottom:48px}
+h2{font-size:1.15rem;color:#b8964e;margin:48px 0 16px;padding-bottom:8px;border-bottom:2px solid #b8964e}
+h3{font-size:1rem;color:#333;margin:24px 0 12px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.8rem}
+th{background:#f0ebe3;padding:10px;text-align:center;font-weight:600;border:1px solid #e0d8cc}
+td{padding:10px;text-align:center;border:1px solid #eee}
+.up{color:#27ae60;font-weight:700}
+.down{color:#c0392b;font-weight:700}
+.box{background:#fff;border-radius:12px;padding:24px;margin:16px 0;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.box-bad{border-left:4px solid #e74c3c}
+.box-good{border-left:4px solid #27ae60}
+.box-warn{border-left:4px solid #f0c040}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.6rem;font-weight:700;color:#fff;margin-left:6px}
+.tag-red{background:#c0392b}
+.tag-green{background:#27ae60}
+.tag-gold{background:#b8964e}
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin:20px 0}
+.compare-box{background:#fff;border-radius:12px;padding:20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.compare-box.before{border:2px solid #e74c3c}
+.compare-box.after{border:2px solid #27ae60}
+.compare-box .label{font-size:.7rem;color:#999;margin-bottom:4px}
+.compare-arrow{font-size:2rem;color:#b8964e;text-align:center}
+.summary-dark{background:linear-gradient(135deg,#3a3632,#4a433d);color:#fff;border-radius:16px;padding:32px;margin:24px 0;text-align:center}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.kpi{background:#fff;border-radius:12px;padding:20px 14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.kpi .num{font-size:2rem;font-weight:800;line-height:1.2}
+.kpi .label{font-size:.7rem;color:#999;margin-top:4px}
+@media(max-width:640px){
+  .kpi-grid{grid-template-columns:1fr}
+  .compare{grid-template-columns:1fr}
+  .compare-arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>S'aimer 採用改善提案</h1>
+<p class="subtitle">2026年4月16日 — 求人条件の見直しと改善案</p>
+
+<!-- ===== 結論 ===== -->
+<div class="summary-dark">
+  <p style="font-size:.7rem;letter-spacing:.2em;color:#d4b876;margin-bottom:8px">CONCLUSION</p>
+  <p style="font-size:1.3rem;font-weight:800;line-height:1.6">
+    毎日10通スカウトを送っているのに<br>
+    <strong style="color:#d4b876;font-size:1.6rem">反応ゼロ</strong><br>
+    原因は<strong style="color:#d4b876">求人の応募条件が厳しすぎる</strong>
+  </p>
+</div>
+
+<!-- ===== 現状の数字 ===== -->
+<h2>1. 採用活動の現状</h2>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="num" style="color:#b8964e">~130通</div>
+    <div class="label">スカウト送信数<br>（通常118+プレミアム13）</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#27ae60">1名</div>
+    <div class="label">採用確定<br>（玉置祐子様 4/10入社）</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#c0392b">0.8%</div>
+    <div class="label">返信率<br>（130通中1名のみ）</div>
+  </div>
+</div>
+
+<div class="box box-bad">
+  <h3 style="margin-top:0">❌ 問題: 返信率が異常に低い</h3>
+  <table>
+    <tr><th></th><th>S'aimer</th><th>リジョブ一般平均</th></tr>
+    <tr><td style="text-align:left">プレミアムスカウト返信率</td><td class="down">7.7%（13通中1名）</td><td>5〜15%</td></tr>
+    <tr><td style="text-align:left">通常スカウト返信率</td><td class="down">0%（118通中0名）</td><td>1〜3%</td></tr>
+    <tr><td style="text-align:left">全体返信率</td><td class="down"><strong>0.8%</strong></td><td>2〜5%</td></tr>
+  </table>
+  <p style="font-size:.82rem;margin-top:12px">プレミアムスカウトの返信率は一般平均の範囲内だが、通常スカウトが完全にゼロ。<strong>求人内容を見て「自分は条件に合わない」と判断されている可能性が高い。</strong></p>
+</div>
+
+<!-- ===== 原因分析 ===== -->
+<h2>2. 原因分析: なぜ反応がないのか</h2>
+
+<div class="box box-bad">
+  <h3 style="margin-top:0">原因①: 応募資格が厳しすぎる <span class="tag tag-red">最大の問題</span></h3>
+  <div style="background:#ffeaea;border-radius:8px;padding:16px;margin:12px 0;font-size:.9rem">
+    <strong>現在の条件:</strong><br>
+    「BASI、STOTT、PHI、Balanced Body等の<strong>ピラティス資格保有者</strong>で<strong>リフォーマー指導経験者</strong>」
+  </div>
+  <p style="font-size:.85rem;line-height:1.8">
+    この条件を満たす人は<strong>福岡県内で推定数十人しかいない</strong>。<br>
+    そのうち転職活動中の人はさらに少ない。<br><br>
+    リジョブの福岡ピラティス求人は<strong>142件</strong>あり、同じ人材を全社で奪い合っている状態。<br>
+    その中で「資格+経験必須」だと、大半の求職者が<strong>「自分には無理」と判断してスルー</strong>する。
+  </p>
+</div>
+
+<div class="box box-warn">
+  <h3 style="margin-top:0">原因②: 報酬の見せ方が弱い</h3>
+  <div style="background:#fff3cd;border-radius:8px;padding:16px;margin:12px 0;font-size:.9rem">
+    <strong>現在の表記:</strong> 1レッスン（60分）3,000円〜3,500円
+  </div>
+  <p style="font-size:.85rem">
+    レッスン単価だけでは「月いくら稼げるか」がわからない。<br>
+    求職者は<strong>「月収」で判断する</strong>。月収例がないと比較検討の対象から外れる。<br><br>
+    競合の正社員求人は<strong>平均月給25.9万円</strong>と明記している。<br>
+    業務委託でも「週3日で月4.2万円」のように具体例を出すべき。
+  </p>
+</div>
+
+<div class="box box-warn">
+  <h3 style="margin-top:0">原因③: 求人写真がない</h3>
+  <p style="font-size:.85rem">
+    リジョブの求人ページに<strong>スタジオの写真が表示されていない</strong>。<br>
+    求職者は「どんな職場か」を写真で判断する。写真なしの求人は信頼感が低い。<br>
+    <strong>S'aimerはスタジオ写真が106枚もある</strong>のに、活かされていない。
+  </p>
+</div>
+
+<div class="box box-warn">
+  <h3 style="margin-top:0">原因④: 雇用形態が業務委託のみ</h3>
+  <p style="font-size:.85rem">
+    安定を求める求職者は<strong>「業務委託」を敬遠する</strong>傾向がある。<br>
+    特にリジョブの利用者は美容・セラピスト系が多く、正社員やパートを希望する層が大半。<br><br>
+    業務委託のみの場合、「週1〜OK」「掛け持ち歓迎」「ノルマなし」等のメリットを<strong>もっと前面に押し出す</strong>必要がある。
+  </p>
+</div>
+
+<!-- ===== 競合比較 ===== -->
+<h2>3. 競合との比較</h2>
+
+<table>
+  <tr><th>項目</th><th>S'aimer（現在）</th><th>競合の傾向</th></tr>
+  <tr>
+    <td style="text-align:left">タイトル</td>
+    <td>ピラティスインストラクター<br>（リフォーマー指導）</td>
+    <td class="up">「未経験OK」「研修充実」<br>をタイトルに入れている</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">応募資格</td>
+    <td class="down">ピラティス資格<br>+リフォーマー経験<strong>必須</strong></td>
+    <td class="up"><strong>未経験OK・研修あり</strong><br>が主流</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">報酬表示</td>
+    <td>レッスン単価のみ</td>
+    <td class="up"><strong>月給・月収例</strong>を明記</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">正社員月給</td>
+    <td>なし（業務委託のみ）</td>
+    <td class="up">平均<strong>25.9万円</strong></td>
+  </tr>
+  <tr>
+    <td style="text-align:left">写真</td>
+    <td class="down">なし</td>
+    <td class="up">3〜5枚</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">雇用形態</td>
+    <td>業務委託のみ</td>
+    <td>正社員+パート+業務委託<br>の複数展開</td>
+  </tr>
+</table>
+
+<!-- ===== 改善案 ===== -->
+<h2>4. 改善案</h2>
+
+<!-- 改善①: 応募資格 -->
+<div class="box box-good">
+  <h3 style="margin-top:0">改善①: 応募資格を緩和する <span class="tag tag-red">最重要</span></h3>
+
+  <div class="compare">
+    <div class="compare-box before">
+      <div class="label">現在</div>
+      <p style="font-size:.82rem;text-align:left;line-height:1.6">
+        BASI、STOTT、PHI、Balanced Body等の<strong>ピラティス資格保有者</strong>で<strong>リフォーマー指導経験者</strong>
+      </p>
+      <p style="font-size:.7rem;color:#c0392b;margin-top:8px">→ 福岡で該当者: 推定数十人</p>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-box after">
+      <div class="label">改善案</div>
+      <p style="font-size:.82rem;text-align:left;line-height:1.6">
+        <strong>【歓迎】</strong><br>
+        ・ピラティス、ヨガ、パーソナルトレーニング等の指導経験<br>
+        ・整体師、鍼灸師、理学療法士等の身体の専門知識<br>
+        ・フィットネス業界での勤務経験<br><br>
+        <strong>【ピラティス未経験OK】</strong><br>
+        リフォーマー操作は研修でお教えします
+      </p>
+      <p style="font-size:.7rem;color:#27ae60;margin-top:8px">→ 対象者: 推定数百〜数千人に拡大</p>
+    </div>
+  </div>
+
+  <div style="background:#d4edda;border-radius:8px;padding:12px;font-size:.82rem;color:#155724">
+    <strong>ポイント:</strong> オーナーが求める「即戦力」の定義を広げる。ピラティス資格がなくても、ヨガ・整体・トレーナーの経験があれば<strong>身体の知識は十分</strong>。リフォーマーの操作だけ研修すれば即戦力になれる。
+  </div>
+</div>
+
+<!-- 改善②: 報酬 -->
+<div class="box box-good">
+  <h3 style="margin-top:0">改善②: 報酬に月収例を追加</h3>
+
+  <div class="compare">
+    <div class="compare-box before">
+      <div class="label">現在</div>
+      <p style="font-size:1.1rem;font-weight:700">1レッスン 3,000〜3,500円</p>
+      <p style="font-size:.7rem;color:#c0392b;margin-top:4px">→ 月いくら稼げるか不明</p>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-box after">
+      <div class="label">改善案</div>
+      <p style="font-size:.82rem;text-align:left;line-height:1.8">
+        1レッスン（60分）<strong>3,000〜3,500円</strong><br><br>
+        <strong style="color:#27ae60">月収例:</strong><br>
+        週1日（月4回）→ <strong>月12,000〜14,000円</strong><br>
+        週3日（月12回）→ <strong>月36,000〜42,000円</strong><br>
+        週5日（月20回）→ <strong>月60,000〜70,000円</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- 改善③: タイトル -->
+<div class="box box-good">
+  <h3 style="margin-top:0">改善③: 求人タイトルを変更</h3>
+
+  <div class="compare">
+    <div class="compare-box before">
+      <div class="label">現在</div>
+      <p style="font-size:.9rem">ピラティスインストラクター<br>（リフォーマー指導）</p>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-box after">
+      <div class="label">改善案</div>
+      <p style="font-size:.9rem;font-weight:700;color:#27ae60">【週1〜OK・研修あり】<br>女性専用ピラティススタジオ<br>ノルマなし・香椎駅3分</p>
+    </div>
+  </div>
+
+  <div style="background:#d4edda;border-radius:8px;padding:12px;font-size:.82rem;color:#155724;margin-top:12px">
+    <strong>ポイント:</strong> 「研修あり」をタイトルに入れることで、未経験者も「自分でもいけるかも」と思える。「週1〜OK」「ノルマなし」は業務委託の最大のメリットなので前面に出す。
+  </div>
+</div>
+
+<!-- 改善④: 写真 -->
+<div class="box box-good">
+  <h3 style="margin-top:0">改善④: スタジオ写真を追加</h3>
+  <p style="font-size:.85rem">以下の写真をリジョブ管理画面からアップロード:</p>
+  <table>
+    <tr><th>#</th><th>写真</th><th>内容</th></tr>
+    <tr><td>1</td><td>014.jpg</td><td>スタジオ内観（明るく清潔な雰囲気）</td></tr>
+    <tr><td>2</td><td>098.jpg</td><td>マンツーマンレッスン風景</td></tr>
+    <tr><td>3</td><td>035.jpg</td><td>リフォーマーマシン</td></tr>
+    <tr><td>4</td><td>048.jpg</td><td>代表SATOMI（笑顔）</td></tr>
+    <tr><td>5</td><td>080.jpg</td><td>2人でのレッスン風景</td></tr>
+  </table>
+</div>
+
+<!-- 改善⑤: スカウト対象拡大 -->
+<div class="box box-good">
+  <h3 style="margin-top:0">改善⑤: スカウト対象を広げる</h3>
+  <table>
+    <tr><th>現在の対象</th><th>追加すべき対象</th></tr>
+    <tr>
+      <td>ピラティス資格保有者のみ</td>
+      <td style="text-align:left">
+        <strong>・ヨガインストラクター経験者</strong><br>
+        <strong>・パーソナルトレーナー経験者</strong><br>
+        <strong>・整体師・鍼灸師</strong><br>
+        <strong>・理学療法士（PT）</strong><br>
+        ・エステティシャン（ボディ系）<br>
+        ・スポーツジムスタッフ経験者
+      </td>
+    </tr>
+  </table>
+  <div style="background:#d4edda;border-radius:8px;padding:12px;font-size:.82rem;color:#155724;margin-top:12px">
+    <strong>ポイント:</strong> 求人原稿を「研修あり」に変えてからスカウトを送れば、「ピラティス未経験だけど身体の知識はある」層にもリーチできる。対象者の母数が10倍以上に拡大。
+  </div>
+</div>
+
+<!-- ===== 期待効果 ===== -->
+<h2>5. 期待効果</h2>
+
+<table>
+  <tr><th>指標</th><th>現在</th><th>改善後（見込み）</th></tr>
+  <tr>
+    <td style="text-align:left">スカウト対象の母数</td>
+    <td>ピラティス資格者<br>（推定数十人）</td>
+    <td class="up">ヨガ・整体・PT等含む<br>（推定数百〜数千人）</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">通常スカウト返信率</td>
+    <td class="down">0%（118通中0名）</td>
+    <td class="up">1〜3%（3〜10名の返信）</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">求人ページの自然応募</td>
+    <td>0件</td>
+    <td class="up">月1〜2件</td>
+  </tr>
+  <tr>
+    <td style="text-align:left">面談→採用</td>
+    <td>1名（玉置様のみ）</td>
+    <td class="up">+1〜2名</td>
+  </tr>
+</table>
+
+<!-- ===== 実施順序 ===== -->
+<h2>6. 実施順序</h2>
+
+<div class="box">
+  <table>
+    <tr><th>優先度</th><th>施策</th><th>作業者</th><th>所要時間</th></tr>
+    <tr>
+      <td><span class="tag tag-red">即日</span></td>
+      <td style="text-align:left"><strong>応募資格を緩和</strong>（「研修あり・未経験OK」に変更）</td>
+      <td>Cowork</td>
+      <td>30分</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-red">即日</span></td>
+      <td style="text-align:left"><strong>報酬に月収例を追加</strong></td>
+      <td>Cowork</td>
+      <td>10分</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-gold">今週</span></td>
+      <td style="text-align:left"><strong>求人タイトル変更</strong></td>
+      <td>Cowork</td>
+      <td>10分</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-gold">今週</span></td>
+      <td style="text-align:left"><strong>スタジオ写真5枚を追加</strong></td>
+      <td>Cowork</td>
+      <td>20分</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-gold">今週</span></td>
+      <td style="text-align:left"><strong>スカウト対象をヨガ・整体・PT等に拡大</strong></td>
+      <td>Cowork</td>
+      <td>継続</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ===== 注意事項 ===== -->
+<div class="box box-warn">
+  <h3 style="margin-top:0">⚠ オーナーへの確認事項</h3>
+  <p style="font-size:.85rem;line-height:1.8">
+    応募資格の緩和にはオーナーの同意が必要です。確認ポイント:
+  </p>
+  <ul style="font-size:.85rem;margin:12px 0 0 20px;line-height:2">
+    <li><strong>「ピラティス未経験者を研修で育てることは可能か？」</strong><br>→ ヨガ・整体の経験者なら身体の知識はある。リフォーマー操作だけ教えれば戦力になるか</li>
+    <li><strong>「研修期間はどのくらい必要か？」</strong><br>→ 目安: 1〜2ヶ月。この間のコスト負担</li>
+    <li><strong>「玉置様の採用実績」</strong><br>→ 玉置様もピラティス有資格者だったか、それとも他の経験からの転向か</li>
+  </ul>
+</div>
+
+<!-- ===== 結論 ===== -->
+<div class="summary-dark">
+  <p style="font-size:.7rem;letter-spacing:.2em;color:#d4b876;margin-bottom:12px">SUMMARY</p>
+  <p style="font-size:1rem;line-height:2;max-width:600px;margin:0 auto">
+    毎日10通のスカウトを継続しているのは正しい。<br>
+    しかし<strong style="color:#d4b876">求人の条件面が市場とズレている</strong>ため反応がない。<br><br>
+    最も効果が大きいのは<br>
+    <strong style="color:#d4b876;font-size:1.2rem">「ピラティス資格必須」→「研修あり・未経験OK」への緩和</strong><br><br>
+    これだけでスカウト対象の母数が<strong style="color:#d4b876">10倍以上に拡大</strong>し、<br>
+    返信率も改善が見込める。
+  </p>
+</div>
+
+<p style="text-align:center;font-size:.68rem;color:#ccc;margin-top:32px">作成: 2026-04-16 / S'aimer採用改善チーム</p>
+
+</div>
+</body>
+</html>
