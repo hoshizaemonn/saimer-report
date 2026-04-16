@@ -798,8 +798,140 @@ td{padding:10px;text-align:center;border:1px solid #eee}
   </p>
 </div>
 
+<!-- ===== 広告費と登録実態 ===== -->
+<h2>12. 広告費¥1,000/日で何が起きているか</h2>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="num" style="color:#b8964e">¥15,000</div>
+    <div class="label">4月の広告費（15日分）<br>Google¥500 + Meta¥500</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#27ae60">6名</div>
+    <div class="label">hacomono登録<br>CPA ¥2,500/名</div>
+  </div>
+  <div class="kpi">
+    <div class="num" style="color:#c0392b">3名</div>
+    <div class="label">体験予約<br>登録者の50%が離脱</div>
+  </div>
+</div>
+
+<div class="box box-good">
+  <h3 style="margin-top:0">広告の評価: 十分に機能している</h3>
+  <table>
+    <tr><th>指標</th><th>S'aimer</th><th>業界平均</th><th>評価</th></tr>
+    <tr>
+      <td style="text-align:left">登録CPA</td>
+      <td><strong>¥2,500</strong></td>
+      <td>¥3,000〜8,000</td>
+      <td class="up">◎ 業界平均以下</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Google CTR</td>
+      <td><strong>21.8%</strong></td>
+      <td>4〜7%</td>
+      <td class="up">◎ 業界の3〜5倍</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Google CPC</td>
+      <td><strong>¥36</strong></td>
+      <td>¥300〜800</td>
+      <td class="up">◎ 業界の1/10</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Meta CTR</td>
+      <td><strong>4.7%</strong></td>
+      <td>0.8〜1.5%</td>
+      <td class="up">◎ 業界の3倍</td>
+    </tr>
+  </table>
+  <p style="font-size:.85rem;margin-top:12px"><strong>日予算¥1,000で月6名登録は十分に優秀。広告費を増やす必要はない。</strong></p>
+</div>
+
+<h3>Google広告のCV計測のズレ</h3>
+
+<div class="box box-warn">
+  <table>
+    <tr><th></th><th>スプレッドシート上</th><th>実態</th></tr>
+    <tr>
+      <td style="text-align:left">Google CV（4月15日間）</td>
+      <td><strong>約30件</strong></td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">hacomono登録（実数）</td>
+      <td>—</td>
+      <td><strong>6名</strong></td>
+    </tr>
+  </table>
+  <p style="font-size:.82rem;margin-top:12px">
+    <strong>Google CVが30件なのに実際の登録は6名。</strong><br>
+    原因: Google Ads CVタグがLP上の「予約ボタンクリック」で発火しているため、<br>
+    「ボタンを押しただけの人」もCVとしてカウントされている。<br>
+    実際に登録まで至った人は6名のみ。
+  </p>
+</div>
+
+<h3>本当のボトルネック: 登録→予約で50%離脱</h3>
+
+<div class="box box-bad">
+  <table>
+    <tr><th>段階</th><th>人数</th><th>離脱率</th></tr>
+    <tr><td style="text-align:left">LP流入（15日間）</td><td>約390人</td><td>—</td></tr>
+    <tr><td style="text-align:left">hacomono登録</td><td><strong>6名</strong></td><td>98.5%離脱（LP→登録）</td></tr>
+    <tr><td style="text-align:left">体験予約完了</td><td><strong>3名</strong></td><td class="down"><strong>50%離脱（登録→予約）</strong></td></tr>
+  </table>
+  <p style="font-size:.85rem;margin-top:16px">
+    <strong style="color:#c0392b;font-size:1rem">登録までしてくれた6名のうち3名が予約せずに離脱。</strong><br><br>
+    この3名は「興味がある」ことが確定している。わざわざ会員登録（名前・メール・電話・パスワード入力）までしてくれた。<br>
+    しかしカレンダーで空き枠がない or 希望の時間帯がないため、予約せずに去っている。
+  </p>
+</div>
+
+<h3>広告費を増やすより、転換率を上げる方が効果的</h3>
+
+<div class="compare">
+  <div class="compare-box before">
+    <div class="label">案A: 広告費を倍にする</div>
+    <p style="font-size:.82rem;text-align:left;line-height:1.8">
+      日予算 ¥1,000 → ¥2,000<br>
+      登録 6名 → 12名<br>
+      予約 3名 → 6名（転換率50%のまま）<br>
+      <strong>追加コスト: +¥15,000/月</strong>
+    </p>
+  </div>
+  <div class="compare-arrow">VS</div>
+  <div class="compare-box after">
+    <div class="label">案B: 登録→予約の転換率を改善</div>
+    <p style="font-size:.82rem;text-align:left;line-height:1.8">
+      日予算 ¥1,000（据え置き）<br>
+      登録 6名（同じ）<br>
+      予約 3名 → <strong class="up">5名（転換率83%に改善）</strong><br>
+      <strong class="up">追加コスト: ¥0</strong>
+    </p>
+  </div>
+</div>
+
+<h3>登録済みで予約していない3名への対応 <span class="tag tag-red">今すぐ</span></h3>
+
+<div class="box box-good">
+  <p style="font-size:.85rem;line-height:1.8">
+    hacomono管理画面で、登録済み・未予約の3名のメールアドレス・電話番号を確認。<br>
+    オーナーから直接連絡する：
+  </p>
+  <div style="background:#f9f7f3;padding:16px;border-radius:8px;margin:12px 0;font-size:.85rem;line-height:1.8;border-left:3px solid #27ae60">
+    「先日はご登録ありがとうございます。<br>
+    ご希望の日時に空きがなかったかもしれません。<br>
+    ご都合の良い日時を第3希望まで教えていただければ、<br>
+    調整してご案内いたします。」
+  </div>
+  <div class="proposal-effect">
+    <strong>この3名は「興味がある」ことが確定している人。フォローすれば予約に繋がる可能性が高い。</strong>
+  </div>
+</div>
+
 <!-- ===== 広告データ取得状況 ===== -->
-<h2>12. 広告データの取得状況</h2>
+<h2>13. データの取得状況</h2>
 
 <div class="box">
   <h3 style="margin-top:0">スプレッドシートの6シート構成</h3>
@@ -905,7 +1037,7 @@ td{padding:10px;text-align:center;border:1px solid #eee}
 </div>
 
 <!-- ===== ナレッジ蓄積状況 ===== -->
-<h2>13. ナレッジ・ノウハウの蓄積状況</h2>
+<h2>14. ナレッジ・ノウハウの蓄積状況</h2>
 
 <h3>✅ 蓄積されているもの</h3>
 <div class="box box-good">
@@ -963,7 +1095,7 @@ td{padding:10px;text-align:center;border:1px solid #eee}
 </div>
 
 <!-- ===== データ基盤の改善提案 ===== -->
-<h2>14. データ基盤の改善提案</h2>
+<h2>15. データ基盤の改善提案</h2>
 
 <div class="proposal">
   <span class="proposal-num">1</span><h3>GA4でcta_clickをキーイベントに設定</h3>
