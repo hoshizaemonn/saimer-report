@@ -213,75 +213,36 @@ td{padding:10px;text-align:center;border:1px solid #eee}
   <p style="font-size:1.1rem;font-weight:900;color:#c0392b;margin-bottom:8px">🚨 最重要の発見</p>
   <p style="font-size:1rem;font-weight:700;color:#c0392b;line-height:1.6">
     お客様側の体験予約カレンダーで<br>
-    4/19〜5/2の2週間、予約可能な枠が<strong style="font-size:1.4rem">「0個」</strong><br>
-    LPに来ても体験予約ができない状態
+    2週間で予約可能な枠がわずか<strong style="font-size:1.4rem">「3枠」</strong><br>
+    1日26人がLPに来ても、ほぼ予約できない状態
   </p>
 </div>
 
-<div class="kpi-row">
-  <div class="kpi">
-    <div class="num" style="color:#b8964e">89枠</div>
-    <div class="label">4月 予約可能枠<br>（ブロック除外後）</div>
-  </div>
-  <div class="kpi">
-    <div class="num" style="color:#27ae60">65件</div>
-    <div class="label">予約済み</div>
-  </div>
-  <div class="kpi">
-    <div class="num" style="color:#c0392b">24枠</div>
-    <div class="label">本当の空き枠<br>（前回の61枠は誤り）</div>
-  </div>
-  <div class="kpi">
-    <div class="num" style="color:#c0392b">73.0%</div>
-    <div class="label">実稼働率<br>（前回51.6%は誤り）</div>
-  </div>
-</div>
-
 <div class="box box-bad">
-  <p style="font-size:.85rem;font-weight:700;margin-bottom:8px">前回の調査との差（予定ブロック20件が未計上だった）</p>
+  <p style="font-size:.9rem;font-weight:700;color:#c0392b;margin-bottom:12px">お客様が実際に見ている予約画面（LP側）</p>
   <table>
-    <tr><th>項目</th><th>前回（誤）</th><th>今回（正）</th></tr>
-    <tr><td style="text-align:left">予定ブロック</td><td>0件</td><td class="down"><strong>20件（40時間分）</strong></td></tr>
-    <tr><td style="text-align:left">予約可能枠</td><td>126枠</td><td><strong>89枠</strong></td></tr>
-    <tr><td style="text-align:left">本当の空き</td><td>61枠</td><td class="down"><strong>24枠</strong></td></tr>
-    <tr><td style="text-align:left">実稼働率</td><td>51.6%</td><td class="down"><strong>73.0%</strong></td></tr>
-  </table>
-</div>
-
-<div class="box">
-  <p style="font-size:.85rem;font-weight:700;margin-bottom:8px">時間帯別の実態（ブロック除外後）</p>
-  <table>
-    <tr><th>時間帯</th><th>予約済</th><th>ブロック</th><th>予約可能枠</th><th>空き</th><th>稼働率</th></tr>
-    <tr style="background:#ffeaea">
-      <td>10:00〜12:00</td><td>19</td><td>6</td><td>19</td><td class="down"><strong>0</strong></td><td class="down"><strong>100%</strong></td>
+    <tr><th>週</th><th>日付</th><th>○（予約可能）の数</th><th>時間帯</th></tr>
+    <tr>
+      <td>4/19〜4/25</td>
+      <td>金 4/24</td>
+      <td class="down"><strong>1枠のみ</strong></td>
+      <td>11:00〜</td>
     </tr>
     <tr>
-      <td>12:00〜15:00</td><td>22</td><td>8</td><td>25</td><td>3</td><td>88.0%</td>
+      <td>4/26〜5/2</td>
+      <td>月 4/27</td>
+      <td class="down"><strong>2枠のみ</strong></td>
+      <td>17:30〜 / 18:00〜</td>
     </tr>
-    <tr>
-      <td>15:00〜18:00</td><td>14</td><td>5</td><td>19</td><td>5</td><td>73.7%</td>
-    </tr>
-    <tr style="background:#fff3cd">
-      <td>18:00〜20:00</td><td>10</td><td>1</td><td>12</td><td>2</td><td><strong>83.3%</strong></td>
-    </tr>
-  </table>
-  <p style="font-size:.78rem;color:#c0392b;margin-top:8px"><strong>午前10-12時は空きゼロ（真の需要超過）。夜18-20時も83%でほぼ満席。</strong></p>
-</div>
-
-<div class="box box-bad">
-  <p style="font-size:.9rem;font-weight:700;color:#c0392b;margin-bottom:8px">管理画面 vs お客様側の差</p>
-  <table>
-    <tr><th></th><th>管理画面（オーナー視点）</th><th>LP側（お客様視点）</th></tr>
-    <tr>
-      <td style="text-align:left">4/20〜4/27の空き</td>
-      <td>計算上4〜5枠</td>
-      <td class="down"><strong>○ ゼロ（1つも予約できない）</strong></td>
+    <tr style="font-weight:700;background:#ffeaea">
+      <td colspan="2">2週間合計</td>
+      <td class="down" style="font-size:1.2rem"><strong>3枠</strong></td>
+      <td>—</td>
     </tr>
   </table>
   <p style="font-size:.82rem;line-height:1.8;margin-top:12px">
-    管理画面では空きがあるように見えるが、<strong>お客様側のカレンダーでは「新規体験」の枠が1つも開放されていない</strong>。<br>
-    hacomonoの「新規体験予約の枠設定」が開放されていない可能性が高い。<br><br>
-    <strong style="color:#c0392b">→ LPに1日26人来ても、体験予約ボタンを押しても、「-」しか表示されず予約できない状態が続いている。</strong>
+    <strong>LPに1日26人（2週間で約364人）が来て、予約できる枠がたった3つ。</strong><br>
+    登録した5名が予約しなかった原因はこれ。カレンダーを開いても「-」ばかりで、予約できる枠がほぼ見つからない。
   </p>
 </div>
 
