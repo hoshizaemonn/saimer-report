@@ -209,77 +209,105 @@ td{padding:10px;text-align:center;border:1px solid #eee}
 <!-- ===== 予約枠の実態 ===== -->
 <h2>4. 予約枠の実態（4月）</h2>
 
+<div style="background:#ffeaea;border-radius:12px;padding:20px;margin:12px 0;text-align:center;border:2px solid #c0392b">
+  <p style="font-size:1.1rem;font-weight:900;color:#c0392b;margin-bottom:8px">🚨 最重要の発見</p>
+  <p style="font-size:1rem;font-weight:700;color:#c0392b;line-height:1.6">
+    お客様側の体験予約カレンダーで<br>
+    4/19〜5/2の2週間、予約可能な枠が<strong style="font-size:1.4rem">「0個」</strong><br>
+    LPに来ても体験予約ができない状態
+  </p>
+</div>
+
 <div class="kpi-row">
   <div class="kpi">
-    <div class="num" style="color:#b8964e">126枠</div>
-    <div class="label">4月の総予約枠</div>
+    <div class="num" style="color:#b8964e">89枠</div>
+    <div class="label">4月 予約可能枠<br>（ブロック除外後）</div>
   </div>
   <div class="kpi">
     <div class="num" style="color:#27ae60">65件</div>
     <div class="label">予約済み</div>
   </div>
   <div class="kpi">
-    <div class="num" style="color:#c0392b">61枠</div>
-    <div class="label">空き枠</div>
+    <div class="num" style="color:#c0392b">24枠</div>
+    <div class="label">本当の空き枠<br>（前回の61枠は誤り）</div>
   </div>
   <div class="kpi">
-    <div class="num" style="color:#b8964e">51.6%</div>
-    <div class="label">稼働率</div>
+    <div class="num" style="color:#c0392b">73.0%</div>
+    <div class="label">実稼働率<br>（前回51.6%は誤り）</div>
   </div>
-</div>
-
-<div class="box">
-  <p style="font-size:.85rem;font-weight:700;margin-bottom:8px">時間帯別の稼働状況</p>
-  <table>
-    <tr><th>時間帯</th><th>予約済</th><th>総枠</th><th>稼働率</th><th>状況</th></tr>
-    <tr style="background:#ffeaea">
-      <td>10:00〜12:00</td><td><strong>19</strong></td><td>19</td><td class="down"><strong>100%</strong></td>
-      <td style="text-align:left;font-size:.75rem;color:#c0392b"><strong>全枠埋まり → 需要超過。朝枠を増やせば即売上増</strong></td>
-    </tr>
-    <tr>
-      <td>12:00〜15:00</td><td>23</td><td>43</td><td>53.5%</td>
-      <td style="text-align:left;font-size:.75rem">昼は中程度の需要</td>
-    </tr>
-    <tr>
-      <td>15:00〜18:00</td><td>14</td><td>30</td><td>46.7%</td>
-      <td style="text-align:left;font-size:.75rem">金・土が空きがち</td>
-    </tr>
-    <tr style="background:#fff3cd">
-      <td>18:00〜20:00</td><td><strong>9</strong></td><td>13</td><td><strong>69.2%</strong></td>
-      <td style="text-align:left;font-size:.75rem;color:#856404"><strong>人気だが枠が少ない → 夜枠の追加で埋まる可能性大</strong></td>
-    </tr>
-  </table>
 </div>
 
 <div class="box box-bad">
-  <p style="font-size:.9rem;font-weight:700;color:#c0392b;margin-bottom:8px">発見: 枠はあるが「ほしい時間帯」にない</p>
-  <p style="font-size:.82rem;line-height:1.8">
-    全体の稼働率は51.6%で<strong>半分は空いている</strong>。しかし：<br>
-    ・<strong style="color:#c0392b">午前（10-12時）は100%埋まり</strong> → 朝に来たい人が予約できない<br>
-    ・<strong style="color:#c0392b">夜（18-20時）は69%で枠自体が少ない</strong> → 働く女性が来れない<br>
-    ・昼〜夕方（12-18時）は空いているが、ターゲットが来れない時間帯<br><br>
-    <strong>→ 「枠がない」のではなく「ほしい時間帯に枠がない」のが本質</strong>
+  <p style="font-size:.85rem;font-weight:700;margin-bottom:8px">前回の調査との差（予定ブロック20件が未計上だった）</p>
+  <table>
+    <tr><th>項目</th><th>前回（誤）</th><th>今回（正）</th></tr>
+    <tr><td style="text-align:left">予定ブロック</td><td>0件</td><td class="down"><strong>20件（40時間分）</strong></td></tr>
+    <tr><td style="text-align:left">予約可能枠</td><td>126枠</td><td><strong>89枠</strong></td></tr>
+    <tr><td style="text-align:left">本当の空き</td><td>61枠</td><td class="down"><strong>24枠</strong></td></tr>
+    <tr><td style="text-align:left">実稼働率</td><td>51.6%</td><td class="down"><strong>73.0%</strong></td></tr>
+  </table>
+</div>
+
+<div class="box">
+  <p style="font-size:.85rem;font-weight:700;margin-bottom:8px">時間帯別の実態（ブロック除外後）</p>
+  <table>
+    <tr><th>時間帯</th><th>予約済</th><th>ブロック</th><th>予約可能枠</th><th>空き</th><th>稼働率</th></tr>
+    <tr style="background:#ffeaea">
+      <td>10:00〜12:00</td><td>19</td><td>6</td><td>19</td><td class="down"><strong>0</strong></td><td class="down"><strong>100%</strong></td>
+    </tr>
+    <tr>
+      <td>12:00〜15:00</td><td>22</td><td>8</td><td>25</td><td>3</td><td>88.0%</td>
+    </tr>
+    <tr>
+      <td>15:00〜18:00</td><td>14</td><td>5</td><td>19</td><td>5</td><td>73.7%</td>
+    </tr>
+    <tr style="background:#fff3cd">
+      <td>18:00〜20:00</td><td>10</td><td>1</td><td>12</td><td>2</td><td><strong>83.3%</strong></td>
+    </tr>
+  </table>
+  <p style="font-size:.78rem;color:#c0392b;margin-top:8px"><strong>午前10-12時は空きゼロ（真の需要超過）。夜18-20時も83%でほぼ満席。</strong></p>
+</div>
+
+<div class="box box-bad">
+  <p style="font-size:.9rem;font-weight:700;color:#c0392b;margin-bottom:8px">管理画面 vs お客様側の差</p>
+  <table>
+    <tr><th></th><th>管理画面（オーナー視点）</th><th>LP側（お客様視点）</th></tr>
+    <tr>
+      <td style="text-align:left">4/20〜4/27の空き</td>
+      <td>計算上4〜5枠</td>
+      <td class="down"><strong>○ ゼロ（1つも予約できない）</strong></td>
+    </tr>
+  </table>
+  <p style="font-size:.82rem;line-height:1.8;margin-top:12px">
+    管理画面では空きがあるように見えるが、<strong>お客様側のカレンダーでは「新規体験」の枠が1つも開放されていない</strong>。<br>
+    hacomonoの「新規体験予約の枠設定」が開放されていない可能性が高い。<br><br>
+    <strong style="color:#c0392b">→ LPに1日26人来ても、体験予約ボタンを押しても、「-」しか表示されず予約できない状態が続いている。</strong>
   </p>
 </div>
 
-<div class="box" style="border-left:4px solid #f0c040">
-  <p style="font-size:.85rem;font-weight:700;margin-bottom:8px">⚠ 玉置様のシフトが未登録</p>
-  <p style="font-size:.82rem;line-height:1.8">
-    玉置様は4/10入社済みだが、<strong>hacomonoにインストラクター登録・シフト設定がされていない</strong>。<br>
-    予約画面には反映されておらず、会員から見ても枠が増えたように見えない。<br>
-    <strong>→ 早急にhacomonoへのシフト登録が必要。</strong>
-  </p>
+<div class="box box-bad">
+  <p style="font-size:.85rem;font-weight:700;margin-bottom:8px">🚑 緊急対応が必要な3点</p>
+  <div style="font-size:.85rem;line-height:1.8">
+    <p style="margin-bottom:12px"><strong>① 新規体験の枠がお客様側で開放されていない</strong><br>
+    hacomonoの「新規体験予約の枠設定」を確認し、予約可能枠を開放する。<strong>これをしないとLPから予約できない。</strong></p>
+
+    <p style="margin-bottom:12px"><strong>② 玉置様のシフトがhacomonoに未登録</strong><br>
+    4/10入社済みだが、インストラクター登録・シフト設定がされていない。お客様から見ても枠が増えていない。</p>
+
+    <p><strong>③ 月曜13-16時の定期ブロック（毎週3時間）の見直し</strong><br>
+    4/6・13・20・27の毎週月曜にブロックが入っている。解除すれば月+4枠の増加。</p>
+  </div>
 </div>
 
 <div class="box box-good">
   <p style="font-size:.85rem;font-weight:700;margin-bottom:8px">提案: 希望日リクエストフォームの導入</p>
   <p style="font-size:.82rem;line-height:1.8">
-    登録した5名が予約に至らなかった原因は<strong>「希望の時間帯に空きがない」</strong>可能性が高い。<br><br>
+    お客様がLPから予約ボタンを押しても<strong>「-」しか表示されず予約できない</strong>状態。<br>
+    登録した5名が予約しなかった原因はこれ。<br><br>
     <strong>解決策:</strong> LPの追従バーに「希望日を送る」ボタンを追加。<br>
     第3希望まで入力できる簡易フォームで、オーナーが個別に枠を調整して対応。<br><br>
-    <strong>hacomonoのカレンダーで空きが見つからなくても、</strong><br>
-    <strong>希望日フォームで「この日に来たい」と伝えてもらえれば、</strong><br>
-    <strong>オーナーが調整して予約に繋げられる。</strong>
+    <strong>カレンダーに○がなくても、希望日を送ってもらえれば</strong><br>
+    <strong>オーナーが枠を調整して予約に繋げられる。</strong>
   </p>
   <div style="background:#d4edda;border-radius:8px;padding:12px;margin-top:12px;font-size:.82rem;color:#155724">
     <strong>フォーム項目（5項目だけ）:</strong><br>
