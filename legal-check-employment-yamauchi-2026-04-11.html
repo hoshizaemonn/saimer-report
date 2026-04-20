@@ -23,6 +23,13 @@
   }
   header h1 { font-size: 28px; margin-bottom: 8px; }
   header .meta { font-size: 14px; opacity: 0.9; }
+  header .update {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    font-size: 13px;
+  }
 
   .summary-bar {
     background: white;
@@ -70,7 +77,6 @@
     color: #2d3748;
   }
 
-  /* 問題カード */
   .issue {
     border-radius: 8px;
     padding: 24px;
@@ -86,6 +92,7 @@
     align-items: center;
     gap: 12px;
     margin-bottom: 14px;
+    flex-wrap: wrap;
   }
   .badge {
     display: inline-block;
@@ -94,13 +101,14 @@
     font-size: 12px;
     font-weight: bold;
     color: white;
+    white-space: nowrap;
   }
   .badge.critical { background: #c53030; }
   .badge.high { background: #dd6b20; }
   .badge.medium { background: #d69e2e; }
+  .badge.new { background: #805ad5; }
   .issue-title { font-size: 17px; font-weight: bold; }
 
-  /* Before/After */
   .ba-grid {
     display: grid;
     grid-template-columns: 1fr 40px 1fr;
@@ -126,7 +134,6 @@
   .ba-label.before { color: #c53030; }
   .ba-label.after { color: #2f855a; }
 
-  /* 計算ボックス */
   .calc-box {
     background: #edf2f7;
     border: 1px solid #cbd5e0;
@@ -147,7 +154,6 @@
   }
   .calc-box .result.ok { color: #2f855a; }
 
-  /* 図解：実態と契約の乖離 */
   .timeline {
     margin: 24px 0;
     background: #f7fafc;
@@ -197,12 +203,14 @@
     justify-content: space-between;
   }
 
-  /* リスクマトリクス */
   .risk-matrix {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin: 20px 0;
+  }
+  @media (min-width: 768px) {
+    .risk-matrix { grid-template-columns: repeat(4, 1fr); }
   }
   .risk-card {
     padding: 20px;
@@ -217,7 +225,6 @@
   .risk-card .title { font-weight: bold; margin-bottom: 6px; font-size: 14px; }
   .risk-card .desc { font-size: 12px; color: #4a5568; }
 
-  /* 結論 */
   .conclusion {
     background: linear-gradient(135deg, #2d3748, #1a202c);
     color: white;
@@ -229,12 +236,15 @@
   .conclusion ul { padding-left: 20px; margin-top: 12px; }
   .conclusion li { margin-bottom: 8px; }
 
-  /* 選択肢 */
   .options {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin: 20px 0;
+  }
+  @media (max-width: 768px) {
+    .options { grid-template-columns: 1fr; }
+    .summary-bar { grid-template-columns: repeat(2, 1fr); }
   }
   .option {
     border: 2px solid #e2e8f0;
@@ -262,7 +272,6 @@
   .option h4 { font-size: 15px; margin-bottom: 10px; color: #2d3748; }
   .option p { font-size: 13px; color: #4a5568; }
 
-  /* 未払い請求リスク */
   .risk-amount {
     background: #fff5f5;
     border: 2px solid #fc8181;
@@ -279,6 +288,45 @@
   }
   .risk-amount .formula { font-size: 11px; color: #718096; margin-top: 6px; }
 
+  /* 比較テーブル */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .compare-table th, .compare-table td {
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+  }
+  .compare-table th {
+    background: #2d3748;
+    color: white;
+    font-weight: bold;
+  }
+  .compare-table .col-current { background: #ebf8ff; }
+  .compare-table .col-proposed { background: #fff5f5; }
+  .compare-table .danger { color: #c53030; font-weight: bold; }
+  .compare-table .ok { color: #2f855a; font-weight: bold; }
+  .compare-table .row-label { text-align: left; font-weight: bold; background: #f7fafc; }
+
+  /* NEWバッジ付きセクション */
+  .section-new {
+    position: relative;
+  }
+  .new-tag {
+    display: inline-block;
+    background: #805ad5;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+
   footer {
     margin-top: 30px;
     padding: 20px;
@@ -294,12 +342,13 @@
   <header>
     <h1>雇用契約書 リーガルチェック結果</h1>
     <div class="meta">対象：山内 生人さん（合同会社レナトス／食酒家 拠り所 てっちゃん）<br>
-    契約日：2026年4月1日　／　チェック日：2026年4月11日</div>
+    契約日：2026年4月1日　／　初回チェック日：2026年4月11日</div>
+    <div class="update">4/20 更新：オーナー提案の内訳変更（基本給12万案）の検証結果を追加</div>
   </header>
 
   <div class="summary-bar">
     <div class="item">
-      <div class="num critical">1</div>
+      <div class="num critical">2</div>
       <div class="label">致命的な問題</div>
     </div>
     <div class="item">
@@ -316,14 +365,128 @@
     </div>
   </div>
 
-  <!-- ============ Section 1 ============ -->
-  <section>
-    <h2>① 致命的な問題：給与支払日の論理矛盾</h2>
+  <!-- ============ Section NEW ============ -->
+  <section class="section-new">
+    <h2>&#9312; オーナー提案の内訳変更は不可 <span class="new-tag">4/20 追加</span></h2>
+
+    <p style="margin-bottom:16px;">オーナーより、給与明細の内訳を以下のように変更する案が提示されました。<strong>この変更は最低賃金法違反となるため、採用できません。</strong></p>
+
+    <h3>現行 vs 提案の比較</h3>
+    <table class="compare-table">
+      <tr>
+        <th style="text-align:left;">項目</th>
+        <th class="col-current">現行の契約書</th>
+        <th class="col-proposed">オーナー提案</th>
+        <th>判定</th>
+      </tr>
+      <tr>
+        <td class="row-label">基本給</td>
+        <td class="col-current">200,000円</td>
+        <td class="col-proposed">120,000円</td>
+        <td class="danger">&#9660; 80,000円減</td>
+      </tr>
+      <tr>
+        <td class="row-label">固定残業代</td>
+        <td class="col-current">70,000円</td>
+        <td class="col-proposed">80,000円</td>
+        <td>+10,000円</td>
+      </tr>
+      <tr>
+        <td class="row-label">深夜手当</td>
+        <td class="col-current">30,000円</td>
+        <td class="col-proposed">100,000円</td>
+        <td>+70,000円</td>
+      </tr>
+      <tr>
+        <td class="row-label">合計</td>
+        <td class="col-current"><strong>300,000円</strong></td>
+        <td class="col-proposed"><strong>300,000円</strong></td>
+        <td>変わらず</td>
+      </tr>
+      <tr style="background:#fff5f5;">
+        <td class="row-label">基本給の時給換算</td>
+        <td class="col-current ok">約1,151円</td>
+        <td class="col-proposed danger">約690円</td>
+        <td class="danger">最賃割れ</td>
+      </tr>
+    </table>
 
     <div class="issue critical">
       <div class="issue-header">
         <span class="badge critical">CRITICAL</span>
-        <span class="issue-title">第7条 給与支払 — 物理的に不可能な記載</span>
+        <span class="badge new">NEW</span>
+        <span class="issue-title">最低賃金法違反 — 刑事罰の対象</span>
+      </div>
+
+      <p style="margin-bottom:12px;">最低賃金の判定では<strong>固定残業代と深夜手当は除外</strong>して、基本給だけで計算します。</p>
+
+      <div class="calc-box">
+        <div class="formula">
+          基本給 120,000円 &divide; 月平均所定労働時間 173.8時間 = <strong>約690円/時</strong><br>
+          福岡県の最低賃金：<strong>992円/時</strong>（2024年10月〜）
+        </div>
+        <div class="result">&rarr; 時給690円は最賃を302円下回る = 最低賃金法違反</div>
+      </div>
+
+      <p><strong>罰則：</strong>最低賃金法第40条により<strong>50万円以下の罰金</strong>。労基法違反より重い刑事罰です。</p>
+    </div>
+
+    <div class="issue critical">
+      <div class="issue-header">
+        <span class="badge critical">CRITICAL</span>
+        <span class="badge new">NEW</span>
+        <span class="issue-title">固定残業代の計算が約93時間分に膨張</span>
+      </div>
+
+      <p>基本給が下がると時間単価も下がり、同じ金額でも「みなし時間数」が跳ね上がります。</p>
+
+      <div class="calc-box">
+        <div class="formula">
+          時間単価：690円 &times; 1.25（残業割増）= <strong>863円</strong><br>
+          固定残業代 80,000円 &divide; 863円 = <strong>約93時間分のみなし残業</strong>
+        </div>
+        <div class="result">&rarr; 36協定の絶対上限（月100時間未満）に迫る異常値。常態化は違法</div>
+      </div>
+    </div>
+
+    <h3>なぜこうなるか（図解）</h3>
+    <div class="timeline" style="text-align:center;">
+      <p style="font-size:14px; margin-bottom:16px;">「総額を変えずに配分だけ変える」と、基本給の時給が下がり最賃割れになる構造</p>
+      <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;">
+        <div style="background:#ebf8ff; border:2px solid #4299e1; border-radius:8px; padding:16px 20px; min-width:200px;">
+          <div style="font-size:12px; color:#2b6cb0; font-weight:bold;">現行の契約書</div>
+          <div style="font-size:24px; font-weight:bold; color:#2c5282;">基本給 20万円</div>
+          <div style="font-size:13px; color:#4a5568; margin-top:4px;">時給 <strong style="color:#2f855a;">1,151円</strong> &gt; 最賃992円</div>
+        </div>
+        <div style="font-size:30px; color:#718096;">&rarr;</div>
+        <div style="background:#fff5f5; border:2px solid #fc8181; border-radius:8px; padding:16px 20px; min-width:200px;">
+          <div style="font-size:12px; color:#c53030; font-weight:bold;">オーナー提案</div>
+          <div style="font-size:24px; font-weight:bold; color:#c53030;">基本給 12万円</div>
+          <div style="font-size:13px; color:#4a5568; margin-top:4px;">時給 <strong style="color:#c53030;">690円</strong> &lt; 最賃992円</div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:#718096; margin-top:16px;">※ 総額30万円は同じでも、基本給を下げた分だけ時給が下がり最賃を割り込む</p>
+    </div>
+
+    <h3>正しい対応</h3>
+    <div class="issue medium" style="border-color:#38a169; background:#f0fff4;">
+      <div class="issue-header">
+        <span class="badge" style="background:#38a169;">解決策</span>
+        <span class="issue-title">基本給は173,000円以上を維持する</span>
+      </div>
+      <p>最低賃金をクリアするには <strong>992円 &times; 173.8時間 = 172,410円</strong> が下限。現行の基本給20万円はこれをクリアしており、<strong>基本給を下げる方向の変更は不可</strong>です。</p>
+      <p style="margin-top:10px;">固定残業代・深夜手当を増やしたい場合は、<strong>総額30万円を超える形で上乗せ</strong>するか、<strong>社労士と相談して適法な配分</strong>を決めてください。</p>
+    </div>
+  </section>
+
+  <!-- ============ Section 1 ============ -->
+  <section>
+    <h2>&#9313; 給与支払日の論理矛盾</h2>
+
+    <div class="issue critical">
+      <div class="issue-header">
+        <span class="badge critical">CRITICAL</span>
+        <span class="issue-title">第7条 給与支払 &mdash; 物理的に不可能な記載</span>
       </div>
 
       <div class="ba-grid">
@@ -331,10 +494,10 @@
           <div class="ba-label before">契約書の記載</div>
           <div class="ba-box ba-before">
             毎月<strong>末日</strong>締め、<strong>当月25日</strong>払い<br>
-            <small style="color:#742a2a;">→ 締める前に払うことになる</small>
+            <small style="color:#742a2a;">&rarr; 締める前に払うことになる</small>
           </div>
         </div>
-        <div class="ba-arrow">→</div>
+        <div class="ba-arrow">&rarr;</div>
         <div>
           <div class="ba-label after">修正案</div>
           <div class="ba-box ba-after">
@@ -343,13 +506,13 @@
           </div>
         </div>
       </div>
-      <p style="font-size:13px; color:#4a5568;">※ 山内さんへの実際の支払いタイミングに合わせてどちらかを選択してください。</p>
+      <p style="font-size:13px; color:#4a5568;">&ast; 山内さんへの実際の支払いタイミングに合わせてどちらかを選択してください。</p>
     </div>
   </section>
 
   <!-- ============ Section 2 ============ -->
   <section>
-    <h2>② 最重要：契約書と実態の乖離</h2>
+    <h2>&#9314; 契約書と実態の乖離</h2>
 
     <p style="margin-bottom:16px;">オーナー回答により、<strong>実際の勤務開始は16時</strong>であることが判明。契約書には18時と記載されており、これ自体が労基法第15条（労働条件明示義務）違反です。</p>
 
@@ -383,45 +546,45 @@
     <div class="risk-amount">
       <div class="label">山内さんが退職時に過去3年分を請求した場合</div>
       <div class="value">約 228 万円</div>
-      <div class="formula">2時間/日 × 22日 × 12ヶ月 × 3年 × 1,439円/時 = 約2,279,232円</div>
+      <div class="formula">2時間/日 &times; 22日 &times; 12ヶ月 &times; 3年 &times; 1,439円/時 = 約2,279,232円</div>
     </div>
   </section>
 
   <!-- ============ Section 3 ============ -->
   <section>
-    <h2>③ みなし45時間で「カバーできる」は本当か？</h2>
+    <h2>&#9315; みなし45時間で「カバーできる」は本当か？</h2>
 
     <p>オーナーは「実態16時〜だが、みなし45時間でカバーできる」と回答。計算上は<strong>ギリギリ成立</strong>しますが、実務上は破綻します。</p>
 
     <h3>計算：月22日勤務の場合</h3>
     <div class="calc-box">
       <div class="formula">
-        実労働時間：11時間 − 休憩1時間 = <strong>10時間/日</strong><br>
-        1日あたり残業：10時間 − 8時間（法定）= <strong>2時間</strong><br>
-        月22日勤務の残業合計：2時間 × 22日 = <strong>44時間</strong>
+        実労働時間：11時間 &minus; 休憩1時間 = <strong>10時間/日</strong><br>
+        1日あたり残業：10時間 &minus; 8時間（法定）= <strong>2時間</strong><br>
+        月22日勤務の残業合計：2時間 &times; 22日 = <strong>44時間</strong>
       </div>
-      <div class="result ok">→ みなし45時間 − 実残業44時間 = 余裕わずか1時間</div>
+      <div class="result ok">&rarr; みなし45時間 &minus; 実残業44時間 = 余裕わずか1時間</div>
     </div>
 
     <h3>4つの落とし穴</h3>
     <div class="risk-matrix">
       <div class="risk-card hi">
-        <div class="icon">📅</div>
+        <div class="icon">&#128197;</div>
         <div class="title">月23日勤務でアウト</div>
-        <div class="desc">2時間 × 23日 = 46時間<br>みなし枠を1時間超過</div>
+        <div class="desc">2時間 &times; 23日 = 46時間<br>みなし枠を1時間超過</div>
       </div>
       <div class="risk-card hi">
-        <div class="icon">🆘</div>
+        <div class="icon">&#127384;</div>
         <div class="title">代打で長時間化</div>
         <div class="desc">スタッフ欠勤の代打で12時間勤務になれば即超過</div>
       </div>
       <div class="risk-card hi">
-        <div class="icon">⚖️</div>
+        <div class="icon">&#9878;&#65039;</div>
         <div class="title">36協定の上限</div>
         <div class="desc">月45時間が原則上限。年間360時間も超過する</div>
       </div>
       <div class="risk-card hi">
-        <div class="icon">🌙</div>
+        <div class="icon">&#127769;</div>
         <div class="title">深夜手当が不足</div>
         <div class="desc">実態110時間の深夜労働<br>3万円では月1,650円不足</div>
       </div>
@@ -430,16 +593,16 @@
     <h3>年間で見ると最初から破綻</h3>
     <div class="calc-box">
       <div class="formula">
-        月44時間の残業 × 12ヶ月 = <strong>年528時間</strong><br>
+        月44時間の残業 &times; 12ヶ月 = <strong>年528時間</strong><br>
         労基法の年間上限：<strong>360時間</strong>
       </div>
-      <div class="result">→ 年間で168時間オーバー（46.7%超過）</div>
+      <div class="result">&rarr; 年間で168時間オーバー（46.7%超過）</div>
     </div>
   </section>
 
   <!-- ============ Section 4 ============ -->
   <section>
-    <h2>④ その他の法的リスク</h2>
+    <h2>&#9316; その他の法的リスク</h2>
 
     <div class="issue high">
       <div class="issue-header">
@@ -452,7 +615,7 @@
           <div class="ba-label before">現状</div>
           <div class="ba-box ba-before">18:00〜翌3:00（休憩あり・シフト制）</div>
         </div>
-        <div class="ba-arrow">→</div>
+        <div class="ba-arrow">&rarr;</div>
         <div>
           <div class="ba-label after">修正</div>
           <div class="ba-box ba-after">16:00〜翌3:00（うち休憩60分）</div>
@@ -471,7 +634,7 @@
           <div class="ba-label before">現状</div>
           <div class="ba-box ba-before">週休制（シフト制）</div>
         </div>
-        <div class="ba-arrow">→</div>
+        <div class="ba-arrow">&rarr;</div>
         <div>
           <div class="ba-label after">修正</div>
           <div class="ba-box ba-after">週休2日（シフト制により決定）</div>
@@ -490,6 +653,21 @@
       </div>
     </div>
 
+    <div class="issue high">
+      <div class="issue-header">
+        <span class="badge high">HIGH</span>
+        <span class="issue-title">第6条 深夜割増手当の不足</span>
+      </div>
+      <p>実態16時〜翌3時の場合、22時〜翌3時の5時間が深夜帯。月22日勤務で110時間の深夜労働。</p>
+      <div class="calc-box">
+        <div class="formula">
+          深夜割増：1,151円 &times; 0.25 = 約288円/時<br>
+          110時間 &times; 288円 = <strong>約31,650円</strong>
+        </div>
+        <div class="result">&rarr; 契約書の3万円では毎月約1,650円不足</div>
+      </div>
+    </div>
+
     <div class="issue medium">
       <div class="issue-header">
         <span class="badge medium">MEDIUM</span>
@@ -497,16 +675,55 @@
       </div>
       <p>民法627条では2週間前で退職可能。「1ヶ月前」は法的拘束力なし（お願いベース）。</p>
     </div>
+
+    <div class="issue medium">
+      <div class="issue-header">
+        <span class="badge medium">MEDIUM</span>
+        <span class="issue-title">記載が抜けている重要項目</span>
+      </div>
+      <table class="compare-table" style="font-size:13px;">
+        <tr>
+          <th style="text-align:left;">項目</th>
+          <th>現状</th>
+          <th>推奨内容</th>
+        </tr>
+        <tr>
+          <td class="row-label">契約期間</td>
+          <td>記載なし</td>
+          <td>「期間の定めなし」と明記</td>
+        </tr>
+        <tr>
+          <td class="row-label">昇給</td>
+          <td>記載なし</td>
+          <td>有無を明記</td>
+        </tr>
+        <tr>
+          <td class="row-label">賞与</td>
+          <td>記載なし</td>
+          <td>有無を明記</td>
+        </tr>
+        <tr>
+          <td class="row-label">退職金</td>
+          <td>記載なし</td>
+          <td>有無を明記</td>
+        </tr>
+        <tr>
+          <td class="row-label">有給休暇</td>
+          <td>記載なし</td>
+          <td>「労基法に基づき付与」</td>
+        </tr>
+      </table>
+    </div>
   </section>
 
   <!-- ============ Section 5 ============ -->
   <section>
-    <h2>⑤ 解決の選択肢</h2>
+    <h2>&#9317; 解決の選択肢</h2>
 
     <div class="options">
       <div class="option recommended">
         <h4>A. 契約書を実態に合わせる</h4>
-        <p>勤務時間を16時〜に修正。<br>固定残業代を60時間分に増額。<br>深夜手当も再計算。<br><strong>※36協定の特別条項が必須</strong></p>
+        <p>勤務時間を16時〜に修正。<br>固定残業代・深夜手当を実態に基づき再計算。<br>基本給は173,000円以上を維持。<br><strong>※36協定の特別条項が必須</strong></p>
       </div>
       <div class="option">
         <h4>B. 実態を契約書に合わせる</h4>
@@ -520,19 +737,20 @@
 
     <div class="conclusion">
       <h3>結論：社労士への相談を強く推奨</h3>
-      <p>この案件は、以下3つの理由から専門家のサポートが不可欠です。</p>
+      <p>この案件は、以下の理由から専門家のサポートが不可欠です。</p>
       <ul>
+        <li><strong>基本給の内訳変更は逆効果</strong> &mdash; 基本給を下げると最賃割れ（刑事罰）のリスクが生じる</li>
         <li>36協定の特別条項の有無確認（届出済みと思っていても未届のケースが多い）</li>
         <li>変形労働時間制の導入は就業規則変更を伴うため、素人判断は危険</li>
-        <li>飲食業 × 深夜帯 × 固定残業代 × シフト制は労務トラブルの典型パターン</li>
+        <li>飲食業 &times; 深夜帯 &times; 固定残業代 &times; シフト制は労務トラブルの典型パターン</li>
       </ul>
-      <p style="margin-top:14px;"><strong>最優先アクション：</strong>このまま署名・運用すると、退職時に約228万円の未払い請求リスクと労基署の是正勧告リスクを抱えます。署名前に必ず修正してください。</p>
+      <p style="margin-top:14px;"><strong>最優先アクション：</strong>内訳変更ではなく、まず勤務実態を正しく契約書に記載した上で、社労士に適法な給与配分を相談してください。</p>
     </div>
   </section>
 
   <footer>
     本リーガルチェックは法務観点の一次レビューであり、最終的な法的判断は社労士・弁護士にご確認ください。<br>
-    作成：株式会社斗（hishaku）／ 2026年4月11日
+    作成：株式会社斗（hishaku）／ 初回 2026年4月11日 ／ 更新 2026年4月20日
   </footer>
 
 </div>
