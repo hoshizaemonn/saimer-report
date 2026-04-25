@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S'aimer パンフレット A4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@300;400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f0ece4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 32px 16px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  /* A4: 210mm × 297mm = 794px × 1123px (96dpi) */
+  .page {
+    width: 794px;
+    min-height: 1123px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 40px rgba(0,0,0,.18);
+  }
+
+  /* ── TOP: ゴールド帯 ── */
+  .top-band {
+    background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 50%, #c9a96e 100%);
+    padding: 28px 40px 22px;
+    text-align: center;
+    position: relative;
+  }
+  .top-band::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 0; right: 0;
+    height: 28px;
+    background: #fff;
+    clip-path: ellipse(55% 100% at 50% 0%);
+  }
+  .brand-sub {
+    font-size: 9px;
+    letter-spacing: .35em;
+    color: #7a5c2e;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .brand-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #3d2c10;
+    letter-spacing: .08em;
+    line-height: 1;
+  }
+  .brand-name span {
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: .2em;
+    display: block;
+    margin-top: 5px;
+    color: #5a4020;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 46px 40px 32px;
+    text-align: center;
+    background: #fff;
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid #c9a96e;
+    color: #8a6830;
+    font-size: 9px;
+    letter-spacing: .3em;
+    padding: 4px 16px;
+    margin-bottom: 18px;
+  }
+  .hero-catch {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #2a1f0e;
+    line-height: 1.5;
+    letter-spacing: .04em;
+    margin-bottom: 14px;
+  }
+  .hero-catch em {
+    font-style: normal;
+    color: #c9a96e;
+  }
+  .hero-sub {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.9;
+    letter-spacing: .05em;
+  }
+
+  /* ── 写真エリア ── */
+  .photo-area {
+    margin: 0 40px 32px;
+    height: 200px;
+    background: linear-gradient(135deg, #e8e0d4 0%, #d4c9b8 100%);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-placeholder {
+    text-align: center;
+    color: #a0907a;
+  }
+  .photo-placeholder .icon {
+    font-size: 36px;
+    margin-bottom: 6px;
+  }
+  .photo-placeholder p {
+    font-size: 10px;
+    letter-spacing: .1em;
+  }
+  .photo-badge {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    background: rgba(201,169,110,.92);
+    color: #fff;
+    font-size: 9px;
+    letter-spacing: .15em;
+    padding: 5px 14px;
+    font-weight: 700;
+  }
+
+  /* ── 特徴3列 ── */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin: 0 40px 36px;
+  }
+  .feat {
+    text-align: center;
+    padding: 20px 10px;
+    border: 1px solid #e8e0d4;
+    position: relative;
+  }
+  .feat + .feat { border-left: none; }
+  .feat-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .feat-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #3d2c10;
+    margin-bottom: 4px;
+    letter-spacing: .05em;
+  }
+  .feat-desc {
+    font-size: 9.5px;
+    color: #888;
+    line-height: 1.7;
+  }
+
+  /* ── 区切り ── */
+  .divider {
+    margin: 0 40px 28px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #c9a96e, transparent);
+  }
+
+  /* ── コース ── */
+  .course-section {
+    padding: 0 40px 32px;
+  }
+  .section-label {
+    font-size: 9px;
+    letter-spacing: .35em;
+    color: #c9a96e;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .course-card {
+    background: linear-gradient(135deg, #fdfaf5, #f5ede0);
+    border: 1px solid #e8d8c0;
+    border-radius: 6px;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .course-info { flex: 1; }
+  .course-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #3d2c10;
+    margin-bottom: 6px;
+    letter-spacing: .04em;
+  }
+  .course-detail {
+    font-size: 10px;
+    color: #7a6040;
+    line-height: 1.9;
+  }
+  .course-price-block {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .course-price-label {
+    font-size: 8.5px;
+    color: #aaa;
+    letter-spacing: .1em;
+    margin-bottom: 2px;
+  }
+  .course-price {
+    font-size: 28px;
+    font-weight: 900;
+    color: #c9a96e;
+    letter-spacing: -.01em;
+    line-height: 1;
+  }
+  .course-price sup { font-size: 14px; font-weight: 500; }
+  .course-price sub { font-size: 10px; font-weight: 400; color: #aaa; }
+
+  /* 体験バナー */
+  .trial-banner {
+    margin: 16px 40px 32px;
+    background: linear-gradient(135deg, #3d2c10, #5c4420);
+    border-radius: 6px;
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .trial-left {}
+  .trial-label {
+    font-size: 8.5px;
+    letter-spacing: .25em;
+    color: #c9a96e;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .trial-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .04em;
+  }
+  .trial-right { text-align: right; }
+  .trial-price {
+    font-size: 32px;
+    font-weight: 900;
+    color: #e8d5a3;
+    line-height: 1;
+  }
+  .trial-price sup { font-size: 14px; }
+  .trial-note {
+    font-size: 8.5px;
+    color: rgba(232,213,163,.6);
+    margin-top: 3px;
+  }
+
+  /* ── 数字で見る ── */
+  .stats {
+    margin: 0 40px 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .stat {
+    text-align: center;
+    padding: 16px 8px;
+    background: #fdfaf5;
+    border: 1px solid #e8d8c0;
+    border-radius: 4px;
+  }
+  .stat-num {
+    font-size: 24px;
+    font-weight: 900;
+    color: #c9a96e;
+    line-height: 1;
+  }
+  .stat-num small { font-size: 12px; }
+  .stat-label {
+    font-size: 8.5px;
+    color: #888;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ── BOTTOM: アクセス+予約 ── */
+  .bottom {
+    margin-top: auto;
+    background: #3d2c10;
+    padding: 22px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .access-info {}
+  .access-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #e8d5a3;
+    letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+  .access-detail {
+    font-size: 9px;
+    color: rgba(232,213,163,.7);
+    line-height: 1.9;
+  }
+  .qr-area {
+    text-align: center;
+  }
+  .qr-box {
+    width: 68px;
+    height: 68px;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 6px;
+    font-size: 8px;
+    color: #888;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .qr-label {
+    font-size: 8px;
+    color: rgba(232,213,163,.6);
+    letter-spacing: .1em;
+  }
+  .reserve-btn {
+    background: linear-gradient(135deg, #c9a96e, #e8d5a3);
+    color: #3d2c10;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 3px;
+    letter-spacing: .1em;
+    white-space: nowrap;
+  }
+
+  /* 印刷設定 */
+  @media print {
+    body { background: none; padding: 0; }
+    .page { box-shadow: none; width: 210mm; min-height: 297mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOP -->
+  <div class="top-band">
+    <p class="brand-sub">Fukuoka · Kashii · Women Only</p>
+    <div class="brand-name">
+      S'aimer
+      <span>pilates &amp; aroma salon</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">REFORMER PILATES · PRIVATE LESSON</div>
+    <p class="hero-catch">
+      あなたのカラダ、<em>変わります。</em><br>
+      香椎で見つける、<em>自分時間。</em>
+    </p>
+    <p class="hero-sub">
+      完全マンツーマン・女性専用・ノルマなし<br>
+      リフォーマーピラティス × アロマで、内側から整う体へ
+    </p>
+  </div>
+
+  <!-- 写真 -->
+  <div class="photo-area">
+    <div class="photo-placeholder">
+      <div class="icon">🧘</div>
+      <p>インストラクター写真を挿入</p>
+    </div>
+    <div class="photo-badge">JR香椎駅 徒歩3分</div>
+  </div>
+
+  <!-- 特徴3列 -->
+  <div class="features">
+    <div class="feat">
+      <span class="feat-icon">🤝</span>
+      <p class="feat-title">完全マンツーマン</p>
+      <p class="feat-desc">担当インストラクターが<br>あなただけに集中</p>
+    </div>
+    <div class="feat">
+      <span class="feat-icon">🌸</span>
+      <p class="feat-title">女性専用・完全個室</p>
+      <p class="feat-desc">プライベートな空間で<br>周りを気にせず集中</p>
+    </div>
+    <div class="feat">
+      <span class="feat-icon">📅</span>
+      <p class="feat-title">週1回〜でOK</p>
+      <p class="feat-desc">ご都合に合わせて<br>無理なく続けられる</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- コース -->
+  <div class="course-section">
+    <p class="section-label">Course</p>
+    <div class="course-card">
+      <div class="course-info">
+        <p class="course-name">プライベートレッスン 60分</p>
+        <p class="course-detail">
+          リフォーマーを使ったマンツーマン指導<br>
+          姿勢改善・シェイプアップ・産後ケアなど<br>
+          お身体の状態に合わせたオーダーメイドメニュー
+        </p>
+      </div>
+      <div class="course-price-block">
+        <p class="course-price-label">月額（税込）</p>
+        <p class="course-price"><sup>¥</sup>25,000<sub>/月</sub></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 体験バナー -->
+  <div class="trial-banner">
+    <div class="trial-left">
+      <p class="trial-label">FIRST STEP</p>
+      <p class="trial-title">まずは体験レッスンから</p>
+    </div>
+    <div class="trial-right">
+      <p class="trial-price"><sup>¥</sup>1,000</p>
+      <p class="trial-note">体験レッスン（60分）</p>
+    </div>
+  </div>
+
+  <!-- 数字 -->
+  <div class="stats">
+    <div class="stat">
+      <p class="stat-num">100<small>%</small></p>
+      <p class="stat-label">体験→入会率</p>
+    </div>
+    <div class="stat">
+      <p class="stat-num">11<small>ヶ月+</small></p>
+      <p class="stat-label">会員 平均継続期間</p>
+    </div>
+    <div class="stat">
+      <p class="stat-num">44<small>名</small></p>
+      <p class="stat-label">現在の会員数</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom">
+    <div class="access-info">
+      <p class="access-name">S'aimer pilates &amp; aroma salon</p>
+      <p class="access-detail">
+        福岡市東区香椎駅前2-14-5<br>
+        JR鹿児島本線「香椎駅」徒歩3分<br>
+        西鉄貝塚線「西鉄香椎駅」徒歩5分<br>
+        TEL: 092-517-3305
+      </p>
+    </div>
+    <div class="qr-area">
+      <div class="qr-box">QR<br>予約</div>
+      <p class="qr-label">体験予約はこちら</p>
+    </div>
+    <div class="reserve-btn">体験予約受付中</div>
+  </div>
+
+</div>
+</body>
+</html>
