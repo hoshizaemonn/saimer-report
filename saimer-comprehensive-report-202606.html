@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S'aimer 統合レポート — 5月実績＋6月現状（2026年6月）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f5f0;color:#333;line-height:1.7}
+.container{max-width:920px;margin:0 auto;padding:32px 20px}
+h1{font-size:1.5rem;text-align:center;color:#1a1a1a;margin-bottom:4px}
+.subtitle{text-align:center;color:#999;font-size:.82rem;margin-bottom:36px}
+h2{font-size:1.15rem;color:#b8964e;margin:56px 0 16px;padding-bottom:8px;border-bottom:2px solid #b8964e}
+h2:first-of-type{margin-top:32px}
+h3{font-size:1rem;color:#333;margin:24px 0 12px}
+.section-anchor{padding-top:80px;margin-top:-80px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.82rem}
+th{background:#f0ebe3;padding:10px;text-align:center;font-weight:600;border:1px solid #e0d8cc;color:#5a4a30}
+td{padding:10px;text-align:center;border:1px solid #eee}
+td.left{text-align:left}
+.up{color:#27ae60;font-weight:700}
+.down{color:#c0392b;font-weight:700}
+.flat{color:#888}
+.highlight{background:#fffde7}
+.gold{color:#b8964e;font-weight:700}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.card{background:#fff;border-radius:12px;padding:22px 14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.card .num{font-size:1.8rem;font-weight:800;line-height:1.2;color:#1a1a1a}
+.card .label{font-size:.72rem;color:#999;margin-top:6px;font-weight:600}
+.card .sub{font-size:.66rem;color:#666;margin-top:3px}
+.card.gold-bg{background:linear-gradient(135deg,#fff8ec,#fff)}
+.card.gold-bg .num{color:#b8964e}
+.card.red-bg{background:linear-gradient(135deg,#fdecea,#fff)}
+.card.red-bg .num{color:#c0392b}
+.kpi-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:16px 0}
+.kpi-row .item{flex:1;min-width:120px;background:#f9f6ef;padding:14px;border-radius:8px;text-align:center}
+.kpi-row .item .num{font-size:1.4rem;font-weight:800;color:#b8964e}
+.kpi-row .item .label{font-size:.7rem;color:#666;margin-top:4px}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.65rem;font-weight:700;color:#fff;margin-left:4px}
+.tag-red{background:#c0392b}
+.tag-green{background:#27ae60}
+.tag-gold{background:#b8964e}
+.tag-blue{background:#3498db}
+.tag-gray{background:#7f8c8d}
+.callout{background:#fff8ec;border-left:4px solid #b8964e;padding:16px 20px;margin:16px 0;border-radius:0 8px 8px 0}
+.callout-warn{background:#fdecea;border-left:4px solid #c0392b}
+.callout-info{background:#eaf3fa;border-left:4px solid #3498db}
+.callout-success{background:#e3f5e8;border-left:4px solid #27ae60}
+ul,ol{margin-left:20px;font-size:.88rem}
+li{margin:6px 0}
+.summary-box{background:linear-gradient(135deg,#fff8ec 0%,#fdf6e3 100%);border-radius:14px;padding:24px 26px;margin:24px 0;border:1px solid #e8d8b3}
+.summary-box h3{color:#8a6c3a;margin-top:0;font-size:1.05rem}
+.summary-box ul{font-size:.92rem;list-style:none;margin:0}
+.summary-box ul li{padding:8px 0;border-bottom:1px dashed #e8d8b3}
+.summary-box ul li:last-child{border-bottom:none}
+.summary-box ul li::before{content:'✦  ';color:#b8964e;font-weight:700}
+.toc{background:#fff;border-radius:12px;padding:24px;margin:24px 0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.toc h3{margin-top:0}
+.toc ol{margin-left:24px;font-size:.88rem}
+.toc a{color:#b8964e;text-decoration:none;font-weight:600}
+.toc a:hover{text-decoration:underline}
+.member-breakdown{background:#fff;border-radius:14px;padding:24px;margin:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.member-breakdown .total{font-size:2.2rem;font-weight:800;color:#b8964e;text-align:center;line-height:1}
+.member-breakdown .total-label{text-align:center;font-size:.78rem;color:#666;margin-bottom:16px}
+.member-flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.flow-box{background:#f9f6ef;border:2px solid #e0d8cc;border-radius:10px;padding:14px 18px;text-align:center;min-width:140px;flex:1}
+.flow-box .n{font-size:1.4rem;font-weight:800;color:#1a1a1a}
+.flow-box .l{font-size:.7rem;color:#666;margin-top:4px}
+.flow-box.active{background:#fff8ec;border-color:#b8964e}
+.flow-box.active .n{color:#b8964e}
+.flow-arrow{color:#b8964e;font-weight:700;font-size:1.2rem}
+.heatmap{margin:16px 0}
+.heatmap-row{display:flex;gap:2px;margin-bottom:2px;font-size:.7rem}
+.heatmap-label{width:80px;text-align:right;padding:4px 8px;color:#666}
+.heatmap-cell{flex:1;padding:6px 4px;text-align:center;border-radius:3px;background:#eee;color:#999}
+.heatmap-cell.have{background:#d4edda;color:#155724;font-weight:700}
+.heatmap-cell.few{background:#fff3cd;color:#856404}
+.heatmap-cell.none{background:#fdecea;color:#c0392b}
+.heatmap-cell.holiday{background:#7f8c8d;color:#fff}
+.action-list{counter-reset:item;margin:16px 0;padding:0;list-style:none}
+.action-list li{counter-increment:item;background:#fff;border-radius:10px;padding:16px 20px 16px 60px;margin-bottom:12px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.action-list li::before{content:counter(item);position:absolute;left:16px;top:14px;width:32px;height:32px;background:#b8964e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem}
+.action-list .title{font-weight:700;font-size:.95rem;color:#1a1a1a;margin-bottom:4px}
+.action-list .desc{font-size:.82rem;color:#555}
+.member-card{background:#fff;border:1px solid #e0d8cc;border-radius:10px;padding:14px 18px;margin:8px 0}
+.member-card .name{font-weight:700;color:#1a1a1a}
+.member-card .meta{font-size:.78rem;color:#666;margin-top:4px}
+.cancelled{background:#fdecea;border-color:#f5c6cb;text-decoration:none}
+.cancelled .name{color:#c0392b}
+.compare-table th.april{background:#e8e8e8}
+.compare-table th.may{background:#fff8ec}
+.compare-table .diff-down{background:#fdecea;color:#c0392b;font-weight:700}
+.compare-table .diff-up{background:#e3f5e8;color:#27ae60;font-weight:700}
+.footer{text-align:center;color:#999;font-size:.72rem;margin-top:64px;padding-top:20px;border-top:1px solid #ddd}
+@media(max-width:640px){.card-grid{grid-template-columns:1fr}.kpi-row{flex-direction:column}.member-flow{flex-direction:column}.flow-arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>S'aimer 統合レポート</h1>
+<p class="subtitle">5月実績 ＋ 6月現状（2026年6月時点）<br>売上・会員・予約・広告・SNS・採用 全部入り版<br>株式会社 斗（hishaku） ／ 担当: 星崎</p>
+
+<!-- ===== 結論 ===== -->
+<div class="summary-box">
+<h3>🎯 結論 TOP5（最重要事項）</h3>
+<ul>
+<li><strong>5月新規入会：</strong>2名（船津丸様・宮迫様）→ 宮迫様妊娠返金で純1名。4月（+4名）から半減</li>
+<li><strong>会員数の実態：</strong>「有効」257名 → 契約保有 38名 → <strong>実稼働 18名</strong>（プライベート16＋スタプラ2）</li>
+<li><strong>体験予約の壁：</strong>土日・午前・夜（18:30〜）の体験枠が <strong>6月通してゼロ</strong>。仕事帰り・休日層を取りこぼし</li>
+<li><strong>採用：</strong>涌田様（コンプリヘンシブ）採用決定 — ただし <strong>スタッフ未登録・シフト未反映</strong>で6月効果が出ていない</li>
+<li><strong>広告：</strong>Google広告 CPA¥317（業界の1/15）— 異常な好成績</li>
+</ul>
+</div>
+
+<!-- ===== 目次 ===== -->
+<div class="toc">
+<h3>📑 目次</h3>
+<ol>
+  <li><a href="#kpi">主要KPI</a></li>
+  <li><a href="#enrollment">5月新規入会（4月対比）</a></li>
+  <li><a href="#sales">売上実績</a></li>
+  <li><a href="#members">会員数の実態＋月次推移</a></li>
+  <li><a href="#booking">6月 予約状況</a></li>
+  <li><a href="#trial-slot">体験空き枠の分析</a></li>
+  <li><a href="#flow-issue">予約導線の問題点</a></li>
+  <li><a href="#ads">広告運用実績</a></li>
+  <li><a href="#sns">SNS運用（S'aimer＋てっちゃんカフェ）</a></li>
+  <li><a href="#recruit">採用活動結果</a></li>
+  <li><a href="#actions">推奨アクション（優先順）</a></li>
+</ol>
+</div>
+
+<!-- ===== KPI ===== -->
+<h2 id="kpi" class="section-anchor">1. 主要KPI</h2>
+<div class="card-grid">
+  <div class="card gold-bg">
+    <div class="num">+1名</div>
+    <div class="label">5月 純増会員</div>
+    <div class="sub">船津丸様（宮迫様返金後）</div>
+  </div>
+  <div class="card gold-bg">
+    <div class="num">¥65,500</div>
+    <div class="label">5月 計上売上</div>
+    <div class="sub">売上計上月202605分</div>
+  </div>
+  <div class="card gold-bg">
+    <div class="num">¥335,000</div>
+    <div class="label">6月 会費確定</div>
+    <div class="sub">14名分（5/20決済）</div>
+  </div>
+  <div class="card">
+    <div class="num">38名</div>
+    <div class="label">契約プラン保有</div>
+    <div class="sub">うち実稼働18名</div>
+  </div>
+  <div class="card">
+    <div class="num">51件</div>
+    <div class="label">6月予約済み</div>
+    <div class="sub">日曜休館</div>
+  </div>
+  <div class="card red-bg">
+    <div class="num">0枠</div>
+    <div class="label">土日・夜の体験枠</div>
+    <div class="sub">6月通してゼロ</div>
+  </div>
+  <div class="card">
+    <div class="num">11件</div>
+    <div class="label">Meta Lead</div>
+    <div class="sub">CPL ¥1,028</div>
+  </div>
+  <div class="card">
+    <div class="num">38件</div>
+    <div class="label">Google CV</div>
+    <div class="sub">CPA ¥317（業界1/15）</div>
+  </div>
+  <div class="card gold-bg">
+    <div class="num">+1名</div>
+    <div class="label">新規採用内定</div>
+    <div class="sub">涌田様（要シフト反映）</div>
+  </div>
+</div>
+
+<!-- ===== 4月vs5月 入会対比 ===== -->
+<h2 id="enrollment" class="section-anchor">2. 5月新規入会（4月対比）</h2>
+
+<table class="compare-table">
+  <tr>
+    <th></th>
+    <th class="april">4月</th>
+    <th class="may">5月</th>
+    <th>差分</th>
+  </tr>
+  <tr>
+    <td class="left"><strong>新規入会者数</strong></td>
+    <td>4名</td>
+    <td>2名</td>
+    <td class="diff-down">-2名（-50%）</td>
+  </tr>
+  <tr>
+    <td class="left">取消・返金</td>
+    <td>0名</td>
+    <td>1名（宮迫様・妊娠）</td>
+    <td class="diff-down">-1名</td>
+  </tr>
+  <tr>
+    <td class="left"><strong>純増（実質入会）</strong></td>
+    <td>+4名</td>
+    <td>+1名</td>
+    <td class="diff-down">-3名（-75%）</td>
+  </tr>
+  <tr>
+    <td class="left">新規会員からの月額収入<br>（継続）</td>
+    <td>+¥100,000/月</td>
+    <td>+¥25,000/月</td>
+    <td class="diff-down">-¥75,000/月</td>
+  </tr>
+</table>
+
+<h3>4月の新規入会者（4名）</h3>
+<div class="member-card"><div class="name">藤野 未羽様</div><div class="meta">4/02 入会｜プライベート（入会金無料CP適用）</div></div>
+<div class="member-card"><div class="name">安達 和香子様</div><div class="meta">4/07 入会｜プライベート（入会金無料CP適用）</div></div>
+<div class="member-card"><div class="name">五十嵐 晶子様</div><div class="meta">4/22 入会｜プライベート（入会金無料CP適用・5月レッスン開始）</div></div>
+<div class="member-card"><div class="name">高橋 莉子様</div><div class="meta">4月入会｜プライベート（入会キャンペーン12,500適用・5/20決済処理）</div></div>
+
+<h3>5月の新規入会者（2名）</h3>
+<div class="member-card"><div class="name">船津丸 彩様 ⭐</div><div class="meta">5/13 入会｜プライベート（入会金無料CP適用・希望日リクエスト経由）</div></div>
+<div class="member-card cancelled"><div class="name">宮迫 由佳里様 ✗ 取消</div><div class="meta">5/15 入会 → <strong>5/24 妊娠を理由に全額返金</strong></div></div>
+
+<h3>5月メンバー登録 6名の内訳</h3>
+<table>
+  <tr><th>状態</th><th>人数</th><th>備考</th></tr>
+  <tr><td class="left">体験実施済（5月内）</td><td>3名</td><td>船津丸・宮迫・川上様</td></tr>
+  <tr><td class="left">6月体験予約済</td><td>1名</td><td>大橋様（6/5体験予定）</td></tr>
+  <tr><td class="left">登録のみ・体験未予約</td><td>2名</td><td>「カレンダー予約のハードル」が原因の可能性</td></tr>
+  <tr style="background:#f0ebe3;font-weight:700"><td class="left">5月 メンバー登録 合計</td><td>6名</td><td>—</td></tr>
+</table>
+
+<!-- ===== 売上 ===== -->
+<h2 id="sales" class="section-anchor">3. 売上実績</h2>
+
+<h3>5月 計上売上明細（売上計上月202605分）</h3>
+<table>
+  <tr><th>日付</th><th>会員</th><th>区分</th><th>金額</th></tr>
+  <tr><td>5/5</td><td>藤井 沙耶香様</td><td>既存・プライベートチケット</td><td>¥28,000</td></tr>
+  <tr class="highlight"><td>5/13</td><td><strong>船津丸 彩様</strong></td><td><span class="up">新規入会</span>（5月初月）</td><td>¥12,500</td></tr>
+  <tr><td>5/15</td><td>宮迫 由佳里様</td><td>新規入会（5月初月）</td><td>¥6,250</td></tr>
+  <tr><td>5/24</td><td>宮迫 由佳里様</td><td><span class="down">★妊娠で返金</span></td><td class="down">-¥6,250</td></tr>
+  <tr><td>5/20</td><td>高橋 莉子様</td><td>5月月会費（4月入会者）</td><td>¥25,000</td></tr>
+  <tr style="background:#f0ebe3;font-weight:700"><td colspan="3">5月 計上売上 合計</td><td class="gold">¥65,500</td></tr>
+</table>
+
+<h3>6月会費 確定額（5/20一斉決済 + 調整）</h3>
+<table>
+  <tr><th>内訳</th><th>人数</th><th>金額</th></tr>
+  <tr><td class="left">プライベート（¥25,000）</td><td>11名 + 船津丸様（CP適用¥12,500）</td><td>¥287,500</td></tr>
+  <tr><td class="left">スタイルアッププラス（¥30,000）</td><td>2名</td><td>¥60,000</td></tr>
+  <tr><td class="left">既存会員キャンペーン調整（井ノ崎様）</td><td>1名</td><td class="down">-¥12,500</td></tr>
+  <tr><td class="left">宮迫様6月分返金（妊娠・5月内相殺済）</td><td>—</td><td class="down">-¥25,000</td></tr>
+  <tr style="background:#f0ebe3;font-weight:700"><td>6月会費 確定 合計</td><td>14名</td><td class="gold">¥335,000</td></tr>
+</table>
+
+<!-- ===== 会員数 ===== -->
+<h2 id="members" class="section-anchor">4. 会員数の実態＋月次推移</h2>
+
+<div class="member-breakdown">
+  <div class="total">257名</div>
+  <div class="total-label">hacomonoの「有効」会員総数（6月時点）</div>
+
+  <div class="member-flow">
+    <div class="flow-box">
+      <div class="n">257</div>
+      <div class="l">「有効」会員<br>（=アカウントが無効化されていない）</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <div class="n">38</div>
+      <div class="l">契約プラン保有<br>（実際に契約しているメンバー）</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box active">
+      <div class="n">18</div>
+      <div class="l">実稼働会員<br>（売上の核）</div>
+    </div>
+  </div>
+</div>
+
+<h3>会員数の月次推移（1月→6月）</h3>
+<table>
+  <tr>
+    <th>プラン</th>
+    <th>1月</th><th>2月</th><th>3月</th><th>4月見込</th>
+    <th>6月実績</th><th>3→6月差分</th>
+  </tr>
+  <tr><td class="left">プライベート（P0002）</td><td>13</td><td>18</td><td>16</td><td>~18</td><td><strong>16</strong></td><td class="flat">±0</td></tr>
+  <tr class="highlight"><td class="left">スタイルアッププラス（P0001）</td><td>6</td><td>5</td><td>5</td><td>~5</td><td><strong>2</strong></td><td class="down">-3</td></tr>
+  <tr><td class="left">チケット（P0005）</td><td>15</td><td>15</td><td>15</td><td>~15</td><td><strong>14</strong></td><td class="down">-1</td></tr>
+  <tr><td class="left">休会プラン（P0006）</td><td>6</td><td>5</td><td>6</td><td>~6</td><td><strong>6</strong></td><td class="flat">±0</td></tr>
+  <tr><td class="left">プライベート3回（P0007）</td><td>—</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td><td class="flat">±0</td></tr>
+  <tr style="background:#f0ebe3;font-weight:700">
+    <td class="left">合計</td><td>40</td><td>43</td><td>42</td><td>~44</td>
+    <td><strong>38</strong></td><td class="down">-4</td>
+  </tr>
+</table>
+
+<div class="callout callout-warn">
+<strong>⚠️ 3月→6月で会員 -4名（特にスタイルアッププラス -3名）</strong><br>
+• 4月は新規入会4名で約44名に微増したと推定<br>
+• 5月は純増+1名のみで減速<br>
+• 特に <strong>スタイルアッププラス（高単価¥30k）が-3名</strong> は売上影響大（月-¥90k相当）<br>
+• 月100万円達成には <strong>「実稼働18名」を増やす施策</strong> が必要
+</div>
+
+<div class="callout callout-info">
+<strong>📌 補足：休眠アカウント 219名</strong><br>
+「有効」257名のうち219名は契約なし（旧リード・テスト・体験未入会など）。
+hacomonoの「有効」≠「稼働中」を意味するため、<strong>来月以降の正確な比較のため休眠アカウントの整理を推奨</strong>。
+</div>
+
+<!-- ===== 6月予約状況 ===== -->
+<h2 id="booking" class="section-anchor">5. 6月 予約状況</h2>
+
+<table>
+  <tr><th>週</th><th>期間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th><th>週計</th></tr>
+  <tr><td>1週目</td><td>6/1〜6/7</td><td>1</td><td>4</td><td>3</td><td>2</td><td>3</td><td>2</td><td>休</td><td><strong>15</strong></td></tr>
+  <tr><td>2週目</td><td>6/8〜6/14</td><td>1</td><td>4</td><td>3</td><td>2</td><td>5</td><td>2</td><td>休</td><td><strong>17</strong></td></tr>
+  <tr><td>3週目</td><td>6/15〜6/21</td><td>1</td><td>2</td><td>2</td><td>3</td><td>1</td><td>1</td><td>休</td><td>10</td></tr>
+  <tr><td>4週目</td><td>6/22〜6/28</td><td class="down">0</td><td>3</td><td>3</td><td>1</td><td>1</td><td class="down">0</td><td>休</td><td class="down">8</td></tr>
+  <tr><td>5週目</td><td>6/29〜6/30</td><td class="down">0</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td></tr>
+  <tr style="background:#f0ebe3;font-weight:700"><td colspan="9" class="left">　合計</td><td>51</td></tr>
+</table>
+
+<div class="callout callout-info">
+<strong>📊 6月の予約状況 所感</strong><br>
+✅ 月前半（1〜2週目）は週15〜17件で安定 ／ 🟡 月後半に失速（10→8→1件）<br>
+🔴 参考：予約51件 ÷ 契約会員38名 = <strong>月1.3回／人</strong> と低稼働
+</div>
+
+<!-- ===== 体験空き枠 ===== -->
+<h2 id="trial-slot" class="section-anchor">6. 体験空き枠の分析</h2>
+
+<h3>体験空き枠 ヒートマップ</h3>
+<div class="heatmap">
+  <div class="heatmap-row">
+    <div class="heatmap-label">時間</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">月</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">火</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">水</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">木</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">金</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">土</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">日</div>
+  </div>
+  <div class="heatmap-row">
+    <div class="heatmap-label">10:00-12:00</div>
+    <div class="heatmap-cell none">0</div><div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div><div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div><div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell holiday">休</div>
+  </div>
+  <div class="heatmap-row">
+    <div class="heatmap-label">12:00-15:00</div>
+    <div class="heatmap-cell few">少</div><div class="heatmap-cell few">少</div>
+    <div class="heatmap-cell have">○</div><div class="heatmap-cell few">少</div>
+    <div class="heatmap-cell few">少</div><div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell holiday">休</div>
+  </div>
+  <div class="heatmap-row">
+    <div class="heatmap-label">15:00-18:00</div>
+    <div class="heatmap-cell have">○</div><div class="heatmap-cell have">○</div>
+    <div class="heatmap-cell have">○</div><div class="heatmap-cell have">○</div>
+    <div class="heatmap-cell have">○</div><div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell holiday">休</div>
+  </div>
+  <div class="heatmap-row">
+    <div class="heatmap-label">18:30-21:00</div>
+    <div class="heatmap-cell none">0</div><div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div><div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div><div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell holiday">休</div>
+  </div>
+</div>
+
+<p style="font-size:.75rem;color:#666;margin-top:6px">凡例：<span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:3px;margin:0 2px">○枠あり</span> <span style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:3px;margin:0 2px">少 一部</span> <span style="background:#fdecea;color:#c0392b;padding:2px 8px;border-radius:3px;margin:0 2px">0 ゼロ</span> <span style="background:#7f8c8d;color:#fff;padding:2px 8px;border-radius:3px;margin:0 2px">休館</span></p>
+
+<div class="callout callout-warn">
+<strong>🚨 体験予約の構造的問題</strong>
+<ul style="margin-top:8px">
+<li><strong>仕事帰り・休日に体験したい層が予約できない</strong>（夜・土日の枠がゼロ）</li>
+<li>5月のメンバー登録6名中3名が体験未予約だった原因の<strong>強力な裏付け</strong></li>
+<li>「カレンダーに空きが無い場合は外部フォームで希望日記入」の案内が常設＝<strong>枠不足を運用でカバー中</strong></li>
+</ul>
+</div>
+
+<!-- ===== 予約導線 ===== -->
+<h2 id="flow-issue" class="section-anchor">7. 予約導線の問題点</h2>
+
+<table>
+  <tr><th>項目</th><th>現状</th><th>影響</th></tr>
+  <tr><td class="left">パーソナル予約</td><td>会員ログイン必須</td><td><span class="tag tag-red">新規客は直接予約不可</span></td></tr>
+  <tr><td class="left">新規体験予約</td><td>直接予約可（ただし枠少・偏在）</td><td><span class="tag tag-blue">空き探しに離脱</span></td></tr>
+  <tr><td class="left">小顔・アロマ予約</td><td>直接予約可</td><td><span class="tag tag-green">問題なし</span></td></tr>
+  <tr><td class="left">予約ウィジェット</td><td>未登録</td><td><span class="tag tag-red">LP/HPからの埋込予約なし</span></td></tr>
+  <tr><td class="left">外部フォーム（希望日リクエスト）</td><td>常設</td><td><span class="tag tag-blue">枠不足を運用補完</span></td></tr>
+</table>
+
+<!-- ===== 広告 ===== -->
+<h2 id="ads" class="section-anchor">8. 広告運用実績（5月）</h2>
+
+<h3>Meta広告（5/1〜5/22 集計）</h3>
+<table>
+  <tr><th>指標</th><th>値</th><th>評価</th></tr>
+  <tr><td class="left">費用</td><td>¥11,309</td><td>—</td></tr>
+  <tr><td class="left">クリック</td><td>242</td><td>—</td></tr>
+  <tr><td class="left">Lead獲得</td><td><strong>11件</strong></td><td><span class="tag tag-green">良好</span></td></tr>
+  <tr><td class="left">CPL（リード単価）</td><td>¥1,028</td><td><span class="tag tag-green">業界平均 ¥3-10k 比 良好</span></td></tr>
+</table>
+
+<h3>Google広告（5月通算）</h3>
+<table>
+  <tr><th>指標</th><th>値</th><th>評価</th></tr>
+  <tr><td class="left">費用</td><td>¥12,048</td><td>—</td></tr>
+  <tr><td class="left">クリック</td><td>416</td><td>—</td></tr>
+  <tr><td class="left">CV</td><td><strong>38件</strong></td><td>—</td></tr>
+  <tr class="highlight"><td class="left">CPA（顧客獲得単価）</td><td><strong class="gold">¥317</strong></td><td><span class="tag tag-gold">★業界平均の 1/15</span></td></tr>
+  <tr class="highlight"><td class="left">CTR</td><td><strong>28.85%</strong></td><td><span class="tag tag-gold">★業界平均の約5倍</span></td></tr>
+</table>
+
+<div class="callout">
+<strong>💰 広告費総額：¥23,357 / 月</strong><br>
+→ 船津丸様の月会費 ¥25,000（6月以降の継続収入）で<strong>ほぼ即回収</strong>できる試算。
+</div>
+
+<!-- ===== SNS ===== -->
+<h2 id="sns" class="section-anchor">9. SNS運用</h2>
+
+<h3>S'aimer Instagram（5月）</h3>
+<div class="kpi-row">
+  <div class="item"><div class="num">4本</div><div class="label">投稿数</div></div>
+  <div class="item"><div class="num">50回未満</div><div class="label">最高再生</div></div>
+  <div class="item"><div class="num">🟡</div><div class="label">要改善</div></div>
+</div>
+<p style="font-size:.85rem;color:#666;margin-top:8px">6月から「内側から整える」「自分時間」を軸にした実写ベース投稿5本セットでリスタート予定。</p>
+
+<h3>☕ てっちゃんカフェ Instagram（5月リール 7投稿・参考）</h3>
+<table>
+  <tr><th>#</th><th>内容</th><th>閲覧数</th><th>リーチ</th><th>平均再生</th><th>いいね</th></tr>
+  <tr><td>1</td><td class="left">5月OPEN告知（外観・夜）</td><td>108</td><td>91</td><td>3秒</td><td>2</td></tr>
+  <tr><td>2</td><td class="left">5月OPEN告知（外観・昼）</td><td>151</td><td>131</td><td>3秒</td><td>3</td></tr>
+  <tr><td>3</td><td class="left">5月OPEN告知（電球シーン）</td><td>160</td><td>126</td><td>6秒</td><td>3</td></tr>
+  <tr><td>4</td><td class="left">店舗外観</td><td>181</td><td>126</td><td>5秒</td><td>4</td></tr>
+  <tr><td>5</td><td class="left">カフェ内装の様子</td><td>183</td><td>162</td><td>3秒</td><td>1</td></tr>
+  <tr><td>6</td><td class="left">内装作業中</td><td>141</td><td>127</td><td>2秒</td><td>2</td></tr>
+  <tr><td>7</td><td class="left">通常投稿（内装）</td><td>42</td><td>17</td><td>—</td><td>1</td></tr>
+  <tr style="background:#f0ebe3;font-weight:700"><td colspan="2">合計</td><td>966</td><td>780</td><td>平均約3.7秒</td><td>16</td></tr>
+</table>
+
+<div class="callout callout-info">
+<strong>📊 てっちゃんカフェ 分析</strong><br>
+✅ <strong>リーチ獲得は◯</strong>（1投稿平均110〜180リーチ）— OPEN前露出として上々<br>
+🟡 <strong>平均再生時間が短い</strong>（2〜6秒）— 視聴維持に課題<br>
+🟡 <strong>エンゲージメント低</strong>（いいね2〜4／投稿）— 内容にひっかかりが弱い<br>
+→ OPEN後は「メニュー動画」「来店者の声」「内装こだわり」など滞在時間を伸ばす尺の長い動画への切り替え推奨。
+</div>
+
+<!-- ===== 採用 ===== -->
+<h2 id="recruit" class="section-anchor">10. 採用活動結果</h2>
+
+<table>
+  <tr><th>候補者</th><th>区分</th><th>結果</th></tr>
+  <tr><td>脇田様</td><td>5/9 面談</td><td><span class="tag tag-red">お断り</span> 指導経験不足</td></tr>
+  <tr><td>小林様</td><td>5/19 面談</td><td><span class="tag tag-red">お断り</span> 指導経験・マシン未保有</td></tr>
+  <tr class="highlight"><td><strong>涌田 睦美様</strong></td><td>5/27 面談</td><td><span class="tag tag-gold">★採用決定</span> コンプリヘンシブ取得</td></tr>
+  <tr><td>古園 美穂様</td><td>応募</td><td><span class="tag tag-gray">候補者側辞退</span></td></tr>
+  <tr><td>有村 小那絵様</td><td>応募</td><td><span class="tag tag-blue">6/4（木）13:30 面談予定</span></td></tr>
+</table>
+
+<div class="callout callout-warn">
+<strong>⚠️ 涌田様の登録未完了 — 最優先対応事項</strong><br>
+コンプリヘンシブ取得の優良候補として採用決定済みですが、<strong>hacomonoのスタッフマスタに未登録</strong>、6月のシフトにも反映されていません。<br>
+→ <strong>枠拡大効果が6月に出ない状態</strong>。早急なスタッフ登録＋シフト設定が必要。
+</div>
+
+<!-- ===== 推奨アクション ===== -->
+<h2 id="actions" class="section-anchor">11. 推奨アクション（優先順）</h2>
+
+<ol class="action-list">
+  <li>
+    <div class="title">涌田様のスタッフ登録＋6月シフト設定 <span class="tag tag-red">緊急</span></div>
+    <div class="desc">6月稼働予定にも関わらず、スタッフマスタ未登録・シフト未反映。枠拡大の前提として最優先で対応。</div>
+  </li>
+  <li>
+    <div class="title">体験枠の拡充（夜・土日） <span class="tag tag-gold">高</span></div>
+    <div class="desc">仕事帰り（18:30〜）と土日午前の体験枠を増設。需要があるのに供給ゼロの状態を解消し、5月の取りこぼし（3名）を防ぐ。</div>
+  </li>
+  <li>
+    <div class="title">Meta広告 5月用キャンペーン作成 <span class="tag tag-gold">高</span></div>
+    <div class="desc">4月キャンペーン名のまま継続中で鮮度切れ。5月版を複製作成＋勝ち広告（出稿画像）を中心配置。</div>
+  </li>
+  <li>
+    <div class="title">Google広告 予算増額 <span class="tag tag-gold">高</span></div>
+    <div class="desc">CPA¥317の好機。¥500→¥1,500/日に増額検討（実体験CV確認後）。</div>
+  </li>
+  <li>
+    <div class="title">予約ウィジェットの設定 <span class="tag tag-blue">中</span></div>
+    <div class="desc">LP・HPに埋め込み予約ボタンを設置。「希望日リクエスト」とは別に、直接予約導線を整備。</div>
+  </li>
+  <li>
+    <div class="title">S'aimer Instagram再起動 <span class="tag tag-blue">中</span></div>
+    <div class="desc">「内側から整える」「自分時間」を軸にした実写ベース投稿5本セット配信開始（火・金）。</div>
+  </li>
+  <li>
+    <div class="title">休眠アカウント整理（219名） <span class="tag tag-blue">中</span></div>
+    <div class="desc">契約なしの旧登録・テストを無効化。実態の稼働客（38名・うち実稼働18名）を正確に把握。</div>
+  </li>
+  <li>
+    <div class="title">新規入会の挽回 <span class="tag tag-blue">中</span></div>
+    <div class="desc">4月ペース（4名/月）の復活が必須。広告刷新＋体験枠拡充＋導線改善の3点セット。</div>
+  </li>
+</ol>
+
+<!-- ===== まとめ ===== -->
+<div class="summary-box">
+<h3>📝 全体総括</h3>
+<p style="font-size:.92rem;line-height:1.8;margin:8px 0">
+5月は <strong>宮迫様の妊娠返金</strong>で純増+1名に留まり、3月→6月で会員-4名（特にスタプラ-3名）と減速トレンドです。<br>
+一方で、<strong>涌田様（コンプリヘンシブ）の採用決定</strong>、<strong>Google広告CPA¥317の異常な好成績</strong>、<strong>船津丸様の希望日リクエスト経由入会</strong>など、ポジティブな要素も多くあります。<br>
+<br>
+今回の調査で<strong>体験予約離脱の根本原因（土日・夜の枠ゼロ）が判明</strong>し、改善方向性が明確になりました。<br>
+<br>
+<strong>6月の最重要アクション</strong>は<br>
+✦ 涌田様のスタッフ登録＋シフト反映<br>
+✦ 体験枠の夜・土日拡充<br>
+✦ Meta刷新＋Google予算増<br>
+の3つです。これで4月ペースへの回復＋月100万への前進が見込めます。
+</p>
+</div>
+
+<p class="footer">
+報告: 株式会社 斗（hishaku）／ 担当: 星崎<br>
+作成日: 2026年6月1日<br>
+データソース: hacomono ／ Meta Ads ／ Google Ads ／ GA4 ／ Instagram ／ Cowork調査
+</p>
+
+</div>
+</body>
+</html>
