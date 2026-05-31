@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f5f0;color:#333;line-height:1.7}
-.container{max-width:900px;margin:0 auto;padding:32px 20px}
+.container{max-width:920px;margin:0 auto;padding:32px 20px}
 h1{font-size:1.5rem;text-align:center;color:#1a1a1a;margin-bottom:4px}
 .subtitle{text-align:center;color:#999;font-size:.82rem;margin-bottom:48px}
 h2{font-size:1.15rem;color:#b8964e;margin:48px 0 16px;padding-bottom:8px;border-bottom:2px solid #b8964e}
@@ -28,6 +28,8 @@ td.left{text-align:left}
 .card .sub{font-size:.66rem;color:#666;margin-top:3px}
 .card.gold-bg{background:linear-gradient(135deg,#fff8ec,#fff)}
 .card.gold-bg .num{color:#b8964e}
+.card.red-bg{background:linear-gradient(135deg,#fdecea,#fff)}
+.card.red-bg .num{color:#c0392b}
 .section-box{background:#fff;border-radius:12px;padding:24px;margin:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .kpi-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:16px 0}
 .kpi-row .item{flex:1;min-width:120px;background:#f9f6ef;padding:14px;border-radius:8px;text-align:center}
@@ -50,6 +52,15 @@ li{margin:6px 0}
 .summary-box ul li{padding:6px 0;border-bottom:1px dashed #e8d8b3}
 .summary-box ul li:last-child{border-bottom:none}
 .summary-box ul li::before{content:'✦  ';color:#b8964e;font-weight:700}
+.compare-table th.april{background:#e8e8e8}
+.compare-table th.may{background:#fff8ec}
+.compare-table .diff-down{background:#fdecea;color:#c0392b;font-weight:700}
+.compare-table .diff-up{background:#e3f5e8;color:#27ae60;font-weight:700}
+.member-card{background:#fff;border:1px solid #e0d8cc;border-radius:10px;padding:14px 18px;margin:8px 0}
+.member-card .name{font-weight:700;color:#1a1a1a}
+.member-card .meta{font-size:.78rem;color:#666;margin-top:4px}
+.cancelled{background:#fdecea;border-color:#f5c6cb;text-decoration:none}
+.cancelled .name{color:#c0392b}
 .footer{text-align:center;color:#999;font-size:.72rem;margin-top:64px;padding-top:20px;border-top:1px solid #ddd}
 @media(max-width:640px){.card-grid{grid-template-columns:1fr}.kpi-row{flex-direction:column}}
 </style>
@@ -64,9 +75,9 @@ li{margin:6px 0}
 <div class="summary-box">
 <h3>🎯 結論 TOP3（5月総括）</h3>
 <ul>
-<li><strong>売上面：</strong>5月計上 ¥90,500 / 6月会費確定 ¥335,000</li>
-<li><strong>会員面：</strong>新規入会 2名 → 1名取消（純増 1名・船津丸様）</li>
-<li><strong>採用面：</strong>涌田様 採用決定（コンプリヘンシブ取得・6月稼働予定）</li>
+<li><strong>新規入会面：</strong>4月 4名 → 5月 2名（うち1名取消で純1名）— <span class="down">前月比 -50%</span></li>
+<li><strong>採用面：</strong>涌田様 採用決定（コンプリヘンシブ取得・6月稼働予定）— 月100万ロードマップ前進</li>
+<li><strong>広告面：</strong>Google広告 CPA ¥317（業界の1/15）— 異常な好成績維持</li>
 </ul>
 </div>
 
@@ -74,19 +85,19 @@ li{margin:6px 0}
 <h2>主要KPI</h2>
 <div class="card-grid">
   <div class="card gold-bg">
-    <div class="num">¥90,500</div>
+    <div class="num">+1名</div>
+    <div class="label">5月 純増会員</div>
+    <div class="sub">船津丸様（宮迫様返金後）</div>
+  </div>
+  <div class="card gold-bg">
+    <div class="num">¥65,500</div>
     <div class="label">5月 計上売上</div>
-    <div class="sub">hacomono明細ベース</div>
+    <div class="sub">売上計上月202605分</div>
   </div>
   <div class="card gold-bg">
     <div class="num">¥335,000</div>
     <div class="label">6月 会費確定</div>
     <div class="sub">14名分（5/20決済）</div>
-  </div>
-  <div class="card gold-bg">
-    <div class="num">+1名</div>
-    <div class="label">5月 純増会員</div>
-    <div class="sub">船津丸様（宮迫様返金後）</div>
   </div>
   <div class="card">
     <div class="num">11件</div>
@@ -105,10 +116,62 @@ li{margin:6px 0}
   </div>
 </div>
 
+<!-- ===== 4月vs5月 対比 ===== -->
+<h2>📊 4月 vs 5月 新規入会 対比</h2>
+
+<table class="compare-table">
+  <tr>
+    <th></th>
+    <th class="april">4月</th>
+    <th class="may">5月</th>
+    <th>差分</th>
+  </tr>
+  <tr>
+    <td class="left"><strong>新規入会者数</strong></td>
+    <td>4名</td>
+    <td>2名</td>
+    <td class="diff-down">-2名（-50%）</td>
+  </tr>
+  <tr>
+    <td class="left">取消・返金</td>
+    <td>0名</td>
+    <td>1名（宮迫様・妊娠）</td>
+    <td class="diff-down">-1名</td>
+  </tr>
+  <tr>
+    <td class="left"><strong>純増（実質入会）</strong></td>
+    <td>+4名</td>
+    <td>+1名</td>
+    <td class="diff-down">-3名（-75%）</td>
+  </tr>
+  <tr>
+    <td class="left">新規会員からの月額収入<br>（6月以降の継続）</td>
+    <td>+¥100,000/月<br>（4名×¥25,000）</td>
+    <td>+¥25,000/月<br>（1名×¥25,000）</td>
+    <td class="diff-down">-¥75,000/月</td>
+  </tr>
+</table>
+
+<div class="callout callout-warn">
+<strong>⚠️ 重要な気づき：5月の新規入会は4月より大幅減</strong><br>
+4月は月100万へ向けてのペースが順調でしたが、5月は宮迫様の妊娠返金もあり減速。
+6月以降の挽回が急務です。Google広告好調を活かしつつ、Meta刷新・Instagram再起動が鍵。
+</div>
+
+<h3>4月の新規入会者（4名）</h3>
+<div class="member-card"><div class="name">藤野 未羽様</div><div class="meta">4/02 入会｜プライベート（入会金無料CP適用）</div></div>
+<div class="member-card"><div class="name">安達 和香子様</div><div class="meta">4/07 入会｜プライベート（入会金無料CP適用）</div></div>
+<div class="member-card"><div class="name">五十嵐 晶子様</div><div class="meta">4/22 入会｜プライベート（入会金無料CP適用・5月レッスン開始）</div></div>
+<div class="member-card"><div class="name">高橋 莉子様</div><div class="meta">4月入会｜プライベート（入会キャンペーン12,500適用・5/20決済処理）</div></div>
+
+<h3>5月の新規入会者（2名）</h3>
+<div class="member-card"><div class="name">船津丸 彩様 ⭐</div><div class="meta">5/13 入会｜プライベート（入会金無料CP適用・5/26追加キャンペーン適用）</div></div>
+<div class="member-card cancelled"><div class="name">宮迫 由佳里様 ✗ 取消</div><div class="meta">5/15 入会 → <strong>5/24 妊娠を理由に全額返金</strong></div></div>
+
 <!-- ===== 売上 ===== -->
 <h2>売上実績</h2>
 
-<h3>5月計上売上（売上計上月202605分）</h3>
+<h3>5月 計上売上明細（売上計上月202605分）</h3>
 <table>
   <tr>
     <th>日付</th><th>会員</th><th>区分</th><th>金額</th>
@@ -117,21 +180,27 @@ li{margin:6px 0}
     <td>5/5</td><td>藤井 沙耶香様</td><td>既存・プライベートチケット</td><td>¥28,000</td>
   </tr>
   <tr class="highlight">
-    <td>5/13</td><td><strong>船津丸 彩様</strong></td><td><span class="up">新規入会</span>（5月初月）</td><td>¥12,500</td>
+    <td>5/13</td><td><strong>船津丸 彩様</strong></td><td><span class="up">新規入会</span>（5月初月会費・実質）</td><td>¥12,500</td>
   </tr>
   <tr>
-    <td>5/15</td><td>宮迫 由佳里様</td><td>新規入会（5月初月）</td><td>¥6,250</td>
+    <td>5/15</td><td>宮迫 由佳里様</td><td>新規入会（5月初月会費・実質）</td><td>¥6,250</td>
   </tr>
   <tr>
     <td>5/24</td><td>宮迫 由佳里様</td><td><span class="down">★妊娠で返金</span></td><td class="down">-¥6,250</td>
   </tr>
   <tr>
-    <td>5/20</td><td>高橋 莉子様</td><td>4月入会・遅延請求 + 5月会費</td><td>¥50,000</td>
+    <td>5/20</td><td>高橋 莉子様</td><td>5月月会費（4月入会者）</td><td>¥25,000</td>
   </tr>
   <tr style="background:#f0ebe3;font-weight:700">
-    <td colspan="3">5月計上 合計</td><td class="gold">¥90,500</td>
+    <td colspan="3">5月 計上売上 合計（売上計上月202605）</td><td class="gold">¥65,500</td>
   </tr>
 </table>
+
+<div class="callout callout-info">
+<strong>📌 参考：5月に決済された入金額（決済日ベース）</strong><br>
+高橋様の4月初月会費 ¥25,000（202604計上）も含むと、<strong>5月の決済入金は ¥90,500</strong> でした。
+ただし会計上の「5月計上売上」は ¥65,500 が正となります。
+</div>
 
 <h3>6月会費 確定額（5/20一斉決済 + 調整）</h3>
 <table>
@@ -160,10 +229,6 @@ li{margin:6px 0}
   <tr><td class="left">チケット会員</td><td>23名</td><td>—</td></tr>
   <tr><td class="left">5月新規体験予約</td><td>3件</td><td>宮迫・川上・大橋様</td></tr>
 </table>
-
-<div class="callout callout-warn">
-<strong>⚠️ 注意</strong>：宮迫様（5/15入会）が5/24に妊娠を理由に返金処理。月¥25,000の収入機会損失となりました。新規獲得は順調なので、6月以降の取り戻しに注力。
-</div>
 
 <!-- ===== 広告 ===== -->
 <h2>広告運用実績</h2>
@@ -246,13 +311,12 @@ li{margin:6px 0}
 <!-- ===== ロードマップ ===== -->
 <h2>月100万円ロードマップ 進捗</h2>
 <table>
-  <tr><th>項目</th><th>状況</th></tr>
-  <tr><td class="left">5月計上売上</td><td><strong>¥90,500</strong></td></tr>
-  <tr><td class="left">6月会費確定</td><td><strong>¥335,000</strong></td></tr>
-  <tr><td class="left">月100万まで</td><td>約 -¥665,000</td></tr>
-  <tr><td class="left">新規入会（5月純増）</td><td><span class="up">+1名</span>（船津丸様）</td></tr>
-  <tr><td class="left">採用</td><td><span class="up">+1名内定</span>（涌田様・6月稼働予定）</td></tr>
-  <tr><td class="left">ボトルネック</td><td>採用＋枠拡大 → <strong>涌田様で前進中</strong></td></tr>
+  <tr><th>項目</th><th>4月実績</th><th>5月実績</th><th>状況</th></tr>
+  <tr><td class="left">新規入会</td><td>+4名</td><td><span class="down">+2名（純1名）</span></td><td>失速</td></tr>
+  <tr><td class="left">月計上売上</td><td>—</td><td>¥65,500</td><td>—</td></tr>
+  <tr><td class="left">翌月会費確定</td><td>—</td><td>¥335,000</td><td>—</td></tr>
+  <tr><td class="left">採用内定</td><td>0名</td><td><span class="up">+1名</span></td><td>前進</td></tr>
+  <tr><td class="left">月100万まで</td><td>—</td><td>約 -¥665,000</td><td>—</td></tr>
 </table>
 
 <!-- ===== 改善 ===== -->
@@ -274,6 +338,7 @@ li{margin:6px 0}
   <li><strong>Meta広告 5月用キャンペーン作成</strong>（鮮度切れ対策）</li>
   <li><strong>Google広告予算増額</strong>（CPA¥317の好機を伸ばす）</li>
   <li><strong>S'aimer Instagram再起動</strong>（公式トーン準拠5本セット配信開始）</li>
+  <li><strong>新規入会の挽回</strong>：4月ペース（4名/月）の復活が必須</li>
   <li><strong>てっちゃんカフェ Instagram</strong>：OPEN後の滞在時間を伸ばす動画にシフト</li>
 </ol>
 
@@ -281,15 +346,14 @@ li{margin:6px 0}
 <div class="summary-box">
 <h3>📝 5月の総括</h3>
 <p style="font-size:.92rem;line-height:1.8;margin:8px 0">
-宮迫様の返金は残念な出来事でしたが、<br>
+5月は<strong>新規入会が4月の半数</strong>に減速、宮迫様の妊娠返金もあり厳しい1ヶ月でしたが、<br>
 <br>
-✦ <strong>船津丸様の新規入会</strong>で会員継続中<br>
+✦ <strong>船津丸様の新規入会</strong>で純増1名は確保<br>
 ✦ <strong>涌田様（コンプリヘンシブ）の採用決定</strong>で6月から枠拡大の見込み<br>
-✦ <strong>Google広告 CPA¥317</strong>の異常な好成績<br>
+✦ <strong>Google広告 CPA¥317</strong>の異常な好成績（伸びしろ大）<br>
 ✦ <strong>てっちゃんカフェ 7投稿で約1,000閲覧</strong>確保（OPEN前露出として上々）<br>
 <br>
-と、5月は <strong>月100万ロードマップを着実に前進させた1ヶ月</strong> でした。<br>
-6月の涌田様稼働開始・有村様面談で、さらに加速していきます。
+6月は涌田様稼働開始・有村様面談・広告刷新で、<strong>4月ペースへの回復</strong>を目指します。
 </p>
 </div>
 
