@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S'aimer 6月 予約枠・会員数 調査結果（2026年6月）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f5f0;color:#333;line-height:1.7}
+.container{max-width:920px;margin:0 auto;padding:32px 20px}
+h1{font-size:1.5rem;text-align:center;color:#1a1a1a;margin-bottom:4px}
+.subtitle{text-align:center;color:#999;font-size:.82rem;margin-bottom:36px}
+h2{font-size:1.15rem;color:#b8964e;margin:48px 0 16px;padding-bottom:8px;border-bottom:2px solid #b8964e}
+h3{font-size:1rem;color:#333;margin:24px 0 12px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.82rem}
+th{background:#f0ebe3;padding:10px;text-align:center;font-weight:600;border:1px solid #e0d8cc;color:#5a4a30}
+td{padding:10px;text-align:center;border:1px solid #eee}
+td.left{text-align:left}
+.up{color:#27ae60;font-weight:700}
+.down{color:#c0392b;font-weight:700}
+.gold{color:#b8964e;font-weight:700}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.card{background:#fff;border-radius:12px;padding:22px 14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.card .num{font-size:1.8rem;font-weight:800;line-height:1.2;color:#1a1a1a}
+.card .label{font-size:.72rem;color:#999;margin-top:6px;font-weight:600}
+.card .sub{font-size:.66rem;color:#666;margin-top:3px}
+.card.gold-bg{background:linear-gradient(135deg,#fff8ec,#fff)}
+.card.gold-bg .num{color:#b8964e}
+.card.red-bg{background:linear-gradient(135deg,#fdecea,#fff)}
+.card.red-bg .num{color:#c0392b}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.65rem;font-weight:700;color:#fff;margin-left:4px}
+.tag-red{background:#c0392b}
+.tag-green{background:#27ae60}
+.tag-gold{background:#b8964e}
+.tag-blue{background:#3498db}
+.callout{background:#fff8ec;border-left:4px solid #b8964e;padding:16px 20px;margin:16px 0;border-radius:0 8px 8px 0}
+.callout-warn{background:#fdecea;border-left:4px solid #c0392b}
+.callout-info{background:#eaf3fa;border-left:4px solid #3498db}
+.callout-success{background:#e3f5e8;border-left:4px solid #27ae60}
+ul,ol{margin-left:20px;font-size:.88rem}
+li{margin:6px 0}
+.summary-box{background:linear-gradient(135deg,#fff8ec 0%,#fdf6e3 100%);border-radius:14px;padding:24px 26px;margin:24px 0;border:1px solid #e8d8b3}
+.summary-box h3{color:#8a6c3a;margin-top:0;font-size:1.05rem}
+.summary-box ul{font-size:.92rem;list-style:none;margin:0}
+.summary-box ul li{padding:8px 0;border-bottom:1px dashed #e8d8b3}
+.summary-box ul li:last-child{border-bottom:none}
+.summary-box ul li::before{content:'✦  ';color:#b8964e;font-weight:700}
+.member-breakdown{background:#fff;border-radius:14px;padding:24px;margin:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.member-breakdown .total{font-size:2.2rem;font-weight:800;color:#b8964e;text-align:center;line-height:1}
+.member-breakdown .total-label{text-align:center;font-size:.78rem;color:#666;margin-bottom:16px}
+.member-flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.flow-box{background:#f9f6ef;border:2px solid #e0d8cc;border-radius:10px;padding:14px 18px;text-align:center;min-width:140px;flex:1}
+.flow-box .n{font-size:1.4rem;font-weight:800;color:#1a1a1a}
+.flow-box .l{font-size:.7rem;color:#666;margin-top:4px}
+.flow-box.active{background:#fff8ec;border-color:#b8964e}
+.flow-box.active .n{color:#b8964e}
+.flow-arrow{color:#b8964e;font-weight:700;font-size:1.2rem}
+.heatmap{margin:16px 0}
+.heatmap-row{display:flex;gap:2px;margin-bottom:2px;font-size:.7rem}
+.heatmap-label{width:80px;text-align:right;padding:4px 8px;color:#666}
+.heatmap-cell{flex:1;padding:6px 4px;text-align:center;border-radius:3px;background:#eee;color:#999}
+.heatmap-cell.have{background:#d4edda;color:#155724;font-weight:700}
+.heatmap-cell.few{background:#fff3cd;color:#856404}
+.heatmap-cell.none{background:#fdecea;color:#c0392b}
+.heatmap-cell.holiday{background:#7f8c8d;color:#fff}
+.action-list{counter-reset:item;margin:16px 0;padding:0;list-style:none}
+.action-list li{counter-increment:item;background:#fff;border-radius:10px;padding:16px 20px 16px 60px;margin-bottom:12px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.action-list li::before{content:counter(item);position:absolute;left:16px;top:14px;width:32px;height:32px;background:#b8964e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem}
+.action-list .title{font-weight:700;font-size:.95rem;color:#1a1a1a;margin-bottom:4px}
+.action-list .desc{font-size:.82rem;color:#555}
+.footer{text-align:center;color:#999;font-size:.72rem;margin-top:64px;padding-top:20px;border-top:1px solid #ddd}
+@media(max-width:640px){.card-grid{grid-template-columns:1fr}.member-flow{flex-direction:column}.flow-arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>S'aimer 6月 予約枠・会員数 調査結果</h1>
+<p class="subtitle">2026年6月1日時点 — hacomono管理サイト＋外部予約サイトより<br>調査: Cowork ／ 整理: 株式会社 斗（hishaku）</p>
+
+<!-- ===== 結論TOP3 ===== -->
+<div class="summary-box">
+<h3>🎯 結論 TOP3（最重要発見）</h3>
+<ul>
+<li><strong>会員数の実態：</strong>「有効」会員 257名 → 契約保有 <strong>38名</strong> → 実稼働 <strong>18名</strong>（プライベート16＋スタイルアップ2）</li>
+<li><strong>体験予約の壁：</strong>新規客が直接予約できるのは <strong>体験＋小顔・アロマのみ</strong>。土日・午前・夜（18:30以降）の体験枠が <strong>6月通してゼロ</strong></li>
+<li><strong>涌田様の枠未反映：</strong>6月稼働予定の <strong>涌田様がスタッフマスタに未登録</strong>。早急に登録＋シフト設定が必要</li>
+</ul>
+</div>
+
+<!-- ===== KPI ===== -->
+<h2>主要KPI</h2>
+<div class="card-grid">
+  <div class="card gold-bg">
+    <div class="num">51件</div>
+    <div class="label">6月予約済み（合計）</div>
+    <div class="sub">日曜は休館</div>
+  </div>
+  <div class="card gold-bg">
+    <div class="num">38名</div>
+    <div class="label">契約プラン保有会員</div>
+    <div class="sub">「有効」257名のうち</div>
+  </div>
+  <div class="card gold-bg">
+    <div class="num">18名</div>
+    <div class="label">実稼働会員</div>
+    <div class="sub">プライベート16＋スタプラ2</div>
+  </div>
+  <div class="card">
+    <div class="num">約61枠</div>
+    <div class="label">新規体験 空き枠</div>
+    <div class="sub">平日午後に偏在</div>
+  </div>
+  <div class="card red-bg">
+    <div class="num">0枠</div>
+    <div class="label">土日・夜の体験枠</div>
+    <div class="sub">6月通してゼロ</div>
+  </div>
+  <div class="card red-bg">
+    <div class="num">未登録</div>
+    <div class="label">涌田様スタッフ枠</div>
+    <div class="sub">早急対応必要</div>
+  </div>
+</div>
+
+<!-- ===== 会員数の実態 ===== -->
+<h2>会員数の実態</h2>
+
+<div class="member-breakdown">
+  <div class="total">257名</div>
+  <div class="total-label">hacomonoの「有効」会員総数</div>
+
+  <div class="member-flow">
+    <div class="flow-box">
+      <div class="n">257</div>
+      <div class="l">「有効」会員<br>（=アカウントが無効化されていない）</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <div class="n">38</div>
+      <div class="l">契約プラン保有<br>（実際に契約しているメンバー）</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box active">
+      <div class="n">18</div>
+      <div class="l">実稼働会員<br>（売上の核）</div>
+    </div>
+  </div>
+</div>
+
+<h3>プラン別 内訳（契約保有38名）</h3>
+<table>
+  <tr><th>プラン</th><th>プランコード</th><th>人数</th><th>備考</th></tr>
+  <tr><td class="left">プライベート</td><td>P0002</td><td><strong>16</strong></td><td>売上の核</td></tr>
+  <tr><td class="left">スタイルアッププラス</td><td>P0001</td><td><strong>2</strong></td><td>売上の核</td></tr>
+  <tr><td class="left">チケット会員</td><td>P0005</td><td>14</td><td>来店頻度にばらつき</td></tr>
+  <tr><td class="left">休会プラン</td><td>P0006</td><td>6</td><td>復帰見込みは要確認</td></tr>
+  <tr><td class="left">プライベート3回</td><td>P0007</td><td>0</td><td>—</td></tr>
+  <tr style="background:#f0ebe3;font-weight:700"><td colspan="2">契約プラン保有 合計</td><td>38</td><td>—</td></tr>
+</table>
+
+<div class="callout callout-warn">
+<strong>⚠️ 重要な発見：休眠アカウント 219名</strong><br>
+「有効」会員257名のうち <strong>219名は契約なし</strong>（旧リード・テスト・体験未入会など）。<br>
+hacomonoの「有効」≠「稼働中」を意味するため、<strong>実態の稼働客は18名</strong>と把握する必要があります。<br>
+→ 来月以降の正確な比較のため、<strong>休眠アカウントの整理（無効化）を推奨</strong>。
+</div>
+
+<!-- ===== 予約状況 ===== -->
+<h2>6月 予約状況（週ごと）</h2>
+
+<table>
+  <tr><th>週</th><th>期間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th><th>週計</th></tr>
+  <tr><td>1週目</td><td>6/1〜6/7</td><td>1</td><td>4</td><td>3</td><td>2</td><td>3</td><td>2</td><td>休</td><td><strong>15</strong></td></tr>
+  <tr><td>2週目</td><td>6/8〜6/14</td><td>1</td><td>4</td><td>3</td><td>2</td><td>5</td><td>2</td><td>休</td><td><strong>17</strong></td></tr>
+  <tr><td>3週目</td><td>6/15〜6/21</td><td>1</td><td>2</td><td>2</td><td>3</td><td>1</td><td>1</td><td>休</td><td>10</td></tr>
+  <tr><td>4週目</td><td>6/22〜6/28</td><td class="down">0</td><td>3</td><td>3</td><td>1</td><td>1</td><td class="down">0</td><td>休</td><td class="down">8</td></tr>
+  <tr><td>5週目</td><td>6/29〜6/30</td><td class="down">0</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td></tr>
+  <tr style="background:#f0ebe3;font-weight:700"><td colspan="9" class="left">　合計</td><td>51</td></tr>
+</table>
+
+<div class="callout callout-info">
+<strong>📊 6月の予約状況 所感</strong><br>
+✅ 月前半（1〜2週目）は週15〜17件で安定<br>
+🟡 月後半（3週目以降）に <strong>失速</strong>（10件→8件→1件）<br>
+🔴 参考：予約51件 ÷ 契約会員38名 = <strong>月1.3回／人</strong> と低稼働
+</div>
+
+<!-- ===== 体験枠の偏り ===== -->
+<h2>新規体験 空き枠の偏り（重要）</h2>
+
+<h3>体験空き枠 ヒートマップ</h3>
+<div class="heatmap">
+  <div class="heatmap-row">
+    <div class="heatmap-label">時間</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">月</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">火</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">水</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">木</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">金</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">土</div>
+    <div class="heatmap-cell" style="background:#f0ebe3;color:#5a4a30;font-weight:600">日</div>
+  </div>
+  <div class="heatmap-row">
+    <div class="heatmap-label">10:00-12:00</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell holiday">休</div>
+  </div>
+  <div class="heatmap-row">
+    <div class="heatmap-label">12:00-15:00</div>
+    <div class="heatmap-cell few">少</div>
+    <div class="heatmap-cell few">少</div>
+    <div class="heatmap-cell have">○</div>
+    <div class="heatmap-cell few">少</div>
+    <div class="heatmap-cell few">少</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell holiday">休</div>
+  </div>
+  <div class="heatmap-row">
+    <div class="heatmap-label">15:00-18:00</div>
+    <div class="heatmap-cell have">○</div>
+    <div class="heatmap-cell have">○</div>
+    <div class="heatmap-cell have">○</div>
+    <div class="heatmap-cell have">○</div>
+    <div class="heatmap-cell have">○</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell holiday">休</div>
+  </div>
+  <div class="heatmap-row">
+    <div class="heatmap-label">18:30-21:00</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell none">0</div>
+    <div class="heatmap-cell holiday">休</div>
+  </div>
+</div>
+
+<p style="font-size:.75rem;color:#666;margin-top:6px">凡例：<span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:3px;margin:0 2px">○枠あり</span> <span style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:3px;margin:0 2px">少 一部</span> <span style="background:#fdecea;color:#c0392b;padding:2px 8px;border-radius:3px;margin:0 2px">0 ゼロ</span> <span style="background:#7f8c8d;color:#fff;padding:2px 8px;border-radius:3px;margin:0 2px">休館</span></p>
+
+<div class="callout callout-warn">
+<strong>🚨 体験予約の構造的問題</strong>
+<ul style="margin-top:8px">
+<li><strong>仕事帰り・休日に体験したい層が予約できない</strong>（夜・土日の枠がゼロ）</li>
+<li>カレンダーがほぼ「−」表示で、空きを探し当てる必要がある</li>
+<li>5月のメンバー登録6名中3名が体験未予約だった原因の<strong>強力な裏付け</strong></li>
+<li>「カレンダーに空きが無い場合は外部フォームで希望日記入」の案内が常設＝<strong>枠不足を運用でカバー中</strong></li>
+</ul>
+</div>
+
+<!-- ===== 予約導線の問題 ===== -->
+<h2>予約導線の問題点</h2>
+
+<table>
+  <tr><th>項目</th><th>現状</th><th>影響</th></tr>
+  <tr><td class="left">パーソナル予約</td><td>会員ログイン必須</td><td><span class="tag tag-red">新規客は直接予約不可</span></td></tr>
+  <tr><td class="left">新規体験予約</td><td>直接予約可（ただし枠少・偏在）</td><td><span class="tag tag-blue">空き探しに離脱</span></td></tr>
+  <tr><td class="left">小顔・アロマ予約</td><td>直接予約可</td><td><span class="tag tag-green">問題なし</span></td></tr>
+  <tr><td class="left">予約ウィジェット</td><td>未登録</td><td><span class="tag tag-red">LP/HPからの埋込予約なし</span></td></tr>
+  <tr><td class="left">外部フォーム（希望日リクエスト）</td><td>常設</td><td><span class="tag tag-blue">枠不足を運用補完</span></td></tr>
+</table>
+
+<!-- ===== 推奨アクション ===== -->
+<h2>推奨アクション（優先順）</h2>
+
+<ol class="action-list">
+  <li>
+    <div class="title">涌田様のスタッフ登録＋6月シフト設定 <span class="tag tag-red">緊急</span></div>
+    <div class="desc">6月稼働予定にも関わらず、スタッフマスタ未登録・シフト未反映。枠拡大の前提として最優先で対応。</div>
+  </li>
+  <li>
+    <div class="title">体験枠の拡充（夜・土日） <span class="tag tag-gold">高</span></div>
+    <div class="desc">仕事帰り（18:30〜）と土日午前の体験枠を増設。需要があるのに供給ゼロの状態を解消し、5月の取りこぼし（3名）を防ぐ。</div>
+  </li>
+  <li>
+    <div class="title">予約ウィジェットの設定 <span class="tag tag-gold">高</span></div>
+    <div class="desc">LP・HPに埋め込み予約ボタンを設置。「希望日リクエスト」とは別に、直接予約導線を整備。</div>
+  </li>
+  <li>
+    <div class="title">休眠アカウント整理（219名） <span class="tag tag-blue">中</span></div>
+    <div class="desc">契約なしの旧登録・テストを無効化。実態の稼働客（38名・うち実稼働18名）を正確に把握できるように。</div>
+  </li>
+  <li>
+    <div class="title">月次スナップショット保存の自動化 <span class="tag tag-blue">中</span></div>
+    <div class="desc">毎月初に予約枠・会員数を自動取得。5月→6月の比較が今回できなかった反省を踏まえ、来月以降の対比を可能に。</div>
+  </li>
+</ol>
+
+<!-- ===== サマリー ===== -->
+<div class="summary-box">
+<h3>📝 総括</h3>
+<p style="font-size:.92rem;line-height:1.8;margin:8px 0">
+今回の調査で、<strong>5月の体験予約離脱（3名）の根本原因が見えました</strong>。<br>
+<br>
+✦ 新規客が直接予約できるのは体験のみ、その枠も平日午後に集中して土日・夜はゼロ<br>
+✦ 仕事帰り・休日に体験したい層を取り逃している構造<br>
+✦ 涌田様の登録未完了で、6月の枠拡大効果が反映されていない<br>
+✦ 会員数も「有効257」と「実稼働18」の乖離が大きく、データ整理が必要<br>
+<br>
+<strong>涌田様の登録＋体験枠の夜・土日拡充</strong>で、6月の取りこぼし削減と新規入会回復を目指せます。
+</p>
+</div>
+
+<p class="footer">
+調査: Cowork ／ 報告整理: 株式会社 斗（hishaku）<br>
+作成日: 2026年6月1日
+</p>
+
+</div>
+</body>
+</html>
