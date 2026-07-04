@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S'aimer 売上向上戦略（2026年7月版）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f5f0;color:#2c2c2c;line-height:1.7}
+.container{max-width:1100px;margin:0 auto;padding:32px 20px}
+header{text-align:center;padding:24px 0 40px;border-bottom:2px solid #b8964e}
+h1{font-size:1.8rem;color:#1a1a1a;letter-spacing:.05em;margin-bottom:8px}
+.subtitle{color:#888;font-size:.85rem;letter-spacing:.1em}
+.period{color:#b8964e;font-size:.95rem;font-weight:600;margin-top:8px}
+
+section{margin:48px 0}
+h2{font-size:1.2rem;color:#b8964e;margin-bottom:20px;padding-bottom:8px;border-bottom:2px solid #b8964e;display:flex;align-items:center;gap:12px}
+h2 .num{background:#b8964e;color:#fff;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem}
+
+.hero-kpi{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
+.hero-card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.06);text-align:center}
+.hero-card .label{font-size:.75rem;color:#888;margin-bottom:6px;letter-spacing:.05em}
+.hero-card .value{font-size:2.2rem;font-weight:700;color:#1a1a1a;line-height:1}
+.hero-card .sub{color:#888;font-size:.75rem;margin-top:6px}
+.hero-card.now{border-top:3px solid #95a5a6}
+.hero-card.target{border-top:3px solid #b8964e}
+.hero-card.stretch{border-top:3px solid #27ae60}
+
+.strategy-card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:20px;border-left:4px solid #b8964e}
+.strategy-card h3{color:#b8964e;font-size:1.05rem;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.strategy-card h3 .icon{background:#b8964e;color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+.strategy-card .lead{color:#3a3a3a;margin-bottom:16px;font-size:.95rem}
+.strategy-card .metrics{background:#f9f5eb;padding:12px 16px;border-radius:8px;margin:12px 0;font-size:.85rem}
+.strategy-card .metrics strong{color:#8a7332}
+.strategy-card .actions{margin-top:12px}
+.strategy-card .actions li{margin-bottom:8px;padding-left:16px;position:relative;font-size:.9rem}
+.strategy-card .actions li::before{content:"▸";color:#b8964e;position:absolute;left:0}
+.impact-badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.7rem;font-weight:700;color:#fff;margin-left:8px}
+.impact-badge.high{background:#c0392b}
+.impact-badge.mid{background:#e67e22}
+.impact-badge.low{background:#95a5a6}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);font-size:.88rem}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid #eee}
+th{background:#f9f5eb;color:#666;font-weight:600;font-size:.78rem;letter-spacing:.05em}
+td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.up{color:#27ae60;font-weight:700}
+.mid{color:#e67e22;font-weight:700}
+.critical{color:#c0392b;font-weight:700}
+
+.timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.timeline-col{background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.timeline-col h4{color:#b8964e;font-size:.95rem;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #f0ebe0}
+.timeline-col ul{list-style:none}
+.timeline-col li{padding:8px 0;font-size:.85rem;border-bottom:1px dashed #f0ebe0}
+.timeline-col li:last-child{border-bottom:none}
+.timeline-col li strong{color:#8a7332}
+
+.insight{background:linear-gradient(135deg,#fff8ef,#faf3e3);padding:20px;border-radius:12px;border-left:4px solid #b8964e;margin:16px 0}
+.insight h3{color:#b8964e;font-size:1rem;margin-bottom:8px}
+.insight p{color:#3a3a3a;font-size:.9rem}
+
+.footer{text-align:center;color:#999;font-size:.72rem;margin-top:64px;padding-top:20px;border-top:1px solid #ddd}
+
+@media(max-width:800px){
+  .hero-kpi,.timeline-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>S'aimer 売上向上戦略</h1>
+  <p class="subtitle">pilates studio & aroma salon</p>
+  <p class="period">現状 ¥46万 → 3ヶ月で ¥60万 → 半年で ¥80万</p>
+</header>
+
+<!-- ① 目標設計 -->
+<section>
+  <h2><span class="num">1</span>数字で見る目標</h2>
+  <div class="hero-kpi">
+    <div class="hero-card now">
+      <div class="label">現状（6月）</div>
+      <div class="value">¥466k</div>
+      <div class="sub">プラ16 / SA2 / チケ14</div>
+    </div>
+    <div class="hero-card target">
+      <div class="label">3ヶ月後（10月目標）</div>
+      <div class="value">¥600k</div>
+      <div class="sub">プラ20 / SA3 / +新規5-8名</div>
+    </div>
+    <div class="hero-card stretch">
+      <div class="label">半年後（1月目標）</div>
+      <div class="value">¥800k</div>
+      <div class="sub">プラ25 / SA5 / チケ→月会費転換</div>
+    </div>
+  </div>
+  <div class="insight">
+    <h3>📌 供給側は既に整っている</h3>
+    <p>6月営業時間+1.5倍(167h→246h)、7月からMUTSUMI稼働、8月から筬島様加入。<strong>受入枠は十分に空いている</strong>。ボトルネックは需要側（新規獲得ペース）。</p>
+  </div>
+</section>
+
+<!-- ② 4つの成長ドライバー -->
+<section>
+  <h2><span class="num">2</span>売上を上げる4つのドライバー</h2>
+
+  <!-- Driver 1 -->
+  <div class="strategy-card">
+    <h3><span class="icon">1</span>新規獲得を月1名→月4-5名に <span class="impact-badge high">最大インパクト</span></h3>
+    <p class="lead">現状の新規獲得ペースでは月商¥600kに9ヶ月かかる。広告予算・LP動線の見直しで月4-5名獲得ペースに引き上げる。</p>
+    <div class="metrics">
+      <strong>現状</strong>: 広告¥30k/月 → 新規1名 → CPA ¥30,000（表面）<br>
+      <strong>業界平均CPA</strong>: ¥5,000〜15,000<br>
+      <strong>ボトルネック</strong>: 月663UU/106CTA/hope_request 4件しか出ておらず、LP→予約フォーム動線が弱い
+    </div>
+    <ul class="actions">
+      <li><strong>広告予算増額</strong>: ¥30k→¥50k（Meta¥25k+Google¥25k）。CPAが¥10k以下に収まる前提で月+3名獲得目標</li>
+      <li><strong>LP動線改善</strong>: 「予約スケジュール直接」と「希望日リクエスト」の2CTA併存を整理。1本化 or どちらが有効かA/Bテスト</li>
+      <li><strong>Meta広告動画5の効果検証</strong>: 「40代会社員Aさん」実話訴求。7月2週間で判定</li>
+      <li><strong>体験→入会率100%を維持</strong>: 現状の強み。オペレーション変更しない</li>
+    </ul>
+  </div>
+
+  <!-- Driver 2 -->
+  <div class="strategy-card">
+    <h3><span class="icon">2</span>客単価アップ（アップセル） <span class="impact-badge mid">中インパクト</span></h3>
+    <p class="lead">プラン変更・追加購入で既存会員1人あたりの月額を上げる。獲得コストゼロで売上増。</p>
+    <div class="metrics">
+      <strong>プライベート→SA</strong>: ¥25,000 → ¥30,000（+¥5,000/名）<br>
+      <strong>チケット→月会費</strong>: ¥0 → ¥25,000（+¥25,000/名）<br>
+      <strong>ターゲット</strong>: プラ14名のうち週2以上ペース通う人、チケット14名の頻度上位
+    </div>
+    <ul class="actions">
+      <li><strong>SA案内DM</strong>: プライベート会員全員に「月2回のスタイルアップ枠追加で+¥5,000」オファー</li>
+      <li><strong>チケット→月会費キャンペーン</strong>: 「今月中の切替で入会金無料」等の期間限定オファー</li>
+      <li><strong>プライベートチケット追加販売</strong>: 6月実績 藤井様¥28,000のように、単発チケット販売継続</li>
+    </ul>
+  </div>
+
+  <!-- Driver 3 -->
+  <div class="strategy-card">
+    <h3><span class="icon">3</span>継続率アップ・休会復帰 <span class="impact-badge mid">中インパクト</span></h3>
+    <p class="lead">既存会員を減らさないほうが新規獲得より安い。休会10名の復帰施策も効く。</p>
+    <div class="metrics">
+      <strong>休会10名</strong>: 8名は2024〜25年からの長期休会継続者<br>
+      <strong>復帰1名あたり</strong>: 月¥25,000×継続月数のLTVリカバリー<br>
+      <strong>参考</strong>: ミチルの解約者向けポストカード施策と同型
+    </div>
+    <ul class="actions">
+      <li><strong>休会10名への復帰オファーDM</strong>: 「復帰月の月会費半額」等の期間限定オファー</li>
+      <li><strong>妊娠復帰プログラム</strong>: 秋野様・宮近様向け「産後3ヶ月から復帰OK」を明示化。ピラティスは産後ケアで需要あり</li>
+      <li><strong>退会予兆キャッチ</strong>: レッスン頻度が下がった会員に自動でフォローDM。hacomonoの予約履歴から抽出可</li>
+    </ul>
+  </div>
+
+  <!-- Driver 4 -->
+  <div class="strategy-card">
+    <h3><span class="icon">4</span>計測整備（すべての土台） <span class="impact-badge high">最優先</span></h3>
+    <p class="lead">実予約がMeta/GA4で計測できない状態では、上記1-3の効果検証ができない。まず計測を直す。</p>
+    <div class="metrics">
+      <strong>問題</strong>: hacomono(saimer.hacomono.jp)は別ドメイン。CTAクリック→実予約が追えない<br>
+      <strong>影響</strong>: Google CV 63件(6月)は「CTAクリック」であり実予約数不明<br>
+      <strong>解</strong>: Metaオフラインコンバージョン月次アップロード（コストゼロ）
+    </div>
+    <ul class="actions">
+      <li><strong>オフラインCV運用開始</strong>: 月1回hacomono CSVから体験者リストを抽出→Metaにアップロード</li>
+      <li><strong>Lead定義の絞り込み</strong>: LP2の希望日リクエスト送信のみをLeadに（CTAクリックはAddToCartに分離）</li>
+      <li><strong>Google広告 CV設定見直し</strong>: cta_click→実予約完了に切り替え検討</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ③ 3ヶ月アクションプラン -->
+<section>
+  <h2><span class="num">3</span>3ヶ月アクションプラン</h2>
+  <div class="timeline-grid">
+    <div class="timeline-col">
+      <h4>🟢 7月：計測整備＋広告立て直し</h4>
+      <ul>
+        <li><strong>Week1-2</strong>: Metaオフラインコンバージョン設定・6月分アップロード</li>
+        <li><strong>Week1</strong>: Meta「広告動画5」の効果検証開始・2週間データ取得</li>
+        <li><strong>Week2</strong>: LP希望日リクエスト動線を単一CTAに整理・A/Bテスト設計</li>
+        <li><strong>Week3</strong>: 休会10名への復帰DM送付（原田様連携）</li>
+        <li><strong>Week4</strong>: SA案内DM送付（プライベート会員全員）</li>
+      </ul>
+    </div>
+    <div class="timeline-col">
+      <h4>🟡 8月：獲得ペース加速</h4>
+      <ul>
+        <li>筬島様稼働開始 → 供給枠さらに拡大</li>
+        <li>広告予算を¥30k→¥50kへ増額（オフラインCVで実予約検証済み前提）</li>
+        <li>Meta新クリエイティブ2本追加投入</li>
+        <li>チケット→月会費キャンペーン開始</li>
+        <li>妊娠復帰プログラム告知（Instagram・LP）</li>
+      </ul>
+    </div>
+    <div class="timeline-col">
+      <h4>🟠 9月：定着＆最適化</h4>
+      <ul>
+        <li>3ヶ月新規獲得実績を集計→ペース検証</li>
+        <li>広告CPAが¥10k以下なら予算¥50k→¥80kへ増額検討</li>
+        <li>LTV分析（プライベート・SA・チケット）→ 高LTV層への集中</li>
+        <li>紹介制度導入検討（既存会員→新規1名につき月会費1ヶ月無料等）</li>
+        <li>10月月商¥600k到達可否を判定</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 期待効果 -->
+<section>
+  <h2><span class="num">4</span>各ドライバーの月次インパクト試算</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ドライバー</th>
+        <th class="num">現状</th>
+        <th class="num">3ヶ月後（10月）</th>
+        <th class="num">売上インパクト</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>① 新規獲得ペース</td>
+        <td class="num">月1名</td>
+        <td class="num">月4-5名</td>
+        <td class="num up">+¥75-125k</td>
+      </tr>
+      <tr>
+        <td>② SAアップセル</td>
+        <td class="num">SA2名</td>
+        <td class="num">SA3-4名</td>
+        <td class="num up">+¥30-60k</td>
+      </tr>
+      <tr>
+        <td>③ 継続率アップ</td>
+        <td class="num">6月新規1名</td>
+        <td class="num">休会復帰2-3名</td>
+        <td class="num up">+¥50-75k</td>
+      </tr>
+      <tr>
+        <td>④ 計測整備</td>
+        <td class="num">不明</td>
+        <td class="num">実CPAを把握</td>
+        <td class="num mid">土台（間接効果）</td>
+      </tr>
+      <tr style="background:#f9f5eb;font-weight:700">
+        <td>合計インパクト</td>
+        <td class="num">¥466k</td>
+        <td class="num">¥600k想定</td>
+        <td class="num up">+¥134k</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ⑤ リスクと注意点 -->
+<section>
+  <h2><span class="num">5</span>リスク・注意点</h2>
+  <div class="strategy-card" style="border-left-color:#c0392b">
+    <h3 style="color:#c0392b"><span class="icon" style="background:#c0392b">!</span>広告予算増額の前提条件</h3>
+    <p class="lead">現状の実予約CPAが不明なまま予算だけ増やすと無駄打ちのリスク。<strong>7月中に計測整備が完了してから増額する</strong>順序を厳守。</p>
+  </div>
+  <div class="strategy-card" style="border-left-color:#e67e22">
+    <h3 style="color:#e67e22"><span class="icon" style="background:#e67e22">!</span>チケット10名一斉退会の背景次第</h3>
+    <p class="lead">背景がスタジオ運営への不満だった場合、対策なしで新規獲得しても同じ流出が起こる。原田様への確認結果次第で施策優先順位を組み替え。</p>
+  </div>
+  <div class="strategy-card" style="border-left-color:#e67e22">
+    <h3 style="color:#e67e22"><span class="icon" style="background:#e67e22">!</span>人件費の変動</h3>
+    <p class="lead">MUTSUMI（週3日）＋筬島（8月〜）稼働で人件費が実質¥100k/月規模に増える可能性。売上¥600k到達しても利益は¥80-100k程度。</p>
+  </div>
+</section>
+
+<!-- ⑥ 意思決定して欲しい3点 -->
+<section>
+  <h2><span class="num">6</span>意思決定して欲しい3点（星崎→原田様）</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>質問</th>
+        <th>選択肢</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Q1</td>
+        <td>広告予算増額（¥30k→¥50k）はOKか？</td>
+        <td>OK / 保留（実CPA把握後） / NG</td>
+      </tr>
+      <tr>
+        <td>Q2</td>
+        <td>休会10名への復帰オファーDMを配布してよいか？</td>
+        <td>全員OK / 個別確認要 / NG</td>
+      </tr>
+      <tr>
+        <td>Q3</td>
+        <td>10月目標¥600k・1月目標¥800kは現実的か？</td>
+        <td>OK / 修正要 / 別目標設定</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<p class="footer">
+S'aimer pilates & aroma salon<br>
+株式会社 斗（hishaku）— 担当: 星崎<br>
+Base data: hacomono / Google Ads / Meta Ads / Cowork調査（2026-07-03, 2026-07-04）<br>
+Last updated: 2026-07-04
+</p>
+
+</div>
+</body>
+</html>
