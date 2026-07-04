@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S'aimer 2026年2月〜6月 経営総まとめ</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f5f0;color:#2c2c2c;line-height:1.7}
+.container{max-width:1100px;margin:0 auto;padding:32px 20px}
+header{text-align:center;padding:24px 0 40px;border-bottom:2px solid #b8964e}
+h1{font-size:1.8rem;color:#1a1a1a;letter-spacing:.05em;margin-bottom:8px}
+.subtitle{color:#888;font-size:.85rem;letter-spacing:.1em}
+.period{color:#b8964e;font-size:.95rem;font-weight:600;margin-top:8px}
+
+section{margin:48px 0}
+h2{font-size:1.2rem;color:#b8964e;margin-bottom:20px;padding-bottom:8px;border-bottom:2px solid #b8964e;display:flex;align-items:center;gap:12px}
+h2 .num{background:#b8964e;color:#fff;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem}
+
+/* KPI Cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.kpi{background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);text-align:center;border-top:3px solid #b8964e}
+.kpi .label{font-size:.72rem;color:#888;margin-bottom:8px;letter-spacing:.05em}
+.kpi .value{font-size:1.5rem;font-weight:700;color:#1a1a1a}
+.kpi .sub{font-size:.7rem;color:#888;margin-top:4px}
+.kpi.positive{border-top-color:#27ae60}
+.kpi.warning{border-top-color:#e67e22}
+.kpi.danger{border-top-color:#c0392b}
+
+/* Bar chart */
+.bar-chart{background:#fff;padding:24px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.bar-row{display:grid;grid-template-columns:60px 1fr 90px;gap:12px;align-items:center;margin-bottom:12px}
+.bar-row .month{font-weight:600;color:#666}
+.bar-bg{background:#f0ebe0;height:32px;border-radius:6px;overflow:hidden;position:relative}
+.bar-fill{background:linear-gradient(90deg,#b8964e,#d4b678);height:100%;display:flex;align-items:center;padding-left:12px;color:#fff;font-size:.85rem;font-weight:600;transition:width .6s}
+.bar-row .amount{font-weight:600;color:#1a1a1a;text-align:right;font-variant-numeric:tabular-nums}
+
+/* Table */
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);font-size:.88rem}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid #eee}
+th{background:#f9f5eb;color:#666;font-weight:600;font-size:.78rem;letter-spacing:.05em}
+td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+tr:hover{background:#fafaf5}
+.profit-plus{color:#27ae60;font-weight:700}
+.profit-minus{color:#c0392b;font-weight:700}
+
+/* Timeline */
+.timeline{background:#fff;padding:24px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.tl-row{display:grid;grid-template-columns:80px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid #f0ebe0}
+.tl-row:last-child{border-bottom:none}
+.tl-month{font-weight:700;color:#b8964e;padding-top:4px}
+.tl-content .staff{display:inline-block;background:#f0ebe0;color:#8a7332;padding:4px 12px;border-radius:16px;font-size:.8rem;margin-right:6px;margin-bottom:6px}
+.tl-content .staff.active{background:#e8f5e9;color:#2d6a2f}
+.tl-content .staff.exit{background:#fbe9e7;color:#8b3a1f;text-decoration:line-through;text-decoration-color:#c0392b}
+.tl-content .note{color:#666;font-size:.85rem;margin-top:8px}
+
+/* Member trend */
+.member-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:center;background:#fff;padding:32px 24px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);margin:16px 0}
+.member-box{text-align:center;padding:20px 12px;border-radius:8px;background:#f9f5eb}
+.member-box.current{background:#fbe9e7;border:2px solid #c0392b}
+.member-box .stage{font-size:.72rem;color:#888;margin-bottom:6px}
+.member-box .count{font-size:2rem;font-weight:700;color:#1a1a1a;line-height:1}
+.member-box .detail{font-size:.7rem;color:#666;margin-top:6px}
+.member-arrow{font-size:1.5rem;color:#b8964e}
+.member-arrow.down{color:#c0392b}
+
+/* Recruit cards */
+.recruit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.recruit-card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);border-left:4px solid #b8964e}
+.recruit-card.success{border-left-color:#27ae60}
+.recruit-card.pending{border-left-color:#e67e22}
+.recruit-card.zero{border-left-color:#c0392b}
+.recruit-card .name{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.recruit-card .status{font-size:.72rem;color:#888;margin-bottom:12px}
+.recruit-card .fee{font-size:1.3rem;font-weight:700;color:#b8964e;margin-bottom:8px}
+.recruit-card .note{font-size:.8rem;color:#666}
+.recruit-card.zero .fee{color:#c0392b}
+.recruit-card.success .status::before{content:"✅ ";color:#27ae60}
+.recruit-card.pending .status::before{content:"⏳ ";color:#e67e22}
+.recruit-card.zero .status::before{content:"⚠️ ";color:#c0392b}
+
+/* Action items */
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.action-card{background:#fff;padding:18px 20px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.04);border-left:3px solid #b8964e;font-size:.9rem}
+.action-card.priority{border-left-color:#c0392b;background:#fef8f7}
+.action-card.priority .flag{color:#c0392b;font-weight:700;font-size:.75rem;letter-spacing:.05em;margin-bottom:6px}
+.action-card .flag{color:#888;font-weight:600;font-size:.72rem;margin-bottom:6px;letter-spacing:.05em}
+.action-card h4{font-size:.95rem;margin-bottom:6px;color:#1a1a1a}
+.action-card p{color:#666;font-size:.82rem}
+
+/* Insight */
+.insight{background:linear-gradient(135deg,#fff8ef,#faf3e3);padding:24px;border-radius:12px;border-left:4px solid #b8964e;margin:20px 0}
+.insight h3{color:#b8964e;font-size:1rem;margin-bottom:10px}
+.insight p{color:#3a3a3a;font-size:.9rem}
+
+/* Concerns badge */
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.7rem;font-weight:700;color:#fff;margin-left:6px}
+.badge.high{background:#c0392b}
+.badge.mid{background:#e67e22}
+.badge.low{background:#95a5a6}
+
+.footer{text-align:center;color:#999;font-size:.72rem;margin-top:64px;padding-top:20px;border-top:1px solid #ddd}
+
+@media(max-width:800px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .recruit-grid{grid-template-columns:1fr}
+  .actions{grid-template-columns:1fr}
+  .member-flow{grid-template-columns:1fr;gap:8px}
+  .member-arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>S'aimer 経営総まとめ</h1>
+  <p class="subtitle">pilates studio & aroma salon</p>
+  <p class="period">2026年2月 ─ 2026年6月（5ヶ月分）</p>
+</header>
+
+<!-- ① KPI概要 -->
+<section>
+  <h2><span class="num">1</span>結論TOP4（数字で見る5ヶ月）</h2>
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="label">売上累計</div>
+      <div class="value">¥2,299,900</div>
+      <div class="sub">月平均 ¥459,980</div>
+    </div>
+    <div class="kpi warning">
+      <div class="label">6/30→7/1 会員数</div>
+      <div class="value">54→42名</div>
+      <div class="sub">-12名（-22%）急減</div>
+    </div>
+    <div class="kpi danger">
+      <div class="label">リジョブ採用コスト</div>
+      <div class="value">¥231,000</div>
+      <div class="sub">3名採用・うち1名稼働ゼロ</div>
+    </div>
+    <div class="kpi positive">
+      <div class="label">7月からの新戦力</div>
+      <div class="value">MUTSUMI</div>
+      <div class="sub">週3日稼働・供給枠拡大</div>
+    </div>
+  </div>
+</section>
+
+<!-- ② 月次売上グラフ -->
+<section>
+  <h2><span class="num">2</span>月次売上推移（精算日ベース・税込）</h2>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="month">2月</span>
+      <div class="bar-bg"><div class="bar-fill" style="width:100%">¥506,450</div></div>
+      <span class="amount">🥇 最高</span>
+    </div>
+    <div class="bar-row">
+      <span class="month">3月</span>
+      <div class="bar-bg"><div class="bar-fill" style="width:83%">¥420,450</div></div>
+      <span class="amount">最低</span>
+    </div>
+    <div class="bar-row">
+      <span class="month">4月</span>
+      <div class="bar-bg"><div class="bar-fill" style="width:95%">¥481,250</div></div>
+      <span class="amount">回復</span>
+    </div>
+    <div class="bar-row">
+      <span class="month">5月</span>
+      <div class="bar-bg"><div class="bar-fill" style="width:84%">¥425,500</div></div>
+      <span class="amount">停滞</span>
+    </div>
+    <div class="bar-row">
+      <span class="month">6月</span>
+      <div class="bar-bg"><div class="bar-fill" style="width:92%">¥466,250</div></div>
+      <span class="amount">増加</span>
+    </div>
+  </div>
+  <div class="insight">
+    <h3>📌 洞察</h3>
+    <p>¥42〜51万円のレンジで横ばい。月次は新規入会（初月＋翌月分前受）と返金タイミングで上下。<strong>2月に「レッスン出来なかった為」の返金5件・約9万円</strong>（運営移行期の影響）は3月以降解消。</p>
+  </div>
+</section>
+
+<!-- ③ 損益PL -->
+<section>
+  <h2><span class="num">3</span>月次PL（売上・経費・利益）</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>月</th>
+        <th class="num">売上</th>
+        <th class="num">基本経費</th>
+        <th class="num">外部人件費（推定）</th>
+        <th class="num">経費合計</th>
+        <th class="num">月次利益</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2月</td>
+        <td class="num">¥506,450</td>
+        <td class="num">¥380,000</td>
+        <td class="num">¥152,000</td>
+        <td class="num">¥532,000</td>
+        <td class="num profit-minus">-¥25,550</td>
+      </tr>
+      <tr>
+        <td>3月</td>
+        <td class="num">¥420,450</td>
+        <td class="num">¥380,000</td>
+        <td class="num">¥172,000</td>
+        <td class="num">¥552,000</td>
+        <td class="num profit-minus">-¥131,550</td>
+      </tr>
+      <tr>
+        <td>4月</td>
+        <td class="num">¥481,250</td>
+        <td class="num">¥380,000</td>
+        <td class="num">¥56,000</td>
+        <td class="num">¥436,000</td>
+        <td class="num profit-plus">+¥45,250</td>
+      </tr>
+      <tr>
+        <td>5月</td>
+        <td class="num">¥425,500</td>
+        <td class="num">¥380,000</td>
+        <td class="num">¥60,000</td>
+        <td class="num">¥440,000</td>
+        <td class="num profit-minus">-¥14,500</td>
+      </tr>
+      <tr>
+        <td>6月</td>
+        <td class="num">¥466,250</td>
+        <td class="num">¥380,000</td>
+        <td class="num">¥44,000</td>
+        <td class="num">¥424,000</td>
+        <td class="num profit-plus">+¥42,250</td>
+      </tr>
+      <tr style="background:#f9f5eb;font-weight:700">
+        <td>累計</td>
+        <td class="num">¥2,299,900</td>
+        <td class="num">¥1,900,000</td>
+        <td class="num">¥484,000</td>
+        <td class="num">¥2,384,000</td>
+        <td class="num profit-minus">-¥84,100</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="insight">
+    <h3>📌 前提の修正</h3>
+    <p><strong>経費一覧「5月以降 人件費0円」は実態と不一致</strong>。5月MIKA・YURIE、6月MIKA稼働あり。Coworkによる推定人件費（中央値）を反映すると、5ヶ月累計は<strong>-¥84,100の赤字</strong>となる。<br>※実額の人件費は原田様確認が前提。上記は稼働レッスン数×業界相場（¥3,000-5,000/レッスン）×稼働率60%で試算。</p>
+  </div>
+</section>
+
+<!-- ④ 会員数フロー -->
+<section>
+  <h2><span class="num">4</span>会員数の急変（5月末 → 7/1）</h2>
+  <div class="member-flow">
+    <div class="member-box">
+      <div class="stage">5月末</div>
+      <div class="count">55</div>
+      <div class="detail">P18 / SA4 / チケ24 / 休9</div>
+    </div>
+    <div class="member-arrow">→</div>
+    <div class="member-box">
+      <div class="stage">6月末</div>
+      <div class="count">54</div>
+      <div class="detail">P18 / SA2 / チケ24 / 休10</div>
+    </div>
+    <div class="member-arrow down">↓</div>
+    <div class="member-box current">
+      <div class="stage">7/1時点</div>
+      <div class="count">42</div>
+      <div class="detail">P16 / SA2 / チケ14 / 休10</div>
+    </div>
+  </div>
+  <div class="insight">
+    <h3>⚠️ 6/30に一斉退会12名</h3>
+    <p><strong>チケット会員10名＋休会中2名</strong>（笹井様・見木様）が6/30付で一斉退会。チケット会員は月会費0円のため売上への直接影響は限定的だが、名簿インパクト大。<strong>背景は原田様への確認が必須</strong>。</p>
+  </div>
+</section>
+
+<!-- ⑤ スタッフ稼働タイムライン -->
+<section>
+  <h2><span class="num">5</span>スタッフ稼働タイムライン</h2>
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-month">2月</div>
+      <div class="tl-content">
+        <span class="staff active">SATOMI</span>
+        <span class="staff">MIKA</span>
+        <span class="staff">YURIE</span>
+        <div class="note">3名体制。営業時間 約167h/21営業日</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-month">3月</div>
+      <div class="tl-content">
+        <span class="staff active">SATOMI</span>
+        <span class="staff">MIKA</span>
+        <span class="staff">YURIE</span>
+        <div class="note">3名体制継続</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-month">4月</div>
+      <div class="tl-content">
+        <span class="staff active">SATOMI</span>
+        <span class="staff">MIKA</span>
+        <div class="note">YURIE稼働減少（この時点まで）</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-month">5月</div>
+      <div class="tl-content">
+        <span class="staff active">SATOMI</span>
+        <span class="staff">MIKA</span>
+        <span class="staff exit">YURIE（5/25最終）</span>
+        <div class="note">YURIE様が5/25最終稼働→退職確定</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-month">6月</div>
+      <div class="tl-content">
+        <span class="staff active">SATOMI</span>
+        <span class="staff exit">MIKA（6/23最終）</span>
+        <div class="note">営業時間 約246h/26営業日にフル拡大（+1.5倍）</div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-month">7月〜</div>
+      <div class="tl-content">
+        <span class="staff active">SATOMI</span>
+        <span class="staff active">MUTSUMI</span>
+        <div class="note">MIKA様最終6/23→7月シフトなし。MUTSUMI（湧田様）が週3日稼働開始。8月から筬島様が加わる</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ リジョブ採用 -->
+<section>
+  <h2><span class="num">6</span>リジョブ経由の採用（3名・成果報酬計 ¥231,000）</h2>
+  <div class="recruit-grid">
+    <div class="recruit-card zero">
+      <div class="name">玉置 祐子 様</div>
+      <div class="status">稼働記録ゼロ</div>
+      <div class="fee">¥77,000</div>
+      <div class="note">3/22応募→4/10入社。<strong>hacomono稼働なし・スタッフ登録なし</strong>。継続なしの見込み。<br>費用対効果を要確認。</div>
+    </div>
+    <div class="recruit-card success">
+      <div class="name">湧田 睦美 様</div>
+      <div class="status">稼働中（MUTSUMI）</div>
+      <div class="fee">¥77,000</div>
+      <div class="note">5/22応募→6/1入社。7月から週3日前後で稼働中。<strong>供給枠拡大の主戦力</strong>。</div>
+    </div>
+    <div class="recruit-card pending">
+      <div class="name">筬島 陽菜 様</div>
+      <div class="status">8/1入社予定</div>
+      <div class="fee">¥77,000</div>
+      <div class="note">6/18応募→7/1面談→採用確定。<strong>STOTTピラティス資格＋理学療法士</strong>の優良候補。</div>
+    </div>
+  </div>
+  <div class="insight">
+    <h3>⚠️ 玉置様の¥77,000は費用対効果ゼロの可能性</h3>
+    <p>3/22応募→4/10入社と記録あるが、hacomonoに稼働記録なし。リジョブへの<strong>採用成果報酬の請求有無・返金交渉可否</strong>を原田様確認推奨。</p>
+  </div>
+</section>
+
+<!-- ⑦ 重要ポイント -->
+<section>
+  <h2><span class="num">7</span>意思決定に効く重要ポイント（優先順）</h2>
+  <div class="actions">
+    <div class="action-card priority">
+      <div class="flag">🔴 最優先</div>
+      <h4>7/1 会員急減の理由確認</h4>
+      <p>チケット会員10名一斉退会の背景。整理か・不満か・他要因か</p>
+    </div>
+    <div class="action-card priority">
+      <div class="flag">🔴 最優先</div>
+      <h4>月会費基盤の逓減トレンド</h4>
+      <p>SA退会と休会増で2月¥45万→7月¥38.5万に減少。新規獲得が鍵</p>
+    </div>
+    <div class="action-card">
+      <div class="flag">🟡 要確認</div>
+      <h4>人件費の計上漏れ</h4>
+      <p>MIKA・YURIEへの5〜6月支払額の実態確認</p>
+    </div>
+    <div class="action-card">
+      <div class="flag">🟡 要確認</div>
+      <h4>玉置様のリジョブ費用</h4>
+      <p>¥77,000の請求有無・返金交渉可否</p>
+    </div>
+    <div class="action-card">
+      <div class="flag">🟡 要確認</div>
+      <h4>現金決済会員の月会費</h4>
+      <p>山内様・濱田様の6月分回収状況</p>
+    </div>
+    <div class="action-card">
+      <div class="flag">🟡 要確認</div>
+      <h4>湧田様の6月研修給与</h4>
+      <p>6月中の研修期間に給与発生の有無</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ 原田様ヒアリング項目 -->
+<section>
+  <h2><span class="num">8</span>原田様ヒアリング項目（一括で確認）</h2>
+  <ol style="background:#fff;padding:24px 24px 24px 48px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)">
+    <li style="margin-bottom:8px">チケット会員10名の6/30一斉退会の背景</li>
+    <li style="margin-bottom:8px">MIKA・YURIEへの5〜6月の実際の報酬支払額</li>
+    <li style="margin-bottom:8px">産休退職はYURIEで確定か（最終稼働5/25）</li>
+    <li style="margin-bottom:8px">玉置祐子様の勤務実態・支払・リジョブ請求の有無</li>
+    <li style="margin-bottom:8px">湧田様の6月研修期間の給与有無</li>
+    <li style="margin-bottom:8px">現金決済（山内様・濱田様）の月会費回収状況</li>
+    <li>休会10名のうち、システムに理由記録がない8名分のヒアリング</li>
+  </ol>
+</section>
+
+<p class="footer">
+S'aimer pilates & aroma salon<br>
+株式会社 斗（hishaku）— 担当: 星崎<br>
+Data: hacomono / Rejob / Cowork調査（2026-07-03, 2026-07-04）<br>
+Last updated: 2026-07-04
+</p>
+
+</div>
+</body>
+</html>
