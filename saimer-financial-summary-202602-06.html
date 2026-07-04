@@ -133,15 +133,15 @@ tr:hover{background:#fafaf5}
       <div class="value">54→42名</div>
       <div class="sub">-12名（-22%）急減</div>
     </div>
+    <div class="kpi">
+      <div class="label">累計利益（並列表示）</div>
+      <div class="value" style="font-size:.9rem;line-height:1.5">元表想定 <span style="color:#27ae60">+¥159,900</span><br>実態推定 <span style="color:#c0392b">-¥84,100</span></div>
+      <div class="sub">人件費の乖離要確認</div>
+    </div>
     <div class="kpi danger">
       <div class="label">リジョブ採用コスト</div>
       <div class="value">¥231,000</div>
-      <div class="sub">3名採用・うち1名稼働ゼロ</div>
-    </div>
-    <div class="kpi positive">
-      <div class="label">7月からの新戦力</div>
-      <div class="value">MUTSUMI</div>
-      <div class="sub">週3日稼働・供給枠拡大</div>
+      <div class="sub">3名・うち1名稼働ゼロ</div>
     </div>
   </div>
 </section>
@@ -184,16 +184,25 @@ tr:hover{background:#fafaf5}
 
 <!-- ③ 損益PL -->
 <section>
-  <h2><span class="num">3</span>月次PL（売上・経費・利益）</h2>
+  <h2><span class="num">3</span>月次PL（売上・経費・利益）— 元表想定 vs 実態推定 の並列</h2>
+  <p style="color:#666;font-size:.85rem;margin-bottom:12px">
+    <strong>基本経費 ¥380,000</strong>（家賃¥220k＋光熱費¥30k＋仕入¥35k＋システム¥40k＋雑費¥50k）は<strong>人件費を含まない</strong>。<br>
+    人件費は「①元表想定」と「②実態推定（Cowork調査）」を並列表示。実額は原田様確認が必要。
+  </p>
   <table>
     <thead>
       <tr>
-        <th>月</th>
-        <th class="num">売上</th>
-        <th class="num">基本経費</th>
-        <th class="num">外部人件費（推定）</th>
-        <th class="num">経費合計</th>
-        <th class="num">月次利益</th>
+        <th rowspan="2" style="vertical-align:middle">月</th>
+        <th rowspan="2" class="num" style="vertical-align:middle">売上</th>
+        <th rowspan="2" class="num" style="vertical-align:middle">基本経費<br>(人件費除く)</th>
+        <th colspan="2" class="num" style="text-align:center;background:#eff5eb">① 元表想定</th>
+        <th colspan="2" class="num" style="text-align:center;background:#fbe9e7">② 実態推定（Cowork）</th>
+      </tr>
+      <tr>
+        <th class="num" style="background:#eff5eb">人件費</th>
+        <th class="num" style="background:#eff5eb">月次利益</th>
+        <th class="num" style="background:#fbe9e7">人件費</th>
+        <th class="num" style="background:#fbe9e7">月次利益</th>
       </tr>
     </thead>
     <tbody>
@@ -201,55 +210,71 @@ tr:hover{background:#fafaf5}
         <td>2月</td>
         <td class="num">¥506,450</td>
         <td class="num">¥380,000</td>
+        <td class="num">¥80,000</td>
+        <td class="num profit-plus">+¥46,450</td>
         <td class="num">¥152,000</td>
-        <td class="num">¥532,000</td>
         <td class="num profit-minus">-¥25,550</td>
       </tr>
       <tr>
         <td>3月</td>
         <td class="num">¥420,450</td>
         <td class="num">¥380,000</td>
+        <td class="num">¥80,000</td>
+        <td class="num profit-minus">-¥39,550</td>
         <td class="num">¥172,000</td>
-        <td class="num">¥552,000</td>
         <td class="num profit-minus">-¥131,550</td>
       </tr>
       <tr>
         <td>4月</td>
         <td class="num">¥481,250</td>
         <td class="num">¥380,000</td>
+        <td class="num">¥80,000</td>
+        <td class="num profit-plus">+¥21,250</td>
         <td class="num">¥56,000</td>
-        <td class="num">¥436,000</td>
         <td class="num profit-plus">+¥45,250</td>
       </tr>
       <tr>
         <td>5月</td>
         <td class="num">¥425,500</td>
         <td class="num">¥380,000</td>
+        <td class="num">¥0</td>
+        <td class="num profit-plus">+¥45,500</td>
         <td class="num">¥60,000</td>
-        <td class="num">¥440,000</td>
         <td class="num profit-minus">-¥14,500</td>
       </tr>
       <tr>
         <td>6月</td>
         <td class="num">¥466,250</td>
         <td class="num">¥380,000</td>
+        <td class="num">¥0</td>
+        <td class="num profit-plus">+¥86,250</td>
         <td class="num">¥44,000</td>
-        <td class="num">¥424,000</td>
         <td class="num profit-plus">+¥42,250</td>
       </tr>
       <tr style="background:#f9f5eb;font-weight:700">
         <td>累計</td>
         <td class="num">¥2,299,900</td>
         <td class="num">¥1,900,000</td>
+        <td class="num">¥240,000</td>
+        <td class="num profit-plus">+¥159,900</td>
         <td class="num">¥484,000</td>
-        <td class="num">¥2,384,000</td>
         <td class="num profit-minus">-¥84,100</td>
       </tr>
     </tbody>
   </table>
   <div class="insight">
-    <h3>📌 前提の修正</h3>
-    <p><strong>経費一覧「5月以降 人件費0円」は実態と不一致</strong>。5月MIKA・YURIE、6月MIKA稼働あり。Coworkによる推定人件費（中央値）を反映すると、5ヶ月累計は<strong>-¥84,100の赤字</strong>となる。<br>※実額の人件費は原田様確認が前提。上記は稼働レッスン数×業界相場（¥3,000-5,000/レッスン）×稼働率60%で試算。</p>
+    <h3>📌 元表とCowork推定の乖離（要 原田様確認）</h3>
+    <p>
+    <strong>①元表想定</strong>: 「正社員給与」ベースの計画値。2〜4月 ¥80k/月、5月以降 0円と想定。<br>
+    <strong>②実態推定</strong>: hacomono稼働レッスン数×業界相場（¥3-5k/レッスン）×稼働率60%で試算。業務委託前提。<br><br>
+    <strong>差の理由候補</strong>:<br>
+    ・元表が想定していたスタッフ体制と実運用（業務委託レッスン単価制？）の違い<br>
+    ・元表の計画が実際の支払実態を反映できていない<br>
+    ・逆にCowork推定がレッスン数×相場で実態より大きくなっている可能性<br><br>
+    <strong>原田様に確認したい</strong>:<br>
+    MIKA・YURIE・MUTSUMIさん3名それぞれへの「月の実際の支払額」<br>
+    → これが分かれば正確なPLに差し替え可能。
+    </p>
   </div>
 </section>
 
